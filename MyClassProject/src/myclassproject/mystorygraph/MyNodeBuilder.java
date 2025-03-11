@@ -7,6 +7,7 @@ import static myclassproject.mystorygraph.MyStoryEntities.*;
 import com.storygraph.*;
 import com.actions.*;
 import com.entities.*;
+import com.sequences.*;
 
 
 public class MyNodeBuilder extends NodeBuilder {
@@ -27,7 +28,7 @@ public class MyNodeBuilder extends NodeBuilder {
     public void rootActions() {
         var root = get(MyNodeLabels.root.toString());
 
-        root.add(new CreateAll(List.of(forest, lostCity, banditCamp, merchantShop, appleBasketCabin, castle)))
+        root.add(new CreateAll(List.of(forest, lostCity, banditCamp, merchantShop, appleBasketCabin, castle, )))
             .add(new CreateCharacterSequence(player))
             .add(new SetPosition(player, forest, "Clearing"))
             .add(new SetCameraFocus(player))
@@ -42,6 +43,7 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
                                        "To the left, you hear the distant sounds of a bustling city. " +
                                        "To the right, the forest grows darker and deeper."));
+        node.add(null)
     }
 
     @BuilderMethod

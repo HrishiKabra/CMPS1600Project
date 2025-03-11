@@ -16,6 +16,5 @@ public enum MyNodeLabels{
 	CityTheLostCity,
 	ForestPlayDead,
 	ForestFightBandits,
-	ForestTakeAnApple,
-	abc
-}
+	ForestTakeAnApple
+	}

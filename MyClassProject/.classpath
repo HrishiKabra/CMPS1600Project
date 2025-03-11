@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/petra/Downloads/MyClassProject/libs/CamelotJava.jar"/>
+	<classpathentry kind="lib" path="/Users/hrishikabra/git/CMPS1600Project/MyClassProject/libs/CamelotJava.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

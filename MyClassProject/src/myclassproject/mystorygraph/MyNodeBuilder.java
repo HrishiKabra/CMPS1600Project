@@ -29,6 +29,7 @@ public class MyNodeBuilder extends NodeBuilder {
         var root = get(MyNodeLabels.root.toString());
 
         root.add(new CreateAll(List.of(forest, lostCity, banditCamp, merchantShop, appleBasketCabin, castle, )))
+        //Add All Entities from MyStoryEntities.java^
             .add(new CreateCharacterSequence(player))
             .add(new SetPosition(player, forest, "Clearing"))
             .add(new SetCameraFocus(player))

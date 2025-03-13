@@ -13,8 +13,8 @@ public class MainClass {
 		//Create an object of your story class.
 		var story = new Story();
 		//Simply call run.
-		//story.Run(new QuestGraph());
-		story.Run(new MyGraph());
+		story.Run(new QuestGraph());
+		//story.Run(new MyGraph());
 	}
 
 }

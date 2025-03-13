@@ -29,7 +29,10 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 * These methods must have a BuilderMethod annotation.
 	 * 
 	 */
+	
+	
 	//Petra Radmanovic
+	
 	@BuilderMethod
     public void rootEdges() {
         var root = get(MyNodeLabels.root.toString());
@@ -70,9 +73,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	    public void TheForestEdges() {
 	        var node = get(MyNodeLabels.ForestTheForest.toString());
 	        
-	        var choice1 = new PlayerInteraction(MyChoiceLabels.StayWithSword.toString(), sword, //How can I make the choice to pickup the sword??
+	        
+	        
+	        var choice1 = new PlayerInteraction(MyChoiceLabels.StayWithSword.toString(), sword, Icons.draw, "pick up sword"); //How can I make the choice to pickup the sword??
 	        var nextNode1 = get(MyNodeLabels.ForestTheWiseMan.toString());
 	        node.add(new Edge(choice1, nextNode1));
+	       
 	        
 	        var choice2 = new PlayerInteraction(MyChoiceLabels.RunToClearing.toString(), westEndTowardForest, Icons.exit, "Run to the Clearing");
 	        var nextNode2 = get(MyNodeLabels.CabinInTheWoods.toString());
@@ -112,122 +118,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        
 	 }
 	        
-
-
-/*
-    @BuilderMethod
-    public void theBeginningEdges() {
-        var node = get(MyNodeLabels.ForestTheBeginning.toString());
-
-        var choice1 = new MenuChoice(MyChoiceLabels.HeadTowardTheLight.toString());
-        var nextNode1 = get(MyNodeLabels.ForestTowardTheLostCity.toString());
-        node.add(new Edge(choice1, nextNode1));
-
-        var choice2 = new MenuChoice(MyChoiceLabels.HeadDeeperIntoTheForest.toString());
-        var nextNode2 = get(MyNodeLabels.CabinInTheWoods.toString());
-        node.add(new Edge(choice2, nextNode2));
-    }
-    
-
-    @BuilderMethod
-    public void towardsTheLostCityEdges() {
-        var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
-
-        var choice1 = new PlayerInteraction(MyChoiceLabels.SpeakToWiseMan.toString(), wiseMan, Icons.talk, "Speak to the Wise Man.");
-        var nextNode1 = get(MyNodeLabels.ForestTheWiseMan.toString());
-        node.add(new Edge(choice1, nextNode1));
-
-        var choice2 = new MenuChoice(MyChoiceLabels.IgnoreTheWiseMan.toString());
-        var nextNode2 = get(MyNodeLabels.CityTheLostCity.toString());
-        node.add(new Edge(choice2, nextNode2));
-    }
-
-    @BuilderMethod
-    public void inTheWoodsEdges() {
-        var node = get(MyNodeLabels.CabinInTheWoods.toString());
-
-        var choice1 = new MenuChoice(MyChoiceLabels.PickAnApple.toString());
-        var nextNode1 = get(MyNodeLabels.CabinAppleBasket.toString());
-        node.add(new Edge(choice1, nextNode1));
-
-        var choice2 = new MenuChoice(MyChoiceLabels.LeaveBasket.toString());
-        var nextNode2 = get(MyNodeLabels.ForestStrangeFruit.toString());
-        node.add(new Edge(choice2, nextNode2));
-    }
-
-    @BuilderMethod
-    public void strangeFruitEdges() {
-        var node = get(MyNodeLabels.ForestStrangeFruit.toString());
-
-        var choice1 = new MenuChoice(MyChoiceLabels.EatStrangeFruit.toString());
-        var nextNode1 = get(MyNodeLabels.ForestANetTrap.toString());
-        node.add(new Edge(choice1, nextNode1));
-
-        var choice2 = new MenuChoice(MyChoiceLabels.IgnoreStrangeFruit.toString());
-        var nextNode2 = get(MyNodeLabels.ForestTheWarning.toString());
-        node.add(new Edge(choice2, nextNode2));
-    }
-
-    @BuilderMethod
-    public void theWarningEdges() {
-        var node = get(MyNodeLabels.ForestTheWarning.toString());
-
-        var choice1 = new MenuChoice(MyChoiceLabels.ListenToWarning.toString());
-        var nextNode1 = get(MyNodeLabels.ForestTalkToTheBandits.toString());
-        node.add(new Edge(choice1, nextNode1));
-
-        var choice2 = new MenuChoice(MyChoiceLabels.IgnoreWarning.toString());
-        var nextNode2 = get(MyNodeLabels.CityTheLostCity.toString());
-        node.add(new Edge(choice2, nextNode2));
-    }
-
-    @BuilderMethod
-    public void aNetTrapEdges() {
-        var node = get(MyNodeLabels.ForestANetTrap.toString());
-
-        var choice1 = new MenuChoice(MyChoiceLabels.StruggleAgainstNet.toString());
-        var nextNode1 = get(MyNodeLabels.ForestTalkToTheBandits.toString());
-        node.add(new Edge(choice1, nextNode1));
-
-        var choice2 = new MenuChoice(MyChoiceLabels.StayStill.toString());
-        var nextNode2 = get(MyNodeLabels.ForestPlayDead.toString());
-        node.add(new Edge(choice2, nextNode2));
-    }
-
-    @BuilderMethod
-    public void talkToTheBanditsEdges() {
-        var node = get(MyNodeLabels.ForestTalkToTheBandits.toString());
-
-        var choice1 = new PlayerInteraction(MyChoiceLabels.DemandAnswers.toString(), banditLeader, Icons.talk, "Demand answers.");
-        var nextNode1 = get(MyNodeLabels.DemandAnswers.toString());
-        node.add(new Edge(choice1, nextNode1));
-
-        var choice2 = new MenuChoice(MyChoiceLabels.RunAway.toString());
-        var nextNode2 = get(MyNodeLabels.CityTheLostCity.toString());
-        node.add(new Edge(choice2, nextNode2));
-    }
-
-    @BuilderMethod
-    public void playDeadEdges() {
-        var node = get(MyNodeLabels.ForestPlayDead.toString());
-
-        var choice1 = new DialogChoice(MyChoiceLabels.Surrender.toString());
-        var nextNode1 = get(MyNodeLabels.TheCastle.toString());
-        node.add(new Edge(choice1, nextNode1));
-
-        var choice2 = new MenuChoice(MyChoiceLabels.FightBandits.toString());
-        var nextNode2 = get(MyNodeLabels.ForestFightBandits.toString());
-        node.add(new Edge(choice2, nextNode2));
-    }
-    */
-	 
-	 
-	 
-	 
 	 
 	 
 	
 	//Hrishi Kabra
+	 
+	 
 	//Rodrigo Guzman
 	 
 	 

@@ -71,8 +71,7 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new SetCameraFocus(player)) //focus on player
         .add(new NarrationSequence("As you venture deeper into the forest, the trees grow taller and denser. The path that you took to get here seems to have gotten lost amidst the foliage. Suddenly, you hear the snap of a branch. The bushes to your left begin to rustle."))
         //Add narrative sequence that will be shown to the player
-        
-        //Show a sword that can be clicked
+        .add(new SetPosition(sword, spookyArea, "Plant"))      //Show a sword that can be clicked
         //How can I place a sword to be picked up???
         .add(new Pickup(player, sword))
       
@@ -80,7 +79,7 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new Exit(player,westEndTowardForest, true))
         .add(new FadeOut());
     
-        //how can I add a sword option to see, and a place to exit???
+        
         
         
 
@@ -116,126 +115,6 @@ public class MyNodeBuilder extends NodeBuilder {
     
     
 
-/*
-    
-    }
-
-    @BuilderMethod
-    public void cabinAppleBasketActions() {
-        var node = get(MyNodeLabels.CabinAppleBasket.toString());
-
-        node.add(new CreateAll(List.of(appleBasket)))
-            .add(new NarrationSequence("You find a wooden basket filled with apples sitting on a table in an abandoned cabin."));
-    }
-
-    @BuilderMethod
-    public void forestStrangeFruitActions() {
-        var node = get(MyNodeLabels.ForestStrangeFruit.toString());
-
-        node.add(new CreateAll(List.of(strangeFruit)))
-            .add(new NarrationSequence("Hanging from a tree branch is a strange, glowing fruit. Its scent is intoxicating."))
-            .add(new DialogSequence(player, null, List.of("Will you eat the fruit?"),
-                    List.of("Eat the fruit", "Ignore it.")));
-    }
-
-    @BuilderMethod
-    public void forestTheWarningActions() {
-        var node = get(MyNodeLabels.ForestTheWarning.toString());
-
-        node.add(new NarrationSequence("The Wise Man’s voice echoes in your mind: 'Do not eat the fruit. It is cursed.'"));
-    }
-
-    @BuilderMethod
-    public void forestANetTrapActions() {
-        var node = get(MyNodeLabels.ForestANetTrap.toString());
-
-        node.add(new CreateAll(List.of(netTrap)))
-            .add(new NarrationSequence("Before you can react, a net shoots up from the ground, trapping you in the air."));
-    }
-
-    @BuilderMethod
-    public void forestTalkToTheBanditsActions() {
-        var node = get(MyNodeLabels.ForestTalkToTheBandits.toString());
-
-        node.add(new CreateCharacterSequence(banditLeader))
-            .add(new CreateCharacterSequence(forestBandit))
-            .add(new SetPosition(banditLeader, banditCamp, "Tent"))
-            .add(new SetPosition(forestBandit, banditCamp, "Perimeter"))
-            .add(new DialogSequence(player, banditLeader, List.of("You trespassed in our territory. Now, what should we do with you?"),
-                    List.of("Demand answers!", "Run away!")));
-    }
-
-    @BuilderMethod
-    public void cityTheLostCityActions() {
-        var node = get(MyNodeLabels.CityTheLostCity.toString());
-
-        node.add(new CreateAll(List.of(lostCityGate)))
-            .add(new NarrationSequence("You finally reach the towering gates of the Lost City. Merchants and travelers bustle around you."));
-    }
-
-    @BuilderMethod
-    public void forestPlayDeadActions() {
-        var node = get(MyNodeLabels.ForestPlayDead.toString());
-
-        node.add(new NarrationSequence("You drop to the ground, feigning unconsciousness. The bandits hesitate."));
-    }
-
-    @BuilderMethod
-    public void forestFightBanditsActions() {
-        var node = get(MyNodeLabels.ForestFightBandits.toString());
-
-        node.add(new CreateAll(List.of(sword)))
-            .add(new NarrationSequence("You grab a nearby sword and prepare to fight the bandits."))
-            .add(new Draw(player, sword));
-    }
-
-    @BuilderMethod
-    public void forestTakeAnAppleActions() {
-        var node = get(MyNodeLabels.ForestTakeAnApple.toString());
-
-        node.add(new NarrationSequence("You reach for an apple from the basket. It looks fresh and delicious."));
-    }
-
-    @BuilderMethod
-    public void banditDealActions() {
-        var node = get(MyNodeLabels.ForestDemandAnswers.toString());
-
-        node.add(new DialogSequence(player, banditLeader, List.of("Tell me what I need to know!"),
-                List.of("I’ll listen.", "I won’t trust you.")));
-    }
-
-    @BuilderMethod
-    public void acceptDealActions() {
-        var node = get(MyNodeLabels.ForestDemandAnswers.toString());
-
-        node.add(new HideDialog())
-            .add(new NarrationSequence("The Bandit Leader nods. 'Good choice. Follow me.'"));
-    }
-
-    @BuilderMethod
-    public void rejectDealActions() {
-        var node = get(MyNodeLabels.ForestDemandAnswers.toString());
-
-        node.add(new HideDialog())
-            .add(new NarrationSequence("You turn your back on the bandits and walk away, determined to find answers on your own."));
-    }
-
-    @BuilderMethod
-    public void resetGameActions() {
-        var node = get(MyNodeLabels.root.toString());
-
-        node.add(new HideNarration())
-            .add(new FadeOut())
-            .add(new SetPosition(player, forest, "Clearing"))
-            .add(new ShowMenu())
-            .add(new FadeIn());
-    }
-}
-*/
-	
-	
-	
-	
 	
 
 //Hrishi Kabra

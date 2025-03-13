@@ -27,7 +27,7 @@ public final class MyStoryEntities {
     public static final Place castle = new Place("Castle", PlaceTypes.GreatHall);
     public static final Place strangeFruitGrove = new Place("Strange Fruit Grove", PlaceTypes.ForestPath);
     public static final Place spookyArea = new Place("Net Trap Area", PlaceTypes.SpookyPath);
-    public static final Place appleBasketCabin = new Place("Apple Basket Cabin", PlaceTypes.Cottage);
+    public static final Place appleBasketCabin = new Place("Apple Basket Cabin", PlaceTypes.Farm);
     
     
     public static final Item apple = new Item("Apple", ItemTypes.Apple);
@@ -37,6 +37,9 @@ public final class MyStoryEntities {
     public static final Furniture eastEndTowardCity = new Furniture(forest, FurnitureTypes.EastEnd);
     public static final Furniture westEndTowardForest = new Furniture(forest, FurnitureTypes.WestEnd);
     public static final Furniture dirtWalk = new Furniture(forest, FurnitureTypes.DirtPile);
+    public static final Furniture cabinPath = new Furniture(spookyArea, FurnitureTypes.WestEnd);
+    public static final Furniture cabinDoor = new Furniture(appleBasketCabin, FurnitureTypes.Door);
+    public static final Furniture streamArea = new Furniture(appleBasketCabin, FurnitureTypes.Exit);
     
   /*
     public static final Furniture merchantCounter = new Furniture(merchantShop, FurnitureTypes.AlchemistTable);

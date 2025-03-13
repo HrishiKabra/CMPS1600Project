@@ -11,6 +11,8 @@ import com.sequences.*;
 
 
 public class MyNodeBuilder extends NodeBuilder {
+	private static final IAction NarrationSequence = null;
+
 	public MyNodeBuilder(List<Node> list) {
 		super(list);
 	}
@@ -23,15 +25,14 @@ public class MyNodeBuilder extends NodeBuilder {
 	 */
 	
 	
-		
+		//Petra Radmanovic
 	@BuilderMethod
     public void rootActions() {
         var root = get(MyNodeLabels.root.toString());
-
-        root.add(new CreateAll(List.of(forest, lostCity, banditCamp, merchantShop, appleBasketCabin, castle, )))
-        //Add All Entities from MyStoryEntities.java^
+       
+        root.add(new CreateAll(List.of(forest, lostCity, banditCamp, merchantShop,castle, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap)))
             .add(new CreateCharacterSequence(player))
-            .add(new SetPosition(player, forest, "Clearing"))
+            .add(new SetPosition(player, forest))
             .add(new SetCameraFocus(player))
             .add(new ShowMenu());
     }
@@ -42,19 +43,81 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new HideMenu()).add(new EnableInput());
 
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
-                                       "To the left, you hear the distant sounds of a bustling city. " +
-                                       "To the right, the forest grows darker and deeper."));
-        node.add(null)
+                                       "To the right, you hear the distant sounds of a bustling city. " +
+                                       "To the left, the forest grows darker and deeper. Which way do you go?"))
+        .add(new Exit(player, eastEndTowardCity, true)) //walk to the right, will connect to the city location 
+        .add(new Exit(player, westEndTowardForest, true))//walk to the left, will show walking but will be another forest path 
+        .add(new FadeOut()); //Fade out to show changing scenery 
+   //depending on the side the player walks to, there are different options and it will be taken to different places 
     }
-
+    
     @BuilderMethod
     public void forestTowardTheLostCityActions() {
         var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
 
-        node.add(new CreateCharacterSequence(wiseMan))
-            .add(new SetPosition(wiseMan, forest, "Clearing"))
-            .add(new DialogSequence(player, wiseMan, List.of("The city is dangerous. Are you sure you wish to go there?"),
-                    List.of("Yes, I must continue!", "No, I’ll turn back.")));
+        node.add(new FadeIn()) //Fade back in, same setting but give illusion of movement 
+        	.add(new WalkTo(player, dirtWalk)) //Player walks towards the dirt to show movement
+            .add(new NarrationSequence("You start walking towards the break in the tree lines as the noises of waits beyond intensifies. Right before exiting the final layer of brush, you hear a snap behind you back towards where you started... "))
+           //See narration that you can exit out of to add context
+            .add(new Exit(player, eastEndTowardCity, true)).add(new Exit(player, westEndTowardForest, true)).add(new FadeOut());
+   //Either go towards one side of the path to cross to next node of the other 
+    }
+    
+    @BuilderMethod
+    public void forestTheForestActions() {
+        var node = get(MyNodeLabels.ForestTheForest.toString());
+        node.add(new FadeIn()) //Undo fade out
+        .add(new SetPosition(player, spookyArea)) //Create new position in new place 
+        .add(new SetCameraFocus(player)) //focus on player
+        .add(new NarrationSequence("As you venture deeper into the forest, the trees grow taller and denser. The path that you took to get here seems to have gotten lost amidst the foliage. Suddenly, you hear the snap of a branch. The bushes to your left begin to rustle."))
+        //Add narrative sequence that will be shown to the player
+        
+        //Show a sword that can be clicked
+        //How can I place a sword to be picked up???
+        .add(new Pickup(player, sword))
+      
+        //Venture further down the path 
+        .add(new Exit(player,westEndTowardForest, true))
+        .add(new FadeOut());
+    
+        //how can I add a sword option to see, and a place to exit???
+        
+        
+
+}
+    @BuilderMethod
+    public void theWiseManActions() {
+        var node = get(MyNodeLabels.ForestTheWiseMan.toString());
+        node.add(new FadeIn())
+        .add(new CreateCharacterSequence(wiseMan)) //place wiseman in new scene
+        .add(new SetPosition(wiseMan, spookyArea, "Well" )) //put him near the well
+        .add(new Face(wiseMan, player)) //face the players
+        .add(new NarrationSequence("Holding a stick you picked up for protection in one hand, you see a figure emerge out of the bush. While you can't distinguish his face, the first thing that catches your eye is the long flowing cloak they’re wearing."))
+        .add(new WalkTo(player, wiseMan)) //one action is to walk to the wise man (there will be a dialog sequence if chosen)
+        .add(new Exit(player, cabinPath, true))//other option is to go to the clearing
+        .add(new FadeOut());
+    }
+    
+  
+	
+
+	@BuilderMethod
+    public void CabinintheWoodsActions() {
+        var node = get(MyNodeLabels.CabinInTheWoods.toString());
+        node.add(new FadeIn())
+        .add(new SetPosition(player, appleBasketCabin))//player is now in a new location 
+        .add(new NarrationSequence("Running away for fear of your life, the trees begin to thin out. You continue, heart racing as you travel farther into the expansive forest. Soon enough, a clearing emerges, and in it, you see a cabin."))
+        .add(new Exit(player, cabinDoor, true))//can go to the door and exit into the cabin
+        .add(new Exit(player, streamArea, true))//can walk towards the stream area back through the exit
+		.add(new FadeOut());
+       
+        
+    }
+    
+    
+
+/*
+    
     }
 
     @BuilderMethod
@@ -167,4 +230,16 @@ public class MyNodeBuilder extends NodeBuilder {
             .add(new ShowMenu())
             .add(new FadeIn());
     }
+}
+*/
+	
+	
+	
+	
+	
+
+//Hrishi Kabra
+
+//Rodrigo Guzman
+	
 }

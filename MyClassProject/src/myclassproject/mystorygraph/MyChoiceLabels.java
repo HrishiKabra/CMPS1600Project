@@ -7,7 +7,15 @@ public enum MyChoiceLabels {
 	StartGame,
     HeadTowardTheLight,
     HeadDeeperIntoTheForest,
-    SpeakToWiseMan,
+    ToTheCity,
+    BackToForest,
+    StayWithSword,
+    RunToClearing,
+    GoIntoCabin,
+    WalkToStream,
+    TalkToWiseMan
+    
+    /*SpeakToWiseMan,
     IgnoreTheWiseMan,
     PickAnApple,
     LeaveBasket,
@@ -23,6 +31,11 @@ public enum MyChoiceLabels {
     PlayDead,
     FightBandits,
     Surrender
-
+    */
+    
+    //Hrishi Kabra 
+    
+    
+    //Rodrigo Guzman
 }
 

@@ -28,26 +28,36 @@ public class MyNodeBuilder extends NodeBuilder {
     public void rootActions() {
         var root = get(MyNodeLabels.root.toString());
        
-        root.add(new CreateAll(List.of(player,wiseMan,banditLeader, merchant, forestBandit,forest, lostCity, banditCamp, merchantShop,castle, strangeFruitGrove, netTrapArea, appleBasketCabin, apple, sword,  netTrap)))
+        root.add(new CreateAll(List.of(forest, lostCity, banditCamp, merchantShop,castle, strangeFruitGrove, netTrapArea, appleBasketCabin, apple, sword,  netTrap)))
             .add(new CreateCharacterSequence(player))
-            .add(new SetPosition(player, forest, "Clearing"))
+            .add(new SetPosition(player, forest))
             .add(new SetCameraFocus(player))
             .add(new ShowMenu());
     }
-
+}
+/*
     @BuilderMethod
     public void forestTheBeginningActions() {
         var node = get(MyNodeLabels.ForestTheBeginning.toString());
         node.add(new HideMenu()).add(new EnableInput());
 
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
-                                       "To the left, you hear the distant sounds of a bustling city. " +
-                                       "To the right, the forest grows darker and deeper."));
-        
-        node.add(new DialogChoice("option 1"));
-        
+                                       "To the right, you hear the distant sounds of a bustling city. " +
+                                       "To the left, the forest grows darker and deeper. Which way do you go?"))
+        .add(new Exit(player, eastEndTowardCity, true)).add(new Exit(player, westEndTowardForest, true));
     }
+    @BuilderMethod
+    public void forestTowardTheLostCityActions() {
+        var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
+
+        node.add(new CreateCharacterSequence(wiseMan))
+            .add(new SetPosition(wiseMan, forest, "Clearing"))
+            .add(new DialogSequence(player, wiseMan, List.of("The city is dangerous. Are you sure you wish to go there?"),
+                    List.of("Yes, I must continue!", "No, I’ll turn back.")));
+    }
+    
 }
+*/
 //delete ^^
 
 /*

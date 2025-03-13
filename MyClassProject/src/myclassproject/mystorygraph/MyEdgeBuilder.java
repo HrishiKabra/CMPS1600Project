@@ -2,13 +2,15 @@ package myclassproject.mystorygraph;
 
 import java.util.List;
 import static myclassproject.mystorygraph.MyStoryEntities.*;
+import static myclassproject.questexample.QuestStoryEntities.cottageDoor;
 
 import com.actions.*;
 import com.sequences.*;
 import com.playerInput.*;
-
+import com.playerInput.PlayerInteraction.Icons;
 import com.storygraph.*;
 
+import myclassproject.questexample.ChoiceLabels;
 import myclassproject.questexample.NodeLabels;
 
 public class MyEdgeBuilder extends NodeBuilder {
@@ -35,8 +37,22 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var nextNode = get(MyNodeLabels.ForestTheBeginning.toString());
 		root.add(new Edge(choice, nextNode));
 	}
-     
-
+     /*
+	@BuilderMethod
+    public void theBeginningEdges() {
+        var node = get(MyNodeLabels.ForestTheBeginning.toString());
+        var choice1 = new PlayerInteraction(ChoiceLabels.Leave.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
+        var nextNode1 = get(MyNodeLabels.ForestTowardTheLostCity.toString());
+        node.add(new Edge(choice1, nextNode1));
+        
+        var choice2 = new PlayerInteraction(ChoiceLabels.Leave.toString(), westEndTowardForest, Icons.exit, "Go to The Lost City");
+        var nextNode2 = get(MyNodeLabels.ForestTheWiseMan.toString());
+        node.add(new Edge(choice2, nextNode2));
+        
+	}
+	
+	*/
+        
 
 /*
     @BuilderMethod

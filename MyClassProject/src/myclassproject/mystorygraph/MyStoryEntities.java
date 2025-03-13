@@ -33,6 +33,9 @@ public final class MyStoryEntities {
     public static final Item apple = new Item("Apple", ItemTypes.Apple);
     public static final Item sword = new Item("Sword", ItemTypes.Sword);
     public static final Item netTrap = new Item("Net Trap", ItemTypes.BlueCloth);
+    
+    public static final Furniture eastEndTowardCity = new Furniture(forest, FurnitureTypes.EastEnd);
+    public static final Furniture westEndTowardForest = new Furniture(forest, FurnitureTypes.WestEnd);
 
     
   /*

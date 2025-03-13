@@ -23,12 +23,12 @@ public class MyNodeBuilder extends NodeBuilder {
 	 */
 	
 	
-		
+		//Petra Radmanovic
 	@BuilderMethod
     public void rootActions() {
         var root = get(MyNodeLabels.root.toString());
-
-        root.add(new CreateAll(List.of(forest, lostCity, banditCamp, merchantShop, appleBasketCabin, castle, )))
+       
+        root.add(new CreateAll(List.of(player,wiseMan,banditLeader, merchant, forestBandit,forest, lostCity, banditCamp, merchantShop,castle, strangeFruitGrove, netTrapArea, appleBasketCabin, apple, sword,  netTrap)))
             .add(new CreateCharacterSequence(player))
             .add(new SetPosition(player, forest, "Clearing"))
             .add(new SetCameraFocus(player))
@@ -43,9 +43,14 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
                                        "To the left, you hear the distant sounds of a bustling city. " +
                                        "To the right, the forest grows darker and deeper."));
-        node.add(null)
+        
+        node.add(new DialogChoice("option 1"));
+        
     }
+}
+//delete ^^
 
+/*
     @BuilderMethod
     public void forestTowardTheLostCityActions() {
         var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
@@ -167,3 +172,8 @@ public class MyNodeBuilder extends NodeBuilder {
             .add(new FadeIn());
     }
 }
+*/
+
+//Hrishi Kabra
+
+//Rodrigo Guzman

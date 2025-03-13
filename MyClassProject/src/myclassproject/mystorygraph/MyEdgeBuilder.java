@@ -3,10 +3,13 @@ package myclassproject.mystorygraph;
 import java.util.List;
 import static myclassproject.mystorygraph.MyStoryEntities.*;
 
+import com.actions.*;
+import com.sequences.*;
+import com.playerInput.*;
 
-import com.storygraph.BuilderMethod;
-import com.storygraph.Node;
-import com.storygraph.NodeBuilder;
+import com.storygraph.*;
+
+import myclassproject.questexample.NodeLabels;
 
 public class MyEdgeBuilder extends NodeBuilder {
 	/**
@@ -22,18 +25,20 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 * Use get to get a reference to the node using its label.
 	 * The method should add the edges of the node one by one. 
 	 * These methods must have a BuilderMethod annotation.
+	 * 
 	 */
+	//Petra Radmanovic
 	@BuilderMethod
     public void rootEdges() {
         var root = get(MyNodeLabels.root.toString());
-
+        var choice = new MenuChoice(MenuChoice.Options.Start);
+		var nextNode = get(MyNodeLabels.ForestTheBeginning.toString());
+		root.add(new Edge(choice, nextNode));
+	}
      
-        var choice = new MenuChoice(MyChoiceLabels.StartGame.toString());
-        var nextNode = get(MyNodeLabels.ForestTheBeginning.toString());
 
-        root.add(new Edge(choice, nextNode));
-    }
 
+/*
     @BuilderMethod
     public void theBeginningEdges() {
         var node = get(MyNodeLabels.ForestTheBeginning.toString());
@@ -46,6 +51,7 @@ public class MyEdgeBuilder extends NodeBuilder {
         var nextNode2 = get(MyNodeLabels.CabinInTheWoods.toString());
         node.add(new Edge(choice2, nextNode2));
     }
+    
 
     @BuilderMethod
     public void towardsTheLostCityEdges() {
@@ -137,4 +143,9 @@ public class MyEdgeBuilder extends NodeBuilder {
         var nextNode2 = get(MyNodeLabels.ForestFightBandits.toString());
         node.add(new Edge(choice2, nextNode2));
     }
+    */
+	
+	//Hrishi Kabra
+	//Rodrigo Guzman
 }
+

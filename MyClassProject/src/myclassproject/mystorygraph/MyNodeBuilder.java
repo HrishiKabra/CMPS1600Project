@@ -28,14 +28,14 @@ public class MyNodeBuilder extends NodeBuilder {
     public void rootActions() {
         var root = get(MyNodeLabels.root.toString());
        
-        root.add(new CreateAll(List.of(forest, lostCity, banditCamp, merchantShop,castle, strangeFruitGrove, netTrapArea, appleBasketCabin, apple, sword,  netTrap)))
+        root.add(new CreateAll(List.of(forest, lostCity, banditCamp, merchantShop,castle, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap)))
             .add(new CreateCharacterSequence(player))
             .add(new SetPosition(player, forest))
             .add(new SetCameraFocus(player))
             .add(new ShowMenu());
     }
-}
-/*
+
+
     @BuilderMethod
     public void forestTheBeginningActions() {
         var node = get(MyNodeLabels.ForestTheBeginning.toString());
@@ -44,31 +44,64 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
                                        "To the right, you hear the distant sounds of a bustling city. " +
                                        "To the left, the forest grows darker and deeper. Which way do you go?"))
-        .add(new Exit(player, eastEndTowardCity, true)).add(new Exit(player, westEndTowardForest, true));
+        .add(new Exit(player, eastEndTowardCity, true)) //walk to the right, will connect to the city location 
+        .add(new Exit(player, westEndTowardForest, true));//walk to the left, will show walking but will be another forest path 
+   //depending on the side the player walks to, there are different options and it will be taken to different places 
     }
+    
     @BuilderMethod
     public void forestTowardTheLostCityActions() {
         var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
 
-        node.add(new CreateCharacterSequence(wiseMan))
-            .add(new SetPosition(wiseMan, forest, "Clearing"))
-            .add(new DialogSequence(player, wiseMan, List.of("The city is dangerous. Are you sure you wish to go there?"),
-                    List.of("Yes, I must continue!", "No, I’ll turn back.")));
+        node.add(new WalkTo(player, dirtWalk)) //Player walks towards the dirt to show movement
+            .add(new SetCameraFocus(player)) //Focus on Player
+            .add(new NarrationSequence("You start walking towards the break in the tree lines as the noises of waits beyond intensifies. Right before exiting the final layer of brush, you hear a snap behind you back towards where you started... "))
+           //See narration that you can exit out of to add context
+            .add(new Exit(player, eastEndTowardCity, true)).add(new Exit(player, westEndTowardForest, true)).add(new FadeOut());
+   //Either go towards one side of the path to cross to next node of the other 
     }
     
+    @BuilderMethod
+    public void forestTheForestActions() {
+        var node = get(MyNodeLabels.ForestTheForest.toString());
+        node.add(new FadeIn()) //Undo fade out
+        .add(new SetPosition(player, spookyArea)) //Create new position in new place 
+        .add(new SetCameraFocus(player)) //focus on player
+        .add(new NarrationSequence("As you venture deeper into the forest, the trees grow taller and denser. The path that you took to get here seems to have gotten lost amidst the foliage. Suddenly, you hear the snap of a branch. The bushes to your left begin to rustle."))
+        //Add narrative sequence that will be shown to the player
+        
+        //Show a sword that can be clicked
+        
+        //Venture further down the path 
+        
+    
+        //how can I add a sword option to see, and a place to exit???
+        
+        ;
+        
+       
+
 }
-*/
+    @BuilderMethod
+    public void theWiseManActions() {
+        var node = get(MyNodeLabels.ForestTheWiseMan.toString());
+        //IMPLEMENT
+    }
+    
+    @BuilderMethod
+    public void CabinintheWoodsActions() {
+        var node = get(MyNodeLabels.CabinInTheWoods.toString());
+        
+        //IMPLEMENT
+        
+    }
+    
+    }
+
 //delete ^^
 
 /*
-    @BuilderMethod
-    public void forestTowardTheLostCityActions() {
-        var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
-
-        node.add(new CreateCharacterSequence(wiseMan))
-            .add(new SetPosition(wiseMan, forest, "Clearing"))
-            .add(new DialogSequence(player, wiseMan, List.of("The city is dangerous. Are you sure you wish to go there?"),
-                    List.of("Yes, I must continue!", "No, I’ll turn back.")));
+    
     }
 
     @BuilderMethod

@@ -7,13 +7,16 @@ public enum MyNodeLabels{
 	root, //other nodes
 	ForestTheBeginning,
 	ForestTowardTheLostCity,
+	ForestTheForest,
 	ForestTheWiseMan,
 	CabinInTheWoods,
+	//Hrishi Kabra
 	CabinAppleBasket,
 	ForestStrangeFruit,
 	ForestTheWarning,
 	ForestANetTrap,
 	ForestTalkToTheBandits,
+	//Rodrigo Guzman
 	ForestDemandAnswers,
 	CityTheLostCity,
 	ForestPlayDead,

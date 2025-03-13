@@ -37,21 +37,37 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var nextNode = get(MyNodeLabels.ForestTheBeginning.toString());
 		root.add(new Edge(choice, nextNode));
 	}
-     /*
+     
 	@BuilderMethod
     public void theBeginningEdges() {
         var node = get(MyNodeLabels.ForestTheBeginning.toString());
-        var choice1 = new PlayerInteraction(ChoiceLabels.Leave.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
+        var choice1 = new PlayerInteraction(MyChoiceLabels.HeadTowardTheLight.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
         var nextNode1 = get(MyNodeLabels.ForestTowardTheLostCity.toString());
         node.add(new Edge(choice1, nextNode1));
         
-        var choice2 = new PlayerInteraction(ChoiceLabels.Leave.toString(), westEndTowardForest, Icons.exit, "Go to The Lost City");
-        var nextNode2 = get(MyNodeLabels.ForestTheWiseMan.toString());
+        var choice2 = new PlayerInteraction(MyChoiceLabels.HeadDeeperIntoTheForest.toString(), westEndTowardForest, Icons.exit, "Go to The Lost City");
+        var nextNode2 = get(MyNodeLabels.ForestTheForest.toString());
         node.add(new Edge(choice2, nextNode2));
         
 	}
 	
-	*/
+	@BuilderMethod
+    public void towardsTheLostCityEdges() {
+        var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
+
+        var choice1 = new PlayerInteraction(MyChoiceLabels.HeadTowardTheLight.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
+        
+        //Should we make different entities for the the same action^^?
+        var nextNode1 = get(MyNodeLabels.CityTheLostCity.toString());
+        node.add(new Edge(choice1, nextNode1));
+        
+        var choice2 = new PlayerInteraction(MyChoiceLabels.HeadDeeperIntoTheForest.toString(), westEndTowardForest, Icons.exit, "Go to The Lost City");
+        var nextNode2 = get(MyNodeLabels.ForestTheForest.toString());
+        node.add(new Edge(choice2, nextNode2));
+    }
+	
+	
+	
         
 
 /*

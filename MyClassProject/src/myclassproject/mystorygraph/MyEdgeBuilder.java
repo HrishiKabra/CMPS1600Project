@@ -2,11 +2,16 @@ package myclassproject.mystorygraph;
 
 import java.util.List;
 import static myclassproject.mystorygraph.MyStoryEntities.*;
+import static myclassproject.questexample.QuestStoryEntities.cottageDoor;
 
+import com.actions.*;
+import com.sequences.*;
+import com.playerInput.*;
+import com.playerInput.PlayerInteraction.Icons;
+import com.storygraph.*;
 
-import com.storygraph.BuilderMethod;
-import com.storygraph.Node;
-import com.storygraph.NodeBuilder;
+import myclassproject.questexample.ChoiceLabels;
+import myclassproject.questexample.NodeLabels;
 
 public class MyEdgeBuilder extends NodeBuilder {
 	/**
@@ -22,18 +27,50 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 * Use get to get a reference to the node using its label.
 	 * The method should add the edges of the node one by one. 
 	 * These methods must have a BuilderMethod annotation.
+	 * 
 	 */
+	//Petra Radmanovic
 	@BuilderMethod
     public void rootEdges() {
         var root = get(MyNodeLabels.root.toString());
-
+        var choice = new MenuChoice(MenuChoice.Options.Start);
+		var nextNode = get(MyNodeLabels.ForestTheBeginning.toString());
+		root.add(new Edge(choice, nextNode));
+	}
      
-        var choice = new MenuChoice(MyChoiceLabels.StartGame.toString());
-        var nextNode = get(MyNodeLabels.ForestTheBeginning.toString());
+	@BuilderMethod
+    public void theBeginningEdges() {
+        var node = get(MyNodeLabels.ForestTheBeginning.toString());
+        var choice1 = new PlayerInteraction(MyChoiceLabels.HeadTowardTheLight.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
+        var nextNode1 = get(MyNodeLabels.ForestTowardTheLostCity.toString());
+        node.add(new Edge(choice1, nextNode1));
+        
+        var choice2 = new PlayerInteraction(MyChoiceLabels.HeadDeeperIntoTheForest.toString(), westEndTowardForest, Icons.exit, "Go to The Lost City");
+        var nextNode2 = get(MyNodeLabels.ForestTheForest.toString());
+        node.add(new Edge(choice2, nextNode2));
+        
+	}
+	
+	@BuilderMethod
+    public void towardsTheLostCityEdges() {
+        var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
 
-        root.add(new Edge(choice, nextNode));
+        var choice1 = new PlayerInteraction(MyChoiceLabels.HeadTowardTheLight.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
+        
+        //Should we make different entities for the the same action^^?
+        var nextNode1 = get(MyNodeLabels.CityTheLostCity.toString());
+        node.add(new Edge(choice1, nextNode1));
+        
+        var choice2 = new PlayerInteraction(MyChoiceLabels.HeadDeeperIntoTheForest.toString(), westEndTowardForest, Icons.exit, "Go to The Lost City");
+        var nextNode2 = get(MyNodeLabels.ForestTheForest.toString());
+        node.add(new Edge(choice2, nextNode2));
     }
+	
+	
+	
+        
 
+/*
     @BuilderMethod
     public void theBeginningEdges() {
         var node = get(MyNodeLabels.ForestTheBeginning.toString());
@@ -46,6 +83,7 @@ public class MyEdgeBuilder extends NodeBuilder {
         var nextNode2 = get(MyNodeLabels.CabinInTheWoods.toString());
         node.add(new Edge(choice2, nextNode2));
     }
+    
 
     @BuilderMethod
     public void towardsTheLostCityEdges() {
@@ -137,4 +175,9 @@ public class MyEdgeBuilder extends NodeBuilder {
         var nextNode2 = get(MyNodeLabels.ForestFightBandits.toString());
         node.add(new Edge(choice2, nextNode2));
     }
+    */
+	
+	//Hrishi Kabra
+	//Rodrigo Guzman
 }
+

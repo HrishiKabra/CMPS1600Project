@@ -4,6 +4,7 @@ import com.entities.*;
 import com.enums.*;
 
 public final class QuestStoryEntities {
+	
 	public static final Characters player = new Characters("Player", BodyTypes.D, Clothing.Peasant, HairStyle.Short, Colors.Black, 6);
 	public static final Characters bandit = new Characters("Bandit", BodyTypes.F, Clothing.Bandit, HairStyle.Bald, Colors.Black, 4);
 	public static final Place cottage = new Place("Home", PlaceTypes.Cottage);

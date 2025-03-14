@@ -108,16 +108,23 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new NarrationSequence("Running away for fear of your life, the trees begin to thin out. You continue, heart racing as you travel farther into the expansive forest. Soon enough, a clearing emerges, and in it, you see a cabin."))
         .add(new Exit(player, cabinDoor, true))//can go to the door and exit into the cabin
         .add(new Exit(player, streamArea, true))//can walk towards the stream area back through the exit
-		.add(new FadeOut());
-       
-        
+		.add(new FadeOut());        
     }
+	
+	//Hrishi Kabra
+	public void AppleBasketActions() {
+		var node = get(MyNodeLabels.CabinAppleBasket.toString());
+		node.add(new FadeIn())
+		//Player is in the same location as CabinintheWoods
+		.add(new NarrationSequence("The cabin seems abandoned as you get closer, so you try to go in. The door opens without hesitation, and the first thing  you see is a basket of pristine apples. Starving, you decide to grab one..."))
+		.add(new Exit(player, apple, true)) //player has only one choice - to pick up the apple
+		.add(new FadeOut());
+	}
     
     
 
 	
 
-//Hrishi Kabra
 
 //Rodrigo Guzman
 	

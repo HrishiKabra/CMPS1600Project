@@ -119,9 +119,13 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 }
 	        
 	 
-	 
-	
 	//Hrishi Kabra
+	 @BuilderMethod
+	 	public void AppleBasketEdges() {
+		 var node = get(MyNodeLabels.CabinAppleBasket.toString());
+		 
+		 var choice1 = new PlayerInteraction(MyChoiceLabels)
+	 }
 	 
 	 
 	//Rodrigo Guzman

@@ -13,7 +13,10 @@ public enum MyChoiceLabels {
     RunToClearing,
     GoIntoCabin,
     WalkToStream,
-    TalkToWiseMan
+    TalkToWiseMan, 
+    
+    //Hrishi Kabra
+    PickUpApple
     
     /*SpeakToWiseMan,
     IgnoreTheWiseMan,

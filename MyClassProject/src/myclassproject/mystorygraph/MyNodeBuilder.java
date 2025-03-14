@@ -115,9 +115,23 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void AppleBasketActions() {
 		var node = get(MyNodeLabels.CabinAppleBasket.toString());
 		node.add(new FadeIn())
-		//Player is in the same location as CabinintheWoods
+		.add(new SetPosition(player, insideCabin)) //Player is now inside the cabin in the woods
 		.add(new NarrationSequence("The cabin seems abandoned as you get closer, so you try to go in. The door opens without hesitation, and the first thing  you see is a basket of pristine apples. Starving, you decide to grab one..."))
+		.add(new SetPosition(apple, Table, "place"))
+		.add(new Pickup(Player, apple)) //Is this correct?
 		.add(new Exit(player, apple, true)) //player has only one choice - to pick up the apple
+		.add(new FadeOut());
+	}
+	
+	public void StrangeFruitActions() {
+		var node = get(MyNodeLabels.ForestStrangeFruit.toString());
+		node.add(new FadeIn())
+		.add(new SetPosition(player, strangeFruitGrove))
+		.add(new NarrationSequence("As you are walking, you notice fruit trees scattered between the other vegetation. The juicy looking apples call your name, but something seems off about them…"))
+		.add(new SetPosition(apple, applePlant, "place"))
+		.add(new Pickup(Player, apple)) //Is this correct?
+		.add(new Exit(player, apple, true))
+		
 		.add(new FadeOut());
 	}
     

@@ -11,7 +11,7 @@ public final class MyStoryEntities {
 	//You can access these instances in your EdgeBuilder and NodeBuilder classes by importing:
 	//import static myclassproject.mystorygraph.MyStoryEntities.*;
 	
-	//Petra Radmanovic
+	//Petra Radmanovic + Hrishi Kabra
 	
 	public static final Characters player = new Characters("Player", BodyTypes.A, Clothing.LightArmour, HairStyle.Short, Colors.Brown, 5);
     public static final Characters wiseMan = new Characters("Wise Man", BodyTypes.C, Clothing.Warlock, HairStyle.Long, Colors.Black, 7);
@@ -28,6 +28,8 @@ public final class MyStoryEntities {
     public static final Place strangeFruitGrove = new Place("Strange Fruit Grove", PlaceTypes.ForestPath);
     public static final Place spookyArea = new Place("Net Trap Area", PlaceTypes.SpookyPath);
     public static final Place appleBasketCabin = new Place("Apple Basket Cabin", PlaceTypes.Farm);
+    public static final Place insideCabin = new Place("Inside Cabin", PlaceTypes.Cottage);
+    
     
     
     public static final Item apple = new Item("Apple", ItemTypes.Apple);
@@ -40,6 +42,8 @@ public final class MyStoryEntities {
     public static final Furniture cabinPath = new Furniture(spookyArea, FurnitureTypes.WestEnd);
     public static final Furniture cabinDoor = new Furniture(appleBasketCabin, FurnitureTypes.Door);
     public static final Furniture streamArea = new Furniture(appleBasketCabin, FurnitureTypes.Exit);
+    public static final Furniture tableInCabin = new Furniture(insideCabin, FurnitureTypes.Table);
+    public static final Furniture applePlant = new Furniture(strangeFruitGrove, FurnitureTypes.Plant);
     
   /*
     public static final Furniture merchantCounter = new Furniture(merchantShop, FurnitureTypes.AlchemistTable);

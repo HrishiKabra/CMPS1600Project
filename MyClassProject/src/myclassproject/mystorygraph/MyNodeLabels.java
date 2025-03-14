@@ -15,11 +15,11 @@ public enum MyNodeLabels{
 	ForestStrangeFruit,
 	ForestTheWarning,
 	ForestANetTrap,
-	ForestTalkToTheBandits,
+	ForestPlayDead,
 	//Rodrigo Guzman
 	ForestDemandAnswers,
 	CityTheLostCity,
-	ForestPlayDead,
+	ForestTalkToTheBandits,
 	ForestFightBandits,
 	ForestTakeAnApple
 	}

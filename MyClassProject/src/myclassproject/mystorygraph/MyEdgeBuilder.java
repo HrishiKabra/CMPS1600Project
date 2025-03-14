@@ -124,7 +124,9 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 	public void AppleBasketEdges() {
 		 var node = get(MyNodeLabels.CabinAppleBasket.toString());
 		 
-		 var choice1 = new PlayerInteraction(MyChoiceLabels)
+		 var choice1 = new PlayerInteraction(MyChoiceLabels.PickUpApple.toString(), tableInCabin, Icons.exit, "Pick up the apple."); //Help - what to do here?
+		 //var nextNode1 = get(MyNodeLabels.CabinEatApple.toString()); - commented out because the next node is not there in the current one
+		 //node.add(new Edge(choice1, nextNode1));
 	 }
 	 
 	 

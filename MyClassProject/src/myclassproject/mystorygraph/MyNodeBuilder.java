@@ -26,13 +26,14 @@ public class MyNodeBuilder extends NodeBuilder {
 	
 	
 		//Petra Radmanovic
+	
 	@BuilderMethod
     public void rootActions() {
         var root = get(MyNodeLabels.root.toString());
        
         root. add(new CreateCharacterSequence(player))
         .add(new SetCameraFocus(player))
-        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap))) //, lostCity, banditCamp, merchantShop,castle
+        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap))) //, lostCity, banditCamp, merchantShop,castle (saving for when we need to implement because it slows testing)
            
             .add(new SetPosition(player, forest))
             
@@ -50,11 +51,8 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new Wait(5)) //Show the narration for 5 seconds
         .add(new HideNarration());//then afterwards hide the context so that the player can decide which direction to go 
         
-        
-      //  .add(new Exit(player, eastEndTowardCity, true)) //walk to the right, will connect to the city location 
-      //  .add(new Exit(player, westEndTowardForest, true))//walk to the left, will show walking but will be another forest path 
-      //  .add(new FadeOut()); //Fade out to show changing scenery 
-   //depending on the side the player walks to, there are different options and it will be taken to different places 
+        //Options: walk through one exit on the side of the path or the other. depending on the side, the player will go to different locations
+     
     }
     
     @BuilderMethod
@@ -71,8 +69,7 @@ public class MyNodeBuilder extends NodeBuilder {
             .add(new HideNarration()); //Hide the context to give choice for decision 
         	
         
-          //  .add(new Exit(player, eastEndTowardCity, true)).add(new Exit(player, westEndTowardForest, true)).add(new FadeOut());
-   //Either go towards one side of the path to cross to next node of the other 
+        //Options: Again gives two different exit options. One will go back towards the forest the other will go into a city
         
     }
     
@@ -83,18 +80,14 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new Enter(player, westEndSpookyArea, true)) //enter into another area, both will fade in and fade out 
         .add(new SetPosition(sword, spookyArea, "Plant"))      //place a sword as an entity to interact with 
         
-        .add(new NarrationSequence("As you venture deeper into the forest, the trees grow taller and denser. The path that you took to get here seems to have gotten lost amidst the foliage. Suddenly, you hear the snap of a branch. The bushes to your left begin to rustle."))
+        .add(new NarrationSequence("As you venture deeper into the forest, the trees grow taller and denser. The path that you took to get here seems to have gotten lost amidst the foliage. Suddenly, you hear the snap of a branch. The bushes to your left begin to rustle. Do you pikc up the sword you see in the dirt or run away?"))
         //Add narrative sequence that will be shown to the player
-        .add(new Wait(5)) //wait for player to read narration 
+        .add(new Wait(10)) //wait for player to read narration 
        .add(new HideNarration());// then hide it to let a decision take place 
        
        
        
-     //   .add(new Pickup(player, sword))
-      
-        //Venture further down the path 
-     //   .add(new Exit(player,westEndTowardForest, true))
-     //   .add(new FadeOut());
+     //Options: The player has the option to go to a new location (farm), or to pick up a sword located at the dirt pile they walked to 
         
 
 }
@@ -111,9 +104,7 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new HideNarration());//hide context 
         
         
-      //  .add(new WalkTo(player, wiseMan)) //one action is to walk to the wise man (there will be a dialog sequence if chosen)
-      //  .add(new Exit(player, cabinPath, true))//other option is to go to the clearing
-      //  .add(new FadeOut());
+      //Options: The player picked up the sword and a new entity shows up. The player can speak with the entity to move forward or run away to the new location 
     }
     
   
@@ -122,31 +113,20 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
     public void CabinintheWoodsActions() {
         var node = get(MyNodeLabels.CabinInTheWoods.toString());
-        node.add(new Exit(player, eastEndSpookyArea, true))
+        node.add(new Exit(player, eastEndSpookyArea, true)) //Exit the area and enter into the cabin 
         .add(new Enter(player, streamArea, true))
-        .add(new Wait(2))
+        .add(new Wait(2)) //Do not show narration immediately to show new location 
         .add(new NarrationSequence("Running away for fear of your life, the trees begin to thin out. You continue, heart racing as you travel farther into the expansive forest. Soon enough, a clearing emerges, and in it, you see a cabin."))
+        //get context for possible choices 
         .add(new Wait(5))
         .add(new HideNarration());
+    
         
-        
-       // .add(new Exit(player, cabinDoor, true))//can go to the door and exit into the cabin
-       // .add(new Exit(player, streamArea, true))//can walk towards the stream area back through the exit
-		//.add(new FadeOut());        
+       //Options: The player decided to run away and enters a farm. They can exit to a new stream location, or they can enter the farm cabin they see through the door    
     }
-	/*
-	//Hrishi Kabra
-	public void AppleBasketActions() {
-		var node = get(MyNodeLabels.CabinAppleBasket.toString());
-		node.add(new FadeIn())
-		//Player is in the same location as CabinintheWoods
-		.add(new NarrationSequence("The cabin seems abandoned as you get closer, so you try to go in. The door opens without hesitation, and the first thing  you see is a basket of pristine apples. Starving, you decide to grab one..."))
-		.add(new Exit(player, apple, true)) //player has only one choice - to pick up the apple
-		.add(new FadeOut());
-	}
-    
-    
-*/
+	
+//Hrishi Kabra
+	
 	
 
 

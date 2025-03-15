@@ -44,11 +44,13 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
     public void theBeginningEdges() {
         var node = get(MyNodeLabels.ForestTheBeginning.toString());
-        var choice1 = new PlayerInteraction(MyChoiceLabels.HeadTowardTheLight.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
+        var choice1 = new PlayerInteraction(player, MyChoiceLabels.HeadTowardTheLight.toString(), eastEndTowardCity); //THIS IS HOW TO USE IT
+        
+        
         var nextNode1 = get(MyNodeLabels.ForestTowardTheLostCity.toString());
         node.add(new Edge(choice1, nextNode1));
         
-        var choice2 = new PlayerInteraction(MyChoiceLabels.HeadDeeperIntoTheForest.toString(), westEndTowardForest, Icons.exit, "Venture Into forest");
+        var choice2 = new PlayerInteraction(player, MyChoiceLabels.HeadDeeperIntoTheForest.toString(), westEndTowardForest);
         var nextNode2 = get(MyNodeLabels.ForestTheForest.toString());
         node.add(new Edge(choice2, nextNode2));
         
@@ -58,13 +60,13 @@ public class MyEdgeBuilder extends NodeBuilder {
     public void towardsTheLostCityEdges() {
         var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
 
-        var choice1 = new PlayerInteraction(MyChoiceLabels.ToTheCity.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
+        var choice1 = new PlayerInteraction(player, MyChoiceLabels.ToTheCity.toString(), eastEndTowardCity);
         
         //Should we make different entities for the the same action^^?
         var nextNode1 = get(MyNodeLabels.CityTheLostCity.toString());
         node.add(new Edge(choice1, nextNode1));
         
-        var choice2 = new PlayerInteraction(MyChoiceLabels.BackToForest.toString(), westEndTowardForest, Icons.exit, "Go Back");
+        var choice2 = new PlayerInteraction(player, MyChoiceLabels.BackToForest.toString(), westEndTowardForest);
         var nextNode2 = get(MyNodeLabels.ForestTheForest.toString());
         node.add(new Edge(choice2, nextNode2));
     }
@@ -80,7 +82,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        node.add(new Edge(choice1, nextNode1));
 	       
 	        
-	        var choice2 = new PlayerInteraction(MyChoiceLabels.RunToClearing.toString(), westEndTowardForest, Icons.exit, "Run to the Clearing");
+	        var choice2 = new PlayerInteraction(player, MyChoiceLabels.RunToClearing.toString(), westEndTowardForest);
 	        var nextNode2 = get(MyNodeLabels.CabinInTheWoods.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	
@@ -94,7 +96,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        var nextNode1= get(MyNodeLabels.CabinAppleBasket.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
-	        var choice2 = new PlayerInteraction(MyChoiceLabels.WalkToStream.toString(), streamArea, Icons.exit, "Go explore the stream");
+	        var choice2 = new PlayerInteraction(player, MyChoiceLabels.WalkToStream.toString(), streamArea);
 	        var nextNode2 = get(MyNodeLabels.ForestStrangeFruit.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	        
@@ -106,7 +108,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	    public void TheWiseManEdges() {
 	        var node = get(MyNodeLabels.ForestTheWiseMan.toString());
 	        
-	        var choice1 = new PlayerInteraction(MyChoiceLabels.RunToClearing.toString(), westEndTowardForest, Icons.exit, "Run to the Clearing");
+	        var choice1 = new PlayerInteraction(player, MyChoiceLabels.RunToClearing.toString(), westEndTowardForest);
 	        var nextNode1 = get(MyNodeLabels.CabinInTheWoods.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
@@ -118,15 +120,15 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        
 	 }
 	        
-	 
+	 /*
 	//Hrishi Kabra
 	 @BuilderMethod
 	 	public void AppleBasketEdges() {
 		 var node = get(MyNodeLabels.CabinAppleBasket.toString());
 		 
-		 var choice1 = new PlayerInteraction(MyChoiceLabels)
+		 var choice1 = new PlayerInteraction(MyChoiceLabels);
 	 }
-	 
+	 */
 	 
 	//Rodrigo Guzman
 	 

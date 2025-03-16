@@ -46,8 +46,8 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new HideMenu()).add(new EnableInput());
 
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
-                                       "To the right, you hear the distant sounds of a bustling city. " +
-                                       "To the left, the forest grows darker and deeper. Which way do you go?")) //Narration Gives Context to the choices 
+                                       "Behind you, you hear the distant sounds of a bustling city. " +
+                                       "In front of you, the forest grows darker and deeper. Which way do you go?")) //Narration Gives Context to the choices 
         .add(new Wait(5)) //Show the narration for 5 seconds
         .add(new HideNarration());//then afterwards hide the context so that the player can decide which direction to go 
         
@@ -80,7 +80,7 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new Enter(player, westEndSpookyArea, true)) //enter into another area, both will fade in and fade out 
         .add(new SetPosition(sword, spookyArea, "Plant"))      //place a sword as an entity to interact with 
         
-        .add(new NarrationSequence("As you venture deeper into the forest, the trees grow taller and denser. The path that you took to get here seems to have gotten lost amidst the foliage. Suddenly, you hear the snap of a branch. The bushes to your left begin to rustle. Do you pikc up the sword you see in the dirt or run away?"))
+        .add(new NarrationSequence("As you venture deeper into the forest, the trees grow taller and denser. The path that you took to get here seems to have gotten lost amidst the foliage. Suddenly, you hear the snap of a branch. The bushes to your left begin to rustle. Do you pick up the sword you see in the dirt or run away?"))
         //Add narrative sequence that will be shown to the player
         .add(new Wait(10)) //wait for player to read narration 
        .add(new HideNarration());// then hide it to let a decision take place 
@@ -94,7 +94,7 @@ public class MyNodeBuilder extends NodeBuilder {
     @BuilderMethod
     public void theWiseManActions() {
         var node = get(MyNodeLabels.ForestTheWiseMan.toString());
-        node.add(new Pickup(player, sword)) //player decides to interact and pick up the sword 
+        node.add(new Draw(player, sword)) //player decides to interact and pick up the sword 
         .add(new Wait(2)) //add a wait before the new character pops in 
         .add(new CreateCharacterSequence(wiseMan)) //place wise man in new scene
         .add(new SetPosition(wiseMan, spookyArea, "Well" )) //put him near the well

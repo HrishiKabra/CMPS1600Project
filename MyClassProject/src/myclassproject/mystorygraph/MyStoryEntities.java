@@ -14,7 +14,7 @@ public final class MyStoryEntities {
 	//Petra Radmanovic
 	
 	public static final Characters player = new Characters("Player", BodyTypes.A, Clothing.LightArmour, HairStyle.Short, Colors.Brown, 5);
-    public static final Characters wiseMan = new Characters("Wise Man", BodyTypes.C, Clothing.Warlock, HairStyle.Long, Colors.Black, 7);
+    public static final Characters wiseMan = new Characters("Wise Man", BodyTypes.B, Clothing.Warlock, HairStyle.Spiky, Colors.Black, 7);
     public static final Characters banditLeader = new Characters("Bandit Leader", BodyTypes.E, Clothing.Bandit, HairStyle.Bald, Colors.Black, 6);
     public static final Characters merchant = new Characters("Mysterious Merchant", BodyTypes.B, Clothing.Merchant, HairStyle.Ponytail, Colors.Blonde, 5);
     public static final Characters forestBandit = new Characters("Forest Bandit", BodyTypes.D, Clothing.Bandit, HairStyle.Spiky, Colors.Black, 4);
@@ -38,6 +38,7 @@ public final class MyStoryEntities {
     public static final Furniture eastEndTowardCity = new Furniture(forest, FurnitureTypes.EastEnd);
     public static final Furniture westEndTowardForest = new Furniture(forest, FurnitureTypes.WestEnd);
     public static final Furniture dirtWalk = new Furniture(forest, FurnitureTypes.DirtPile);
+    public static final Furniture swordInDirt = new Furniture(spookyArea, FurnitureTypes.DirtPile);
     public static final Furniture cabinPath = new Furniture(spookyArea, FurnitureTypes.WestEnd);
     public static final Furniture cabinDoor = new Furniture(appleBasketCabin, FurnitureTypes.Door);
     public static final Furniture streamArea = new Furniture(appleBasketCabin, FurnitureTypes.Exit);

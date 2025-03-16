@@ -77,12 +77,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        var node = get(MyNodeLabels.ForestTheForest.toString());
 	       
 	        //Player decides to pick up the sword to see entity emerge
-	        var choice1 = new PlayerInteraction(player, MyChoiceLabels.StayWithSword.toString(), dirtWalk); //How can I make the choice to pickup the sword??
+	        var choice1 = new PlayerInteraction(MyChoiceLabels.StayWithSword.toString(), swordInDirt, Icons.draw, "Find your sword in the dirt"); 
 	        var nextNode1 = get(MyNodeLabels.ForestTheWiseMan.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	       
 	        //Player decides to run away- goes to the farm cabin 
-	        var choice2 = new PlayerInteraction(player, MyChoiceLabels.RunToClearing.toString(), westEndTowardForest);
+	        var choice2 = new PlayerInteraction(player, MyChoiceLabels.RunToClearing.toString(), eastEndSpookyArea);
 	        var nextNode2 = get(MyNodeLabels.CabinInTheWoods.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	
@@ -111,7 +111,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        var node = get(MyNodeLabels.ForestTheWiseMan.toString());
 	        
 	        //Player decides to run to away from the entity and go to the farm cabin
-	        var choice1 = new PlayerInteraction(player, MyChoiceLabels.RunToClearing.toString(), westEndTowardForest);
+	        var choice1 = new PlayerInteraction(player, MyChoiceLabels.RunToClearing.toString(), westEndSpookyArea);
 	        var nextNode1 = get(MyNodeLabels.CabinInTheWoods.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        

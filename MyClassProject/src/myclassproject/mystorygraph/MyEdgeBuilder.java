@@ -44,11 +44,14 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
     public void theBeginningEdges() {
         var node = get(MyNodeLabels.ForestTheBeginning.toString());
-        var choice1 = new PlayerInteraction(MyChoiceLabels.HeadTowardTheLight.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
+        
+        //Player decides to go towards the city
+        var choice1 = new PlayerInteraction(player, MyChoiceLabels.HeadTowardTheLight.toString(), eastEndTowardCity); 
         var nextNode1 = get(MyNodeLabels.ForestTowardTheLostCity.toString());
         node.add(new Edge(choice1, nextNode1));
         
-        var choice2 = new PlayerInteraction(MyChoiceLabels.HeadDeeperIntoTheForest.toString(), westEndTowardForest, Icons.exit, "Venture Into forest");
+        //Player decides to go further into the forest
+        var choice2 = new PlayerInteraction(player, MyChoiceLabels.HeadDeeperIntoTheForest.toString(), westEndTowardForest);
         var nextNode2 = get(MyNodeLabels.ForestTheForest.toString());
         node.add(new Edge(choice2, nextNode2));
         
@@ -58,13 +61,13 @@ public class MyEdgeBuilder extends NodeBuilder {
     public void towardsTheLostCityEdges() {
         var node = get(MyNodeLabels.ForestTowardTheLostCity.toString());
 
-        var choice1 = new PlayerInteraction(MyChoiceLabels.ToTheCity.toString(), eastEndTowardCity, Icons.exit, "Go to The Lost City");
-        
-        //Should we make different entities for the the same action^^?
+        //Player decides to fully enter the city 
+        var choice1 = new PlayerInteraction(player, MyChoiceLabels.ToTheCity.toString(), eastEndTowardCity);
         var nextNode1 = get(MyNodeLabels.CityTheLostCity.toString());
         node.add(new Edge(choice1, nextNode1));
         
-        var choice2 = new PlayerInteraction(MyChoiceLabels.BackToForest.toString(), westEndTowardForest, Icons.exit, "Go Back");
+        //Player goes back to the forest to discover the noise
+        var choice2 = new PlayerInteraction(player, MyChoiceLabels.BackToForest.toString(), westEndTowardForest);
         var nextNode2 = get(MyNodeLabels.ForestTheForest.toString());
         node.add(new Edge(choice2, nextNode2));
     }
@@ -72,15 +75,14 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 @BuilderMethod
 	    public void TheForestEdges() {
 	        var node = get(MyNodeLabels.ForestTheForest.toString());
-	        
-	        
-	        
-	        var choice1 = new PlayerInteraction(MyChoiceLabels.StayWithSword.toString(), sword, Icons.draw, "pick up sword"); //How can I make the choice to pickup the sword??
+	       
+	        //Player decides to pick up the sword to see entity emerge
+	        var choice1 = new PlayerInteraction(player, MyChoiceLabels.StayWithSword.toString(), dirtWalk); //How can I make the choice to pickup the sword??
 	        var nextNode1 = get(MyNodeLabels.ForestTheWiseMan.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	       
-	        
-	        var choice2 = new PlayerInteraction(MyChoiceLabels.RunToClearing.toString(), westEndTowardForest, Icons.exit, "Run to the Clearing");
+	        //Player decides to run away- goes to the farm cabin 
+	        var choice2 = new PlayerInteraction(player, MyChoiceLabels.RunToClearing.toString(), westEndTowardForest);
 	        var nextNode2 = get(MyNodeLabels.CabinInTheWoods.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	
@@ -89,12 +91,14 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 @BuilderMethod
 	    public void CabinInTheWoodsEdges() {
 	        var node = get(MyNodeLabels.CabinInTheWoods.toString());
-	        
+	
+	        //Player decides to use the door to enter the cabin 
 	        var choice1 = new PlayerInteraction(MyChoiceLabels.GoIntoCabin.toString(), cabinDoor, Icons.exit, "Go into the Cabin");
 	        var nextNode1= get(MyNodeLabels.CabinAppleBasket.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
-	        var choice2 = new PlayerInteraction(MyChoiceLabels.WalkToStream.toString(), streamArea, Icons.exit, "Go explore the stream");
+	        //Player decides to go to the stream to see the fruits 
+	        var choice2 = new PlayerInteraction(player, MyChoiceLabels.WalkToStream.toString(), streamArea);
 	        var nextNode2 = get(MyNodeLabels.ForestStrangeFruit.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	        
@@ -106,27 +110,71 @@ public class MyEdgeBuilder extends NodeBuilder {
 	    public void TheWiseManEdges() {
 	        var node = get(MyNodeLabels.ForestTheWiseMan.toString());
 	        
-	        var choice1 = new PlayerInteraction(MyChoiceLabels.RunToClearing.toString(), westEndTowardForest, Icons.exit, "Run to the Clearing");
+	        //Player decides to run to away from the entity and go to the farm cabin
+	        var choice1 = new PlayerInteraction(player, MyChoiceLabels.RunToClearing.toString(), westEndTowardForest);
 	        var nextNode1 = get(MyNodeLabels.CabinInTheWoods.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
+	        //player decides to talk with the entity
 	        var choice2 = new PlayerInteraction(MyChoiceLabels.TalkToWiseMan.toString(), wiseMan, Icons.talk, "Go talk to the Wise Man");
 	        var nextNode2 = get(MyNodeLabels.ForestTheWarning.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	        
-	        
-	        
 	 }
-	        
+	 
 	 
 	//Hrishi Kabra
 	 @BuilderMethod
 	 	public void AppleBasketEdges() {
 		 var node = get(MyNodeLabels.CabinAppleBasket.toString());
 		 
-		 var choice1 = new PlayerInteraction(MyChoiceLabels.PickUpApple.toString(), tableInCabin, Icons.exit, "Pick up the apple."); //Help - what to do here?
+		 var choice1 = new PlayerInteraction(MyChoiceLabels.PickUpApple.toString(), apple, Icons.exit, "Eat the apple"); //Help - what to do here?
 		 //var nextNode1 = get(MyNodeLabels.CabinEatApple.toString()); - commented out because the next node is not there in the current one
 		 //node.add(new Edge(choice1, nextNode1));
+	 }
+	 
+	 public void StrangeFruitEdges() {
+		 var node = get(MyNodeLabels.ForestStrangeFruit.toString());
+        
+         var choice1 = new PlayerInteraction(MyChoiceLabels.IgnoreFruit.toString(), westEndTowardForest, Icons.exit, "Ignore them and continue walking");
+         var nextNode1 = get(MyNodeLabels.ForestANetTrap.toString());
+         node.add(new Edge(choice1, nextNode1));
+        
+         //var choice2 = new PlayerInteraction(MyChoiceLabels.EatApple.toString(), apple, Icons.pickup, "Eat the fruit");
+         //var nextNode2 = get(MyNodeLabels.CabinEatApple.toString());
+         //node.add(new Edge(choice2, nextNode2));
+	 }
+	 
+	 public void TheWarningEdges() {
+		 var node = get(MyNodeLabels.ForestTheWarning.toString());
+	     var choice1 = new PlayerInteraction(MyChoiceLabels.GoDeeper.toString(), westEndTowardForest, Icons.exit, "Go deeper into the forest");
+         var nextNode1 = get(MyNodeLabels.ForestStrangeFruit.toString());
+         node.add(new Edge(choice1, nextNode1));
+        
+         //var choice2 = new PlayerInteraction(MyChoiceLabels.GoBack.toString(), eastEndTowardCity, Icons.exit, "Go back towards the city");
+         //var nextNode2 = get(MyNodeLabels.TheLostCity.toString());
+         //node.add(new Edge(choice2, nextNode2));
+		 
+	 }
+	 
+	 
+	 public void NetTrapEdges() {
+		 var node = get(MyNodeLabels.ForestANetTrap.toString());
+        
+         //var choice1 = new PlayerInteraction(MyChoiceLabels.DemandAnswers.toString(), banditLeader, Icons.talk, "Fight your fate");
+         //var nextNode1 = get(MyNodeLabels.ForestDemandAnswers.toString());
+         //node.add(new Edge(choice1, nextNode1));
+        
+         var choice2 = new PlayerInteraction(MyChoiceLabels.PlayDead.toString(), netTrap, Icons.sleep, "Play Dead");
+         var nextNode2 = get(MyNodeLabels.ForestPlayDead.toString());
+         node.add(new Edge(choice2, nextNode2));
+	 }
+	 
+	 public void PlayDeadEdges() {
+		 var node = get(MyNodeLabels.ForestPlayDead.toString());
+		 //var choice1 = new PlayerInteraction(MyChoiceLabels.WakeUp.toString(), castleEntrance, Icons.exit, "WAKE UP");
+	     //var nextNode1 = get(MyNodeLabels.TheCastle.toString());
+	     //node.add(new Edge(choice1, nextNode1));
 	 }
 	 
 	 

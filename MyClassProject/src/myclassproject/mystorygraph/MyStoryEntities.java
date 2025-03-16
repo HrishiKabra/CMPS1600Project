@@ -25,7 +25,7 @@ public final class MyStoryEntities {
     public static final Place banditCamp = new Place("Bandit Camp", PlaceTypes.Camp);
     public static final Place merchantShop = new Place("Merchant’s Shop", PlaceTypes.AlchemyShop);
     public static final Place castle = new Place("Castle", PlaceTypes.GreatHall);
-    public static final Place strangeFruitGrove = new Place("Strange Fruit Grove", PlaceTypes.ForestPath);
+    public static final Place strangeFruitGrove = ne\w Place("Strange Fruit Grove", PlaceTypes.ForestPath);
     public static final Place spookyArea = new Place("Net Trap Area", PlaceTypes.SpookyPath);
     public static final Place appleBasketCabin = new Place("Apple Basket Cabin", PlaceTypes.Farm);
     public static final Place insideCabin = new Place("Inside Cabin", PlaceTypes.Cottage);

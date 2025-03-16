@@ -16,7 +16,16 @@ public enum MyChoiceLabels {
     TalkToWiseMan, 
     
     //Hrishi Kabra
-    PickUpApple
+    PickUpApple,
+    IgnoreFruit,
+    //EatApple,
+    GoDeeper,
+    //GoBack,
+    //DemandAnswers
+    PlayDead,
+    WakeUp,
+    
+    
     
     /*SpeakToWiseMan,
     IgnoreTheWiseMan,

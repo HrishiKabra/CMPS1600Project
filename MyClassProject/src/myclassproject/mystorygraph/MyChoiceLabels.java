@@ -13,29 +13,31 @@ public enum MyChoiceLabels {
     RunToClearing,
     GoIntoCabin,
     WalkToStream,
-    TalkToWiseMan
+    TalkToWiseMan,
     
-    /*SpeakToWiseMan,
-    IgnoreTheWiseMan,
-    PickAnApple,
-    LeaveBasket,
-    EatStrangeFruit,
-    IgnoreStrangeFruit,
-    ListenToWarning,
-    IgnoreWarning,
-    StruggleAgainstNet,
-    StayStill,
-    TalkToBandits,
-    DemandAnswers,
-    RunAway,
-    PlayDead,
-    FightBandits,
-    Surrender
-    */
-    
+  
     //Hrishi Kabra 
+    
+    PickUpApple,
+    IgnoreFruit,
+    //EatApple,
+    GoDeeper,
+    //GoBack,
+    //DemandAnswers
+    PlayDead,
+    WakeUp,
+    
     
     
     //Rodrigo Guzman
+    GetAnswers,
+    RunAway, 
+    EnterCity, 
+    TakeApple, 
+    FightThem, 
+    KnockedOut,
+    EatApple
+    
+    
 }
 

@@ -25,11 +25,15 @@ public final class MyStoryEntities {
     public static final Place spookyArea = new Place("Net Trap Area", PlaceTypes.SpookyPath);
     public static final Place appleBasketCabin = new Place("Apple Basket Cabin", PlaceTypes.Farm);
     
-    //public static final Place lostCity = new Place("Lost City", PlaceTypes.City);
+    
+    public static final Place lostCity = new Place("Lost City", PlaceTypes.City);
+    /*
     // public static final Place banditCamp = new Place("Bandit Camp", PlaceTypes.Camp);
-     //public static final Place merchantShop = new Place("Merchant’s Shop", PlaceTypes.AlchemyShop);
+     //public static final Place merchantShop = new Place("Merchant Shop", PlaceTypes.AlchemyShop);
      //public static final Place castle = new Place("Castle", PlaceTypes.GreatHall);
-     //SLOWS BUILDING CAMELOT^^^ do not implement until necessary 
+     NOT IMPLEMENTED YET BECAUSE SLOWS BUILDING CAMELOT^^^ do not implement until necessary 
+     ///*/
+      
     
     public static final Item apple = new Item("Apple", ItemTypes.Apple);
     public static final Item sword = new Item("Sword", ItemTypes.Sword);
@@ -53,10 +57,16 @@ public final class MyStoryEntities {
     public static final Furniture castleEntrance = new Furniture(castle, FurnitureTypes.Door);
     public static final Furniture appleBasket = new Furniture(appleBasketCabin, FurnitureTypes.Table);
    
-   Saving for when needed, slows building and running camelot 
+   NOT IMPLEMETED YET: Saving for when needed, slows building and running camelot 
    */
     
     //Hrishi Kabra
     
+    public static final Place insideCabin = new Place("Inside Cabin", PlaceTypes.Cottage);
+    public static final Furniture insideCabinDoor = new Furniture(insideCabin, FurnitureTypes.Door);
+    public static final Furniture strangeFruitGroveEntrance = new Furniture(strangeFruitGrove, FurnitureTypes.EastEnd);
+    
     //Rodrigo Guzman
+    public static final Furniture lostCityGate = new Furniture(lostCity, FurnitureTypes.NorthEnd);
+    
 }

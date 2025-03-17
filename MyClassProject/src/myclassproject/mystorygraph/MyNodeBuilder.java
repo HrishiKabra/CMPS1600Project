@@ -25,7 +25,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	 */
 	
 	
-		//Petra Radmanovic
+	//Petra Radmanovic
 	
 	@BuilderMethod
     public void rootActions() {
@@ -34,7 +34,6 @@ public class MyNodeBuilder extends NodeBuilder {
         root. add(new CreateCharacterSequence(player))
         .add(new SetCameraFocus(player))
         .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap))) //, lostCity, banditCamp, merchantShop,castle (saving for when we need to implement because it slows testing)
-           
             .add(new SetPosition(player, forest))
             
             .add(new ShowMenu());
@@ -44,7 +43,6 @@ public class MyNodeBuilder extends NodeBuilder {
     public void forestTheBeginningActions() {
         var node = get(MyNodeLabels.ForestTheBeginning.toString());
         node.add(new HideMenu()).add(new EnableInput());
-
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
                                        "Behind you, you hear the distant sounds of a bustling city. " +
                                        "In front of you, the forest grows darker and deeper. Which way do you go?")) //Narration Gives Context to the choices 
@@ -108,8 +106,6 @@ public class MyNodeBuilder extends NodeBuilder {
     }
     
   
-	
-
 	@BuilderMethod
     public void CabinintheWoodsActions() {
         var node = get(MyNodeLabels.CabinInTheWoods.toString());
@@ -125,11 +121,130 @@ public class MyNodeBuilder extends NodeBuilder {
        //Options: The player decided to run away and enters a farm. They can exit to a new stream location, or they can enter the farm cabin they see through the door    
     }
 	
+	
+	
+	
 //Hrishi Kabra
 	
+	public void AppleBasketActions() {//Picking up the apple in the cabin
+		var node = get(MyNodeLabels.CabinAppleBasket.toString());
+		node.add(new Enter(player, insideCabinDoor, true)) //Player is now inside the cabin in the woods
+		.add(new SetPosition(apple, insideCabin, "Table"))
+		.add(new Pickup(player, apple)) //player has only one choice - to pick up the apple
+		.add(new Wait(2))
+		.add(new NarrationSequence("The cabin seems abandoned as you get closer, so you try to go in. The door opens without hesitation, and the first thing  you see is a basket of pristine apples. Starving, you decide to grab one..."))
+		.add(new Wait(10))
+		.add(new HideNarration());
+	}
 	
+	
+	public void StrangeFruitActions() {//Picking up the apple in the woods - CabinInWoods&TheWarning lead to this - leads to EatApple
+		var node = get(MyNodeLabels.ForestStrangeFruit.toString());
+		node.add(new Enter(player, strangeFruitGroveEntrance, true))
+		.add(new SetPosition(apple, strangeFruitGrove, "Plant"))
+		.add(new Pickup(player, apple))
+		.add(new Wait(2))
+		.add(new NarrationSequence("As you are walking, you notice fruit trees scattered between the other vegetation. The juicy looking apples call your name, but something seems off about them…"))
+		.add(new Wait(10))
+		.add(new HideNarration());
+	}
+	
+	
+	public void TheWarningActions() {
+		var node = get(MyNodeLabels.ForestTheWarning.toString());
+		node
+        .add(new Face(wiseMan, player)) //face the players
+		.add(new Wait(2))
+		.add(new NarrationSequence("The person removes their hood to reveal a man. You stare at each other in silence. Finally, he says, “The city is not what you think.” Before you have a chance to ask more, he disappears in a puff of smoke"))
+		.add(new Wait(10))
+		.add(new HideNarration());
+	}
+	
+	
+	public void NetTrapActions() {
+		var node = get(MyNodeLabels.ForestANetTrap.toString());
+		node.add(new CreateCharacterSequence(banditLeader))
+		.add(new SetPosition(banditLeader, strangeFruitGrove, "Well"))
+		.add(new CreateCharacterSequence(forestBandit))
+		.add(new SetPosition(forestBandit, strangeFruitGrove, "DirtPile"))
+		.add(new Face(banditLeader, player))
+		.add(new Face(forestBandit, player))
+		.add(new Wait(2))
+		.add(new NarrationSequence("you start walking and before you know it, something catches you by your feet and you are hanging in the air stuck in a net! A group of people jump out of the bushes. "))
+		.add(new Wait(10))
+		.add(new HideNarration());
+	}
+	
+	
+	public void PlayDeadActions() {
+		var node = get(MyNodeLabels.ForestPlayDead.toString());
+		node.add(new CreateCharacterSequence(banditLeader))
+		.add(new SetPosition(banditLeader, strangeFruitGrove, "Well"))
+		.add(new CreateCharacterSequence(forestBandit))
+		.add(new SetPosition(forestBandit, strangeFruitGrove, "DirtPile"))
+		.add(new Face(banditLeader, player))
+		.add(new Face(forestBandit, player))
+		.add(new Wait(2))
+		.add(new NarrationSequence("You decide to play dead in the net trap. It doesn't work, your captors know you are alive. After a few minutes of whispering and shock in their eyes, they proclaim that they are taking you to the castle. You start panicking and try to free yourself, but you are sorely out numbered. One of them hits you over the head with the butt of his sword. You immediately go unconscious and drop to the floor.\n"))
+		.add(new Wait(10))
+		.add(new HideNarration());
+	}
 
 
 //Rodrigo Guzman
+	
+	@BuilderMethod
+    public void demandAnswersActions() {
+        var node = get(MyNodeLabels.ForestDemandAnswers.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("While your captives were whispering about what to do with you, you find a knife from your pocket and cut yourself down. You are too fast for them, and soon are standing on your own feet with a weapon in front of you."))
+            .add(new Wait(5))          
+            .add(new FadeOut());
+    }
+
+    @BuilderMethod
+    public void cityTheLostCityActions() {
+        var node = get(MyNodeLabels.CityTheLostCity.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("You reach the gates of the Lost City, a place of mystery and danger. The guards eye you suspiciously as you approach."))
+           .add(new Wait(5))
+            .add(new SetPosition(player, lostCity))
+            .add(new Exit(player, lostCityGate, true))
+            .add(new FadeOut());
+    }
+
+    @BuilderMethod
+    public void talkToBanditsActions() {
+        var node = get(MyNodeLabels.ForestTalkToTheBandits.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("You demand the bandits to tell you everything. One speaks up, offering you two choices: follow them, or eat an apple from the forest to find out yourself."))
+            .add(new Wait(5))
+            .add(new FadeOut());
+    }
+
+    @BuilderMethod
+    public void fightBanditsActions() {
+        var node = get(MyNodeLabels.ForestFightBandits.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("You start rushing one of them, but you are sorely outnumbered. One of them hits you over the head with the butt of his sword. You immediately go unconscious and drop to the floor."))
+            .add(new Wait(5))
+            .add(new Exit(player, westEndTowardForest, true))
+            .add(new FadeOut());
+    }
+
+    @BuilderMethod
+    public void takeAnAppleActions() {
+        var node = get(MyNodeLabels.ForestTakeAnApple.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("You bite into the crunchy flesh and fall to your knees. Unclear memories from your childhood flood back in. Before you know it, the world goes dark yet again..."))
+            .add(new Wait(5))
+            .add(new Exit(player, eastEndTowardCity, true))
+            .add(new FadeOut());
+    }
 	
 }

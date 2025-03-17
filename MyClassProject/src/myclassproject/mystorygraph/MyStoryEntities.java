@@ -13,24 +13,25 @@ public final class MyStoryEntities {
 	
 	//Petra Radmanovic + Hrishi Kabra
 	
+	//Petra Radmanovic
+	
 	public static final Characters player = new Characters("Player", BodyTypes.A, Clothing.LightArmour, HairStyle.Short, Colors.Brown, 5);
-    public static final Characters wiseMan = new Characters("Wise Man", BodyTypes.C, Clothing.Warlock, HairStyle.Long, Colors.Black, 7);
+    public static final Characters wiseMan = new Characters("Wise Man", BodyTypes.B, Clothing.Warlock, HairStyle.Spiky, Colors.Black, 7);
     public static final Characters banditLeader = new Characters("Bandit Leader", BodyTypes.E, Clothing.Bandit, HairStyle.Bald, Colors.Black, 6);
     public static final Characters merchant = new Characters("Mysterious Merchant", BodyTypes.B, Clothing.Merchant, HairStyle.Ponytail, Colors.Blonde, 5);
     public static final Characters forestBandit = new Characters("Forest Bandit", BodyTypes.D, Clothing.Bandit, HairStyle.Spiky, Colors.Black, 4);
 
     
     public static final Place forest = new Place("Forest", PlaceTypes.ForestPath);
-    public static final Place lostCity = new Place("Lost City", PlaceTypes.City);
-    public static final Place banditCamp = new Place("Bandit Camp", PlaceTypes.Camp);
-    public static final Place merchantShop = new Place("Merchant’s Shop", PlaceTypes.AlchemyShop);
-    public static final Place castle = new Place("Castle", PlaceTypes.GreatHall);
-    public static final Place strangeFruitGrove = ne\w Place("Strange Fruit Grove", PlaceTypes.ForestPath);
+    public static final Place strangeFruitGrove = new Place("Strange Fruit Grove", PlaceTypes.ForestPath);
     public static final Place spookyArea = new Place("Net Trap Area", PlaceTypes.SpookyPath);
     public static final Place appleBasketCabin = new Place("Apple Basket Cabin", PlaceTypes.Farm);
-    public static final Place insideCabin = new Place("Inside Cabin", PlaceTypes.Cottage);
     
-    
+    //public static final Place lostCity = new Place("Lost City", PlaceTypes.City);
+    // public static final Place banditCamp = new Place("Bandit Camp", PlaceTypes.Camp);
+     //public static final Place merchantShop = new Place("Merchant’s Shop", PlaceTypes.AlchemyShop);
+     //public static final Place castle = new Place("Castle", PlaceTypes.GreatHall);
+     //SLOWS BUILDING CAMELOT^^^ do not implement until necessary 
     
     public static final Item apple = new Item("Apple", ItemTypes.Apple);
     public static final Item sword = new Item("Sword", ItemTypes.Sword);
@@ -39,12 +40,14 @@ public final class MyStoryEntities {
     public static final Furniture eastEndTowardCity = new Furniture(forest, FurnitureTypes.EastEnd);
     public static final Furniture westEndTowardForest = new Furniture(forest, FurnitureTypes.WestEnd);
     public static final Furniture dirtWalk = new Furniture(forest, FurnitureTypes.DirtPile);
+    public static final Furniture swordInDirt = new Furniture(spookyArea, FurnitureTypes.DirtPile);
     public static final Furniture cabinPath = new Furniture(spookyArea, FurnitureTypes.WestEnd);
     public static final Furniture cabinDoor = new Furniture(appleBasketCabin, FurnitureTypes.Door);
     public static final Furniture streamArea = new Furniture(appleBasketCabin, FurnitureTypes.Exit);
-    public static final Furniture tableInCabin = new Furniture(insideCabin, FurnitureTypes.Table);
-    public static final Furniture applePlant = new Furniture(strangeFruitGrove, FurnitureTypes.Plant);
+    public static final Furniture westEndSpookyArea = new Furniture(spookyArea, FurnitureTypes.WestEnd);
+    public static final Furniture eastEndSpookyArea = new Furniture(spookyArea, FurnitureTypes.EastEnd);
     
+  
   /*
     public static final Furniture merchantCounter = new Furniture(merchantShop, FurnitureTypes.AlchemistTable);
     public static final Furniture banditTent = new Furniture(banditCamp, FurnitureTypes.Firepit);
@@ -55,6 +58,9 @@ public final class MyStoryEntities {
    */
     
     //Hrishi Kabra
+    public static final Place insideCabin = new Place("Inside Cabin", PlaceTypes.Cottage);
+    public static final Furniture insideCabinDoor = new Furniture(insideCabin, FurnitureTypes.Door);
+    public static final Furniture strangeFruitGroveEntrance = new Furniture(strangeFruitGrove, FurnitureTypes.EastEnd);
     
     //Rodrigo Guzman
 }

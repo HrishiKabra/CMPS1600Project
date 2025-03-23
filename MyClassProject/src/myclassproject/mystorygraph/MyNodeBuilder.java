@@ -33,7 +33,7 @@ public class MyNodeBuilder extends NodeBuilder {
        
         root. add(new CreateCharacterSequence(player))
         .add(new SetCameraFocus(player))
-        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap))) //, lostCity, banditCamp, merchantShop,castle (saving for when we need to implement because it slows testing)
+        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap, lostCity, banditCamp, merchantShop,castle)))
             .add(new SetPosition(player, forest))
             
             .add(new ShowMenu());
@@ -46,7 +46,7 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
                                        "Behind you, you hear the distant sounds of a bustling city. " +
                                        "In front of you, the forest grows darker and deeper. Which way do you go?")) //Narration Gives Context to the choices 
-        .add(new Wait(5)) //Show the narration for 5 seconds
+        .add(new Wait(10)) //Show the narration for 5 seconds
         .add(new HideNarration());//then afterwards hide the context so that the player can decide which direction to go 
         
         //Options: walk through one exit on the side of the path or the other. depending on the side, the player will go to different locations
@@ -63,7 +63,7 @@ public class MyNodeBuilder extends NodeBuilder {
         	.add(new WalkTo(player, dirtWalk)) //Player walks towards the dirt to show movement
             .add(new NarrationSequence("You start walking towards the break in the tree lines as the noises of waits beyond intensifies. Right before exiting the final layer of brush, you hear a snap behind you back towards where you started... "))
            //See narration that you can exit out of to add context
-            .add(new Wait(5)) //Wait for the context to be read
+            .add(new Wait(7)) //Wait for the context to be read
             .add(new HideNarration()); //Hide the context to give choice for decision 
         	
         
@@ -98,7 +98,7 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new SetPosition(wiseMan, spookyArea, "Well" )) //put him near the well
         .add(new Face(wiseMan, player)) //face the players
         .add(new NarrationSequence("Holding a sword you picked up for protection in one hand, you see a figure emerge out of the bush. The first thing that catches your eye is the long flowing cloak they’re wearing. Do you talk to him or run away..."))
-        .add(new Wait(5))// wait for the player to read context 
+        .add(new Wait(7))// wait for the player to read context 
         .add(new HideNarration());//hide context 
         
         
@@ -120,6 +120,11 @@ public class MyNodeBuilder extends NodeBuilder {
         
        //Options: The player decided to run away and enters a farm. They can exit to a new stream location, or they can enter the farm cabin they see through the door    
     }
+	
+	
+	
+	
+	
 	
 	
 	
@@ -191,6 +196,14 @@ public class MyNodeBuilder extends NodeBuilder {
 	}
 
 
+	
+	
+	
+	
+	
+	
+	
+	
 //Rodrigo Guzman
 	
 	@BuilderMethod

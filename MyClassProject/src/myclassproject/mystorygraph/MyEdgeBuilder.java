@@ -120,10 +120,13 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        var nextNode2 = get(MyNodeLabels.ForestTheWarning.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	        
-	        
-	        
+	       
 	 }
 	        
+	 
+	 
+	 
+	 
 	 
 	//Hrishi Kabra
 	@BuilderMethod
@@ -178,6 +181,10 @@ public class MyEdgeBuilder extends NodeBuilder {
 	     //var nextNode1 = get(MyNodeLabels.TheCastle.toString());
 	     //node.add(new Edge(choice1, nextNode1));
 	 }
+	 
+	 
+	 
+	 
 	 
 	//Rodrigo Guzman
 	 

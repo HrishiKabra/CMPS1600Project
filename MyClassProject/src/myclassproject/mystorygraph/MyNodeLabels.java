@@ -10,17 +10,51 @@ public enum MyNodeLabels{
 	ForestTheForest,
 	ForestTheWiseMan,
 	CabinInTheWoods,
+	
+	
 	//Hrishi Kabra
 	CabinAppleBasket,
 	ForestStrangeFruit,
 	ForestTheWarning,
 	ForestANetTrap,
-	ForestTalkToTheBandits,
+	ForestPlayDead,
+	
+	
 	//Rodrigo Guzman
 	ForestDemandAnswers,
 	CityTheLostCity,
-	ForestPlayDead,
+	ForestTalkToTheBandits,
 	ForestFightBandits,
 	ForestTakeAnApple,
-	TheCastle
+	EatApple, 
+	TheMarket,
+	TheBreadWoman,
+	WhereAreYouNow,
+	FollowTheMerchants,
+	TheSpy,
+	MerchantsChat,
+	
+	
+	//Petra Radmanovic
+	TheCastle,
+	TheKing,
+	StaySilent,
+	SpeakUp,
+	FollowWillingly,
+	TheCell,
+	TalkToGuard,
+	GetContext,
+	
+	//Hrishi Rodrigo
+	AskGuardForTruth,
+	AskStationedGuard,
+	TheWizard,
+	TheWizard2,
+	TheWizardsFinalWords,
+	TheRiddle,
+	TheEnd,
+	Youfail
+	
+	 
+	
 	}

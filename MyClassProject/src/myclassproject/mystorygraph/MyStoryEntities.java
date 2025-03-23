@@ -27,13 +27,10 @@ public final class MyStoryEntities {
     
     
     public static final Place lostCity = new Place("Lost City", PlaceTypes.City);
-    /*
-    // public static final Place banditCamp = new Place("Bandit Camp", PlaceTypes.Camp);
-     //public static final Place merchantShop = new Place("Merchant Shop", PlaceTypes.AlchemyShop);
-     //public static final Place castle = new Place("Castle", PlaceTypes.GreatHall);
-     NOT IMPLEMENTED YET BECAUSE SLOWS BUILDING CAMELOT^^^ do not implement until necessary 
-     ///*/
-      
+     public static final Place banditCamp = new Place("Bandit Camp", PlaceTypes.Camp);
+     public static final Place merchantShop = new Place("Merchant Shop", PlaceTypes.AlchemyShop);
+     public static final Place castle = new Place("Castle", PlaceTypes.GreatHall);
+    
     
     public static final Item apple = new Item("Apple", ItemTypes.Apple);
     public static final Item sword = new Item("Sword", ItemTypes.Sword);

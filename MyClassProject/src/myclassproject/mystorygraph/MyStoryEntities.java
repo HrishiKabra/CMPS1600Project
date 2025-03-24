@@ -18,12 +18,19 @@ public final class MyStoryEntities {
     public static final Characters banditLeader = new Characters("Bandit Leader", BodyTypes.E, Clothing.Bandit, HairStyle.Bald, Colors.Black, 6);
     public static final Characters merchant = new Characters("Mysterious Merchant", BodyTypes.B, Clothing.Merchant, HairStyle.Ponytail, Colors.Blonde, 5);
     public static final Characters forestBandit = new Characters("Forest Bandit", BodyTypes.D, Clothing.Bandit, HairStyle.Spiky, Colors.Black, 4);
-
+    public static final Characters guard1 = new Characters("Guard 1", BodyTypes.D, Clothing.HeavyArmour, HairStyle.Short, Colors.Brown,5);
+    public static final Characters guard2 = new Characters("Guard 2", BodyTypes.D, Clothing.HeavyArmour, HairStyle.Short, Colors.Brown,5);
+    public static final Characters guard3 = new Characters("Guard 3", BodyTypes.D, Clothing.HeavyArmour, HairStyle.Short, Colors.Brown,5);
+    public static final Characters guardCell = new Characters("Guard Cell", BodyTypes.D, Clothing.HeavyArmour, HairStyle.Short, Colors.Brown,5);
+    public static final Characters theKing = new Characters("The King", BodyTypes.D, Clothing.King, HairStyle.Short, Colors.Brown, 5);
+    public static final Characters prisoner = new Characters("Prisoner", BodyTypes.D, Clothing.Peasant, HairStyle.Short, Colors.Black, 5);
     
     public static final Place forest = new Place("Forest", PlaceTypes.ForestPath);
     public static final Place strangeFruitGrove = new Place("Strange Fruit Grove", PlaceTypes.ForestPath);
     public static final Place spookyArea = new Place("Net Trap Area", PlaceTypes.SpookyPath);
     public static final Place appleBasketCabin = new Place("Apple Basket Cabin", PlaceTypes.Farm);
+    public static final Place TheKingsCastle = new Place("The King Castle", PlaceTypes.GreatHall);
+    public static final Place TheDungeons = new Place("The Dungeons", PlaceTypes.Dungeon);
     
     
     public static final Place lostCity = new Place("Lost City", PlaceTypes.City);
@@ -45,17 +52,13 @@ public final class MyStoryEntities {
     public static final Furniture streamArea = new Furniture(appleBasketCabin, FurnitureTypes.Exit);
     public static final Furniture westEndSpookyArea = new Furniture(spookyArea, FurnitureTypes.WestEnd);
     public static final Furniture eastEndSpookyArea = new Furniture(spookyArea, FurnitureTypes.EastEnd);
+    public static final Furniture ToTheDungeons = new Furniture(TheKingsCastle, FurnitureTypes.Gate);
+    public static final Furniture theThrone = new Furniture(TheKingsCastle, FurnitureTypes.Throne);
+    public static final Furniture EnterDungeons = new Furniture(TheDungeons, FurnitureTypes.Door);
+    public static final Furniture cellDoor = new Furniture(TheDungeons, FurnitureTypes.CellDoor);
     
   
-  /*
-    public static final Furniture merchantCounter = new Furniture(merchantShop, FurnitureTypes.AlchemistTable);
-    public static final Furniture banditTent = new Furniture(banditCamp, FurnitureTypes.Firepit);
-    public static final Furniture lostCityGate = new Furniture(lostCity, FurnitureTypes.Gate);
-    public static final Furniture castleEntrance = new Furniture(castle, FurnitureTypes.Door);
-    public static final Furniture appleBasket = new Furniture(appleBasketCabin, FurnitureTypes.Table);
-   
-   NOT IMPLEMETED YET: Saving for when needed, slows building and running camelot 
-   */
+  
     
     //Hrishi Kabra
     

@@ -149,7 +149,7 @@ public class MyNodeBuilder extends NodeBuilder {
     public void TheKingActions() {
         var node = get(MyNodeLabels.TheKing.toString());
         node.add(new WalkTo(player,TheKingsCastle, "Supplicant"))
-        .add(new DialogSequence(theKing, player, List.of("I knew you would come back, you always do no matter how many times I banish you. Speak up!!"), List.of("What is going on? WHo are you?", "**Stay silent**")));
+        .add(new DialogSequence(theKing, player, List.of("I knew you would come back, you always do no matter how many times I banish you. Speak up!!"), List.of("What is going on? Who are you?", "**Stay silent**")));
        
 	}
 	

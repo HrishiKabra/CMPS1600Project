@@ -130,17 +130,18 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new CreateCharacterSequence(guard1))
         .add(new CreateCharacterSequence(guard2))
         .add(new CreateCharacterSequence(guard3))
-        .add(new SetPosition(theKing, TheKingsCastle, "Throne"))
-        .add(new SetPosition(guard1, TheKingsCastle, "LeftGuard"))
+        .add(new SetPosition(theKing, TheKingsCastle, "Throne"))//create king and place him on the throne
+        .add(new SetPosition(guard1, TheKingsCastle, "LeftGuard"))//place the guards
         .add(new SetPosition(guard2, TheKingsCastle, "RightGuard"))
         .add(new SetPosition(guard3, TheKingsCastle, "LeftDoor"))
-        .add(new Sit(theKing, theThrone))
-        .add(new SetPosition(player, TheKingsCastle))
-        .add(new FadeIn())
+        .add(new Sit(theKing, theThrone))//have the king sit
+        .add(new SetPosition(player, TheKingsCastle))//place the player at the normal position 
+        .add(new FadeIn())//fade in since the player woke up- did not exit through a door 
         .add(new NarrationSequence("When you wake up, everything is hazy. You notice the tall, marble ceilings and faint light of gas lanterns. The room is majestic, and very familiar. Suddenly, memories  of being  knocked out fly back.\n"
-        		+ "Your thoughts are interrupted by a booming voice..."))
+        		+ "Your thoughts are interrupted by a booming voice..."))//give narration 
         .add(new Wait(10))
         .add(new HideNarration());
+        
         
   
        
@@ -148,9 +149,10 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
     public void TheKingActions() {
         var node = get(MyNodeLabels.TheKing.toString());
-        node.add(new WalkTo(player,TheKingsCastle, "Supplicant"))
+        node.add(new WalkTo(player,TheKingsCastle, "Supplicant"))//have the player walk to the place they are supposed to 
         .add(new DialogSequence(theKing, player, List.of("I knew you would come back, you always do no matter how many times I banish you. Speak up!!"), List.of("What is going on? Who are you?", "**Stay silent**")));
        
+        //Options: speak to the king or stay silent 
 	}
 	
 	@BuilderMethod
@@ -162,7 +164,7 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new HideNarration())
         .add(new DialogSequence(theKing, player, List.of("Fine, you always were a stubborn kid. Take him to the dungeon"), List.of("**Go with the guards**", "Fine Fine!! Ill talk. Who are you and what is going on?")));
         
-   
+   //Options: speak or get taken 
         
 	}
 	@BuilderMethod
@@ -171,40 +173,43 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new HideDialog())
         .add(new DialogSequence(theKing, player, List.of("I am surprised my wizard has gotten so good at our memory potion. You usually remember by this pointYou really don't know who you are? Strange. Guards, take him away!"), List.of("**Go with the Guards**", "**Try to Talk to Guard**")));
   
+        //Options: go silently with guards or get taken away
 	}
 	@BuilderMethod
     public void FollowWillinglyActions() {
         var node = get(MyNodeLabels.FollowWillingly.toString());
         node.add(new HideDialog())
-        .add(new WalkTo(guard1, player))
+        .add(new WalkTo(guard1, player))//guards walk to you 
         .add(new WalkTo(guard2, player))
         .add(new Wait(5))
-        .add(new WalkTo(player, ToTheDungeons))
+        .add(new WalkTo(player, ToTheDungeons))//walk towards the exit 
         .add(new Wait(1))
         .add(new WalkTo(guard1, ToTheDungeons))
         .add(new WalkTo(guard2, ToTheDungeons))
-        .add(new Exit(player, ToTheDungeons, true))
+        .add(new Exit(player, ToTheDungeons, true)) //exit into the dungeons 
         .add(new Exit(player, ToTheDungeons, true))
         .add(new Exit(guard1, ToTheDungeons, true))
         .add(new Exit(guard2, ToTheDungeons, true))
-        .add(new CreateCharacterSequence(prisoner))
-        .add(new SetPosition(prisoner, TheDungeons, "DirtPile"))
-        .add(new Enter(player, EnterDungeons, true))
+        .add(new CreateCharacterSequence(prisoner)) //add the prisoner
+        .add(new SetPosition(prisoner, TheDungeons, "DirtPile")) //put them in the cell 
+        .add(new Enter(player, EnterDungeons, true))//enter into the dungeons 
         .add(new Enter(guard1, EnterDungeons, true))
         .add(new WalkTo(guard1, cellDoor))
         .add(new DialogSequence(guard1, player, List.of("I am sorry my prince"), List.of("Why did you call me that? Can you please explain what's going on?", "**head into cell**")));
         
+        //Options: talk outside with guard or enter cell 
 	}
 	
 	@BuilderMethod
     public void TheCellActions() {
         var node = get(MyNodeLabels.TheCell.toString());
         node.add(new HideDialog())
-        .add(new WalkTo(player, cellDoor))
-        .add(new Enter(player, cellDoor, false))
+        .add(new WalkTo(player, cellDoor))//walk to the cell door
+        .add(new Enter(player, cellDoor, false))//enter with NO fading
         .add(new WalkTo(player, TheDungeons, "Bed"))
         .add(new DialogSequence(prisoner, player, List.of("Prince is that really you?"), List.of("What is going on?")));
         
+        //Options: continue conversation
         
 	}
 	
@@ -214,6 +219,7 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new HideDialog())
         .add(new WalkTo(player, guard1))
         .add(new DialogSequence(guard1, player, List.of("You seriously don't remember anything do you? Those potions really are getting strong. And here we thought you coming back again was our hope at freedomMy Prince, it pains me to have to remind you everything your father did. You've been down here with me before, and every time I hope you figure it out. I am sworn under oath to not say too much... everyone in the kingdom is. The only thing I will say is to ask for the wizard."), List.of("I dont understand...what are you talking about?")));
+        //Options: continue Conversation 
         
 	}
 	
@@ -223,6 +229,7 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new HideDialog())
         .add(new DialogSequence(prisoner, player, List.of("You seriously don't remember anything do you? Those potions really are getting strong. And here we thought you coming back again was our hope at freedomMy Prince, it pains me to have to remind you everything your father did. You've been down here with me before, and every time I hope you figure it out. I am sworn under oath to not say too much... everyone in the kingdom is. The only thing I will say is to ask for the wizard."), List.of("I dont understand...what are you talking about?")));
         
+        //Options: Continue Conversation 
 	}
 	
 	

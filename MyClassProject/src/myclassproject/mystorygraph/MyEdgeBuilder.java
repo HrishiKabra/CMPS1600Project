@@ -138,10 +138,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	    public void TheKingEdges() {
 	        var node = get(MyNodeLabels.TheKing.toString());
 	        
+	        //Talk to the king 
 	        var choice1 = new DialogChoice("What is going on? Who are you?");
 	        var nextNode1 = get(MyNodeLabels.SpeakUp.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
+	        //choose not to talk
 	        var choice2 = new DialogChoice("**Stay silent**");
 	        var nextNode2 = get(MyNodeLabels.StaySilent.toString());
 	        node.add(new Edge(choice2, nextNode2));
@@ -153,10 +155,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	    public void SpeakUpEdges() {
 	        var node = get(MyNodeLabels.SpeakUp.toString());
 	        
+	        //Go with the guards silently 
 	        var choice1 = new DialogChoice("**Go with the Guards**");
 	        var nextNode1 = get(MyNodeLabels.FollowWillingly.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
+	        //Talk to the guard for answer
 	        var choice2 = new DialogChoice("**Try to Talk to Guard**");
 	        var nextNode2 = get(MyNodeLabels.AskGuardForTruth.toString());
 	        node.add(new Edge(choice2, nextNode2));
@@ -168,10 +172,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	    public void StaySilentEdges() {
 	        var node = get(MyNodeLabels.StaySilent.toString());
 	        
+	        //Go with the guards silently 
 	        var choice1 = new DialogChoice("**Go with the Guards**");
 	        var nextNode1 = get(MyNodeLabels.FollowWillingly.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
+	        //speak to the king 
 	        var choice2 = new DialogChoice("Fine Fine!! Ill talk. Who are you and what is going on");
 	        var nextNode2 = get(MyNodeLabels.SpeakUp.toString());
 	        node.add(new Edge(choice2, nextNode2));
@@ -183,10 +189,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	    public void FollowWillinglyEdges() {
 	        var node = get(MyNodeLabels.FollowWillingly.toString());
 	        
+	        //ask the guard to give context
 	        var choice1 = new DialogChoice("Why did you call me that? Can you please explain what's going on?");
 	        var nextNode1 = get(MyNodeLabels.TalkToGuard.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
+	        //Choose not to speak to the guard and go into the cell
 	        var choice2 = new DialogChoice("**head into cell**");
 	        var nextNode2 = get(MyNodeLabels.TheCell.toString());
 	        node.add(new Edge(choice2, nextNode2));
@@ -197,6 +205,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	    public void TalkToGuardEdges() {
 	        var node = get(MyNodeLabels.TalkToGuard.toString());
 	        
+	        //ask the stationed guard to continue explaining
 	        var choice1 = new DialogChoice("I dont understand...what are you talking about?");
 	        var nextNode1 = get(MyNodeLabels.AskStationedGuard.toString());
 	        node.add(new Edge(choice1, nextNode1));
@@ -208,6 +217,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	    public void TheCellEdges() {
 	        var node = get(MyNodeLabels.TheCell.toString());
 	        
+	        //ask the prisoner to continue explaining
 	        var choice1 = new DialogChoice("I dont understand...what are you talking about?");
 	        var nextNode1 = get(MyNodeLabels.GetContext.toString());
 	        node.add(new Edge(choice1, nextNode1));

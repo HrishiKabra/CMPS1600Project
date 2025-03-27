@@ -46,7 +46,7 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
                                        "Behind you, you hear the distant sounds of a bustling city. " +
                                        "In front of you, the forest grows darker and deeper. Which way do you go?")) //Narration Gives Context to the choices 
-        .add(new Wait(10)) //Show the narration for 5 seconds
+        .add(new Wait(5)) //Show the narration for 5 seconds
         .add(new HideNarration());//then afterwards hide the context so that the player can decide which direction to go 
         
         //Options: walk through one exit on the side of the path or the other. depending on the side, the player will go to different locations
@@ -80,7 +80,7 @@ public class MyNodeBuilder extends NodeBuilder {
         
         .add(new NarrationSequence("As you venture deeper into the forest, the trees grow taller and denser. The path that you took to get here seems to have gotten lost amidst the foliage. Suddenly, you hear the snap of a branch. The bushes to your left begin to rustle. Do you pick up the sword you see in the dirt or run away?"))
         //Add narrative sequence that will be shown to the player
-        .add(new Wait(10)) //wait for player to read narration 
+        .add(new Wait(5)) //wait for player to read narration 
        .add(new HideNarration());// then hide it to let a decision take place 
        
        
@@ -139,7 +139,7 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new FadeIn())//fade in since the player woke up- did not exit through a door 
         .add(new NarrationSequence("When you wake up, everything is hazy. You notice the tall, marble ceilings and faint light of gas lanterns. The room is majestic, and very familiar. Suddenly, memories  of being  knocked out fly back.\n"
         		+ "Your thoughts are interrupted by a booming voice..."))//give narration 
-        .add(new Wait(10))
+        .add(new Wait(5))
         .add(new HideNarration());
         
         

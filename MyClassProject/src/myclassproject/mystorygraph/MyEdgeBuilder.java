@@ -120,12 +120,116 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        var nextNode2 = get(MyNodeLabels.ForestTheWarning.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	        
+	       
+	 }
 	        
+	 @BuilderMethod
+	    public void TheCastleEdges() {
+	        var node = get(MyNodeLabels.TheCastle.toString());
+	        
+	       //Player decides to speak with the king 
+	        var choice1 = new PlayerInteraction(MyChoiceLabels.TalkToKing.toString(), theKing, Icons.talk, "Speak with the King");
+	        var nextNode1 = get(MyNodeLabels.TheKing.toString());
+	        node.add(new Edge(choice1, nextNode1));
 	        
 	 }
 	 
-	//Hrishi Kabra
 	 @BuilderMethod
+	    public void TheKingEdges() {
+	        var node = get(MyNodeLabels.TheKing.toString());
+	        
+	        //Talk to the king 
+	        var choice1 = new DialogChoice("What is going on? Who are you?");
+	        var nextNode1 = get(MyNodeLabels.SpeakUp.toString());
+	        node.add(new Edge(choice1, nextNode1));
+	        
+	        //choose not to talk
+	        var choice2 = new DialogChoice("**Stay silent**");
+	        var nextNode2 = get(MyNodeLabels.StaySilent.toString());
+	        node.add(new Edge(choice2, nextNode2));
+	        
+	 }
+	 
+	 
+	 @BuilderMethod
+	    public void SpeakUpEdges() {
+	        var node = get(MyNodeLabels.SpeakUp.toString());
+	        
+	        //Go with the guards silently 
+	        var choice1 = new DialogChoice("**Go with the Guards**");
+	        var nextNode1 = get(MyNodeLabels.FollowWillingly.toString());
+	        node.add(new Edge(choice1, nextNode1));
+	        
+	        //Talk to the guard for answer
+	        var choice2 = new DialogChoice("**Try to Talk to Guard**");
+	        var nextNode2 = get(MyNodeLabels.AskGuardForTruth.toString());
+	        node.add(new Edge(choice2, nextNode2));
+	        
+	 }
+	 
+	 
+	 
+	 @BuilderMethod
+	    public void StaySilentEdges() {
+	        var node = get(MyNodeLabels.StaySilent.toString());
+	        
+	        //Go with the guards silently 
+	        var choice1 = new DialogChoice("**Go with the Guards**");
+	        var nextNode1 = get(MyNodeLabels.FollowWillingly.toString());
+	        node.add(new Edge(choice1, nextNode1));
+	        
+	        //speak to the king 
+	        var choice2 = new DialogChoice("Fine Fine!! Ill talk. Who are you and what is going on");
+	        var nextNode2 = get(MyNodeLabels.SpeakUp.toString());
+	        node.add(new Edge(choice2, nextNode2));
+	        
+	 }
+	 
+	 
+	 @BuilderMethod
+	    public void FollowWillinglyEdges() {
+	        var node = get(MyNodeLabels.FollowWillingly.toString());
+	        
+	        //ask the guard to give context
+	        var choice1 = new DialogChoice("Why did you call me that? Can you please explain what's going on?");
+	        var nextNode1 = get(MyNodeLabels.TalkToGuard.toString());
+	        node.add(new Edge(choice1, nextNode1));
+	        
+	        //Choose not to speak to the guard and go into the cell
+	        var choice2 = new DialogChoice("**head into cell**");
+	        var nextNode2 = get(MyNodeLabels.TheCell.toString());
+	        node.add(new Edge(choice2, nextNode2));
+	        
+	 }
+	 
+	 @BuilderMethod
+	    public void TalkToGuardEdges() {
+	        var node = get(MyNodeLabels.TalkToGuard.toString());
+	        
+	        //ask the stationed guard to continue explaining
+	        var choice1 = new DialogChoice("I dont understand...what are you talking about?");
+	        var nextNode1 = get(MyNodeLabels.AskStationedGuard.toString());
+	        node.add(new Edge(choice1, nextNode1));
+	        
+	      
+	 }
+	 
+	 @BuilderMethod
+	    public void TheCellEdges() {
+	        var node = get(MyNodeLabels.TheCell.toString());
+	        
+	        //ask the prisoner to continue explaining
+	        var choice1 = new DialogChoice("I dont understand...what are you talking about?");
+	        var nextNode1 = get(MyNodeLabels.GetContext.toString());
+	        node.add(new Edge(choice1, nextNode1));
+	        
+	      
+	 }
+	 
+	 
+	 
+	//Hrishi Kabra
+	@BuilderMethod
 	 	public void AppleBasketEdges() {
 		 var node = get(MyNodeLabels.CabinAppleBasket.toString());
 		 
@@ -178,9 +282,120 @@ public class MyEdgeBuilder extends NodeBuilder {
 	     //node.add(new Edge(choice1, nextNode1));
 	 }
 	 
+	 @BuilderMethod
+	 	public void AskGuardForTruthEdges() {
+		 var node = get(MyNodeLabels.AskGuardForTruth.toString());
+		 
+		 var choice1 = new DialogChoice("**Ask For The Wizard**");
+		 var nextNode1 = get(MyNodeLabels.TheWizard.toString());
+		 node.add(new Edge(choice1, nextNode1));
+	 }
+	 
+	 @BuilderMethod
+	 public void TheWizardEdges() {
+		 var node = get(MyNodeLabels.TheWizard.toString());
+		 
+		 var choice1 = new DialogChoice("...");
+		 var nextNode1 = get(MyNodeLabels.TheWizard2.toString());
+		 node.add(new Edge(choice1, nextNode1));
+	 }
+	 
+	 @BuilderMethod
+	 public void TheWizard2Edges() {
+		 var node = get(MyNodeLabels.TheWizard2.toString());
+		 
+		 var choice1 = new DialogChoice("What do I need to learn?");
+		 var nextNode1 = get(MyNodeLabels.TheRiddle.toString());
+		 node.add(new Edge(choice1, nextNode1));
+		 
+		 var choice2 = new DialogChoice("I am still confused?");
+		 var nextNode2 = get(MyNodeLabels.TheWizardsFinalWords.toString());
+		 node.add(new Edge(choice2, nextNode2));
+	 }
+	 
+	 @BuilderMethod
+	 public void TheWizardsFinalWordsEdges() {
+		 var node = get(MyNodeLabels.TheWizardsFinalWords.toString());
+		 
+		 var choice1 = new DialogChoice("What do I need to learn?");
+		 var nextNode1 = get(MyNodeLabels.TheRiddle.toString());
+		 node.add(new Edge(choice1, nextNode1));
+	 }
+	 
+	 @BuilderMethod
+	 public void TheRiddleEdges() {
+		 var node = get(MyNodeLabels.TheRiddle.toString());
+		 
+		 var choice1 = new DialogChoice("The Crown");
+		 var choice2 = new DialogChoice("Power");
+		 var choice3 = new DialogChoice("The Forest");
+		 var choice4 = new DialogChoice("The Apple");
+		 var choice5 = new DialogChoice("Bread");
+		 var nextNode1 = get(MyNodeLabels.Youfail.toString());
+		 var nextNode2 = get(MyNodeLabels.TheEnd.toString());
+		 node.add(new Edge(choice1, nextNode1));
+		 node.add(new Edge(choice2, nextNode1));
+		 node.add(new Edge(choice3, nextNode1));
+		 node.add(new Edge(choice4, nextNode2));
+		 node.add(new Edge(choice5, nextNode1));
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 	//Rodrigo Guzman
 	 
-	 
-}
+	 @BuilderMethod
+	    public void demandAnswersEdges() {
+	        var node = get(MyNodeLabels.ForestDemandAnswers.toString());
 
+	        var choice1 = new PlayerInteraction(MyChoiceLabels.GetAnswers.toString(), forestBandit, Icons.talk, "Demand answers from the bandits");
+	        var nextNode1 = get(MyNodeLabels.ForestTalkToTheBandits.toString());
+	        node.add(new Edge(choice1, nextNode1));
+
+	        var choice2 = new PlayerInteraction(MyChoiceLabels.RunAway.toString(), westEndTowardForest, Icons.exit, "Run away as fast as possible");
+	        var nextNode2 = get(MyNodeLabels.CityTheLostCity.toString());
+	        node.add(new Edge(choice2, nextNode2));
+	    }
+
+	    @BuilderMethod
+	    public void cityTheLostCityEdges() {
+	        var node = get(MyNodeLabels.CityTheLostCity.toString());
+
+	        var choice = new PlayerInteraction(MyChoiceLabels.EnterCity.toString(), lostCityGate, Icons.exit, "Enter the Lost City");
+	        var nextNode = get(MyNodeLabels.TheCastle.toString());
+	        node.add(new Edge(choice, nextNode));
+	    }
+
+	    @BuilderMethod
+	    public void talkToBanditsEdges() {
+	        var node = get(MyNodeLabels.ForestTalkToTheBandits.toString());
+
+	        var choice1 = new PlayerInteraction(MyChoiceLabels.TakeApple.toString(), apple, Icons.apple, "Take an apple");
+	        var nextNode1 = get(MyNodeLabels.ForestTakeAnApple.toString());
+	        node.add(new Edge(choice1, nextNode1));
+
+	        var choice2 = new PlayerInteraction(MyChoiceLabels.FightThem.toString(), sword, Icons.draw, "Fight them");
+	        var nextNode2 = get(MyNodeLabels.ForestFightBandits.toString());
+	        node.add(new Edge(choice2, nextNode2));
+	    }
+
+	    @BuilderMethod
+	    public void fightBanditsEdges() {
+	        var node = get(MyNodeLabels.ForestFightBandits.toString());
+
+	        var nextNode = get(MyNodeLabels.TheCastle.toString());
+	        node.add(new Edge(new PlayerInteraction(MyChoiceLabels.KnockedOut.toString(), sword, Icons.swords, "Knocked out in battle"), nextNode));
+	    }
+
+	    @BuilderMethod
+	    public void takeAnAppleEdges() {
+	        var node = get(MyNodeLabels.ForestTakeAnApple.toString());
+
+	        var nextNode = get(MyNodeLabels.TheCastle.toString());
+	        node.add(new Edge(new PlayerInteraction(MyChoiceLabels.EatApple.toString(), apple, Icons.apple, "Eat the apple"), nextNode));
+	    }
+}

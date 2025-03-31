@@ -21,10 +21,10 @@ public enum MyChoiceLabels {
     
     PickUpApple,
     IgnoreFruit,
-    //EatApple,
+    EatApple,
     GoDeeper,
-    //GoBack,
-    //DemandAnswers
+    GoBack,
+    DemandAnswers,
     PlayDead,
     WakeUp,
     
@@ -37,7 +37,7 @@ public enum MyChoiceLabels {
     TakeApple, 
     FightThem, 
     KnockedOut,
-    EatApple
+    
     
     
 }

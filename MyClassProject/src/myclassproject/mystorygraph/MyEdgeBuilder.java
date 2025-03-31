@@ -227,14 +227,22 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 
 	 
 	 
+	 
+	 //** note that some of these^ are not REAL choices between two options, they are simply a response to continue a dialog sequence between two characters
+	 
+	 
+	 
+	 
+	 
+	 
 	//Hrishi Kabra
 	@BuilderMethod
 	 	public void AppleBasketEdges() {
 		 var node = get(MyNodeLabels.CabinAppleBasket.toString());
 		 
 		 var choice1 = new PlayerInteraction(MyChoiceLabels.PickUpApple.toString(), apple, Icons.exit, "Eat the apple"); //Help - what to do here?
-		 //var nextNode1 = get(MyNodeLabels.CabinEatApple.toString()); - commented out because the next node is not there in the current one
-		 //node.add(new Edge(choice1, nextNode1));
+		 var nextNode1 = get(MyNodeLabels.EatApple.toString());
+		 node.add(new Edge(choice1, nextNode1));
 	 }
 	 
 	 public void StrangeFruitEdges() {
@@ -244,9 +252,9 @@ public class MyEdgeBuilder extends NodeBuilder {
          var nextNode1 = get(MyNodeLabels.ForestANetTrap.toString());
          node.add(new Edge(choice1, nextNode1));
         
-         //var choice2 = new PlayerInteraction(MyChoiceLabels.EatApple.toString(), apple, Icons.pickup, "Eat the fruit");
-         //var nextNode2 = get(MyNodeLabels.CabinEatApple.toString());
-         //node.add(new Edge(choice2, nextNode2));
+         var choice2 = new PlayerInteraction(MyChoiceLabels.EatApple.toString(), apple, Icons.apple, "Eat the fruit");
+         var nextNode2 = get(MyNodeLabels.EatApple.toString());
+         node.add(new Edge(choice2, nextNode2));
 	 }
 	 
 	 public void TheWarningEdges() {
@@ -255,9 +263,9 @@ public class MyEdgeBuilder extends NodeBuilder {
          var nextNode1 = get(MyNodeLabels.ForestStrangeFruit.toString());
          node.add(new Edge(choice1, nextNode1));
         
-         //var choice2 = new PlayerInteraction(MyChoiceLabels.GoBack.toString(), eastEndTowardCity, Icons.exit, "Go back towards the city");
-         //var nextNode2 = get(MyNodeLabels.TheLostCity.toString());
-         //node.add(new Edge(choice2, nextNode2));
+         var choice2 = new PlayerInteraction(MyChoiceLabels.GoBack.toString(), eastEndTowardCity, Icons.exit, "Go back towards the city");
+         var nextNode2 = get(MyNodeLabels.CityTheLostCity.toString());
+         node.add(new Edge(choice2, nextNode2));
 		 
 	 }
 	 
@@ -265,9 +273,9 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 public void NetTrapEdges() {
 		 var node = get(MyNodeLabels.ForestANetTrap.toString());
         
-         //var choice1 = new PlayerInteraction(MyChoiceLabels.DemandAnswers.toString(), banditLeader, Icons.talk, "Fight your fate");
-         //var nextNode1 = get(MyNodeLabels.ForestDemandAnswers.toString());
-         //node.add(new Edge(choice1, nextNode1));
+         var choice1 = new PlayerInteraction(MyChoiceLabels.DemandAnswers.toString(), banditLeader, Icons.talk, "Fight your fate");
+         var nextNode1 = get(MyNodeLabels.ForestDemandAnswers.toString());
+         node.add(new Edge(choice1, nextNode1));
         
          var choice2 = new PlayerInteraction(MyChoiceLabels.PlayDead.toString(), netTrap, Icons.sleep, "Play Dead");
          var nextNode2 = get(MyNodeLabels.ForestPlayDead.toString());
@@ -276,10 +284,74 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 
 	 public void PlayDeadEdges() {
 		 var node = get(MyNodeLabels.ForestPlayDead.toString());
-		 //var choice1 = new PlayerInteraction(MyChoiceLabels.WakeUp.toString(), castleEntrance, Icons.exit, "WAKE UP");
-	     //var nextNode1 = get(MyNodeLabels.TheCastle.toString());
-	     //node.add(new Edge(choice1, nextNode1));
+		 var choice1 = new PlayerInteraction(MyChoiceLabels.WakeUp.toString(),ToTheDungeons, Icons.exit, "WAKE UP");
+	     var nextNode1 = get(MyNodeLabels.TheCastle.toString());
+	     node.add(new Edge(choice1, nextNode1));
 	 }
+	 
+	 
+	 @BuilderMethod
+	 	public void AskGuardForTruthEdges() {
+		 var node = get(MyNodeLabels.AskGuardForTruth.toString());
+		 
+		 var choice1 = new DialogChoice("**Ask For The Wizard**");
+		 var nextNode1 = get(MyNodeLabels.TheWizard.toString());
+		 node.add(new Edge(choice1, nextNode1));
+	 }
+	 
+	 @BuilderMethod
+	 public void TheWizardEdges() {
+		 var node = get(MyNodeLabels.TheWizard.toString());
+		 
+		 var choice1 = new DialogChoice("...");
+		 var nextNode1 = get(MyNodeLabels.TheWizard2.toString());
+		 node.add(new Edge(choice1, nextNode1));
+	 }
+	 
+	 @BuilderMethod
+	 public void TheWizard2Edges() {
+		 var node = get(MyNodeLabels.TheWizard2.toString());
+		 
+		 var choice1 = new DialogChoice("What do I need to learn?");
+		 var nextNode1 = get(MyNodeLabels.TheRiddle.toString());
+		 node.add(new Edge(choice1, nextNode1));
+		 
+		 var choice2 = new DialogChoice("I am still confused?");
+		 var nextNode2 = get(MyNodeLabels.TheWizardsFinalWords.toString());
+		 node.add(new Edge(choice2, nextNode2));
+	 }
+	 
+	 @BuilderMethod
+	 public void TheWizardsFinalWordsEdges() {
+		 var node = get(MyNodeLabels.TheWizardsFinalWords.toString());
+		 
+		 var choice1 = new DialogChoice("What do I need to learn?");
+		 var nextNode1 = get(MyNodeLabels.TheRiddle.toString());
+		 node.add(new Edge(choice1, nextNode1));
+	 }
+	 
+	 @BuilderMethod
+	 public void TheRiddleEdges() {
+		 var node = get(MyNodeLabels.TheRiddle.toString());
+		 
+		 var choice1 = new DialogChoice("The Crown");
+		 var choice2 = new DialogChoice("Power");
+		 var choice3 = new DialogChoice("The Forest");
+		 var choice4 = new DialogChoice("The Apple");
+		 var choice5 = new DialogChoice("Bread");
+		 var nextNode1 = get(MyNodeLabels.Youfail.toString());
+		 var nextNode2 = get(MyNodeLabels.TheEnd.toString());
+		 node.add(new Edge(choice1, nextNode1));
+		 node.add(new Edge(choice2, nextNode1));
+		 node.add(new Edge(choice3, nextNode1));
+		 node.add(new Edge(choice4, nextNode2));
+		 node.add(new Edge(choice5, nextNode1));
+	 }
+	 
+	 
+	 
+	 
+	 
 	 
 	 
 	 
@@ -337,5 +409,70 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        var nextNode = get(MyNodeLabels.TheCastle.toString());
 	        node.add(new Edge(new PlayerInteraction(MyChoiceLabels.EatApple.toString(), apple, Icons.apple, "Eat the apple"), nextNode));
 	    }
-}
+	    
 
+    
+	   
+    
+    @BuilderMethod
+    public void eatAppleEdges() {
+        var node = get(MyNodeLabels.EatApple.toString());
+        var choice = new PlayerInteraction("WakeUp", player, Icons.exit, "Wake Up");
+        var nextNode = get(MyNodeLabels.TheCastle.toString());
+        node.add(new Edge(choice, nextNode));
+    }
+    
+    @BuilderMethod
+    public void theMarketEdges() {
+        var node = get(MyNodeLabels.TheMarket.toString());
+        var choice1 = new PlayerInteraction(player, "BuyBread", merchantShop, Icons.exit, "Buy Bread");
+        var nextNode1 = get(MyNodeLabels.TheBreadWoman.toString());
+        node.add(new Edge(choice1, nextNode1));
+        var choice2 = new PlayerInteraction(player, "ApproachPeople", merchantShop, Icons.talk, "Approach people");
+        var nextNode2 = get(MyNodeLabels.WhereAreYouNow.toString());
+        node.add(new Edge(choice2, nextNode2));
+    }
+    
+    @BuilderMethod
+    public void theBreadWomanEdges() {
+        var node = get(MyNodeLabels.TheBreadWoman.toString());
+        var choice = new PlayerInteraction("WakeUp", player, Icons.exit, "Wake Up");
+        var nextNode = get(MyNodeLabels.TheCastle.toString());
+        node.add(new Edge(choice, nextNode));
+    }
+    
+    @BuilderMethod
+    public void whereAreYouNowEdges() {
+        var node = get(MyNodeLabels.WhereAreYouNow.toString());
+        var choice = new PlayerInteraction(player, "ChaseMerchants", merchantShop, Icons.talk, "Chase the merchants");
+        var nextNode = get(MyNodeLabels.FollowTheMerchants.toString());
+        node.add(new Edge(choice, nextNode));
+    }
+    
+    @BuilderMethod
+    public void followTheMerchantsEdges() {
+        var node = get(MyNodeLabels.FollowTheMerchants.toString());
+        var choice1 = new PlayerInteraction(player, "Eavesdrop", merchantShop, Icons.talk, "Eavesdrop on their conversation");
+        var nextNode1 = get(MyNodeLabels.TheSpy.toString());
+        node.add(new Edge(choice1, nextNode1));
+        var choice2 = new PlayerInteraction(player, "TalkToMerchants", merchantShop, Icons.talk, "Talk to the merchants");
+        var nextNode2 = get(MyNodeLabels.MerchantsChat.toString());
+        node.add(new Edge(choice2, nextNode2));
+    }
+    
+    @BuilderMethod
+    public void theSpyEdges() {
+        var node = get(MyNodeLabels.TheSpy.toString());
+        var choice = new PlayerInteraction("WakeUp", player, Icons.exit, "Wake Up");
+        var nextNode = get(MyNodeLabels.TheCastle.toString());
+        node.add(new Edge(choice, nextNode));
+    }
+    
+    @BuilderMethod
+    public void merchantsChatEdges() {
+        var node = get(MyNodeLabels.MerchantsChat.toString());
+        var choice = new PlayerInteraction("WakeUp", player, Icons.exit, "Wake Up");
+        var nextNode = get(MyNodeLabels.TheCastle.toString());
+        node.add(new Edge(choice, nextNode));
+    }
+}

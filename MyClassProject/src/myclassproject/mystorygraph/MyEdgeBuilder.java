@@ -234,35 +234,49 @@ public class MyEdgeBuilder extends NodeBuilder {
 		 var node = get(MyNodeLabels.CabinAppleBasket.toString());
 		 
 		 var choice1 = new PlayerInteraction(MyChoiceLabels.PickUpApple.toString(), apple, Icons.exit, "Eat the apple"); //Help - what to do here?
-		 //var nextNode1 = get(MyNodeLabels.CabinEatApple.toString()); - commented out because the next node is not there in the current one
-		 //node.add(new Edge(choice1, nextNode1));
+		 var nextNode1 = get(MyNodeLabels.EatApple.toString()); 
+		 node.add(new Edge(choice1, nextNode1));
 	 }
-	 
+	
+	@BuilderMethod
 	 public void StrangeFruitEdges() {
 		 var node = get(MyNodeLabels.ForestStrangeFruit.toString());
-        
-         var choice1 = new PlayerInteraction(MyChoiceLabels.IgnoreFruit.toString(), westEndTowardForest, Icons.exit, "Ignore them and continue walking");
+         var choice1 = new PlayerInteraction(player, MyChoiceLabels.IgnoreFruit.toString(), strangeFruitGroveExit);
          var nextNode1 = get(MyNodeLabels.ForestANetTrap.toString());
          node.add(new Edge(choice1, nextNode1));
         
-         //var choice2 = new PlayerInteraction(MyChoiceLabels.EatApple.toString(), apple, Icons.pickup, "Eat the fruit");
-         //var nextNode2 = get(MyNodeLabels.CabinEatApple.toString());
-         //node.add(new Edge(choice2, nextNode2));
+         var choice2 = new PlayerInteraction(player, MyChoiceLabels.EatApple.toString(), Plant);
+         var nextNode2 = get(MyNodeLabels.EatApple.toString());
+         node.add(new Edge(choice2, nextNode2));
+         
+         
 	 }
-	 
+	
+	@BuilderMethod
+	 public void StrangeFruit2Edges() {
+		 var node = get(MyNodeLabels.ForestStrangeFruit2.toString());
+        var choice1 = new PlayerInteraction(player, MyChoiceLabels.IgnoreFruit.toString(), strangeFruitGroveExit);
+        var nextNode1 = get(MyNodeLabels.ForestANetTrap.toString());
+        node.add(new Edge(choice1, nextNode1));
+       
+        var choice2 = new PlayerInteraction(player, MyChoiceLabels.EatApple.toString(), Plant);
+        var nextNode2 = get(MyNodeLabels.EatApple.toString());
+        node.add(new Edge(choice2, nextNode2));
+	}
+	
+	@BuilderMethod
 	 public void TheWarningEdges() {
 		 var node = get(MyNodeLabels.ForestTheWarning.toString());
-	     var choice1 = new PlayerInteraction(MyChoiceLabels.GoDeeper.toString(), westEndTowardForest, Icons.exit, "Go deeper into the forest");
-         var nextNode1 = get(MyNodeLabels.ForestStrangeFruit.toString());
-         node.add(new Edge(choice1, nextNode1));
-        
-         //var choice2 = new PlayerInteraction(MyChoiceLabels.GoBack.toString(), eastEndTowardCity, Icons.exit, "Go back towards the city");
-         //var nextNode2 = get(MyNodeLabels.TheLostCity.toString());
-         //node.add(new Edge(choice2, nextNode2));
+         var choice1 = new PlayerInteraction(player, MyChoiceLabels.GoDeeper.toString(), eastEndSpookyArea);
+		 var nextNode1 = get(MyNodeLabels.ForestStrangeFruit2.toString());
+		 node.add(new Edge(choice1, nextNode1));
 		 
+		 var choice2 =new PlayerInteraction(player, MyChoiceLabels.GoBack.toString(), westEndSpookyArea);
+		 var nextNode2 = get(MyNodeLabels.CityTheLostCity.toString());
+		 node.add(new Edge(choice2, nextNode2));
 	 }
 	 
-	 
+	@BuilderMethod
 	 public void NetTrapEdges() {
 		 var node = get(MyNodeLabels.ForestANetTrap.toString());
         
@@ -270,11 +284,12 @@ public class MyEdgeBuilder extends NodeBuilder {
          //var nextNode1 = get(MyNodeLabels.ForestDemandAnswers.toString());
          //node.add(new Edge(choice1, nextNode1));
         
-         var choice2 = new PlayerInteraction(MyChoiceLabels.PlayDead.toString(), netTrap, Icons.sleep, "Play Dead");
+         var choice2 = new PlayerInteraction(MyChoiceLabels.PlayDead.toString(), banditLeader, Icons.kneel, "Play Dead");
          var nextNode2 = get(MyNodeLabels.ForestPlayDead.toString());
          node.add(new Edge(choice2, nextNode2));
 	 }
-	 
+	
+	@BuilderMethod
 	 public void PlayDeadEdges() {
 		 var node = get(MyNodeLabels.ForestPlayDead.toString());
 		 //var choice1 = new PlayerInteraction(MyChoiceLabels.WakeUp.toString(), castleEntrance, Icons.exit, "WAKE UP");

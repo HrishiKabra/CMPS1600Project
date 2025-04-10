@@ -15,6 +15,7 @@ public enum MyNodeLabels{
 	//Hrishi Kabra
 	CabinAppleBasket,
 	ForestStrangeFruit,
+	ForestStrangeFruit2,
 	ForestTheWarning,
 	ForestANetTrap,
 	ForestPlayDead,

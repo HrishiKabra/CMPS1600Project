@@ -23,10 +23,11 @@ public enum MyChoiceLabels {
     IgnoreFruit,
     //EatApple,
     GoDeeper,
-    //GoBack,
+    GoBack,
     //DemandAnswers
     PlayDead,
     WakeUp,
+    
     
     
     

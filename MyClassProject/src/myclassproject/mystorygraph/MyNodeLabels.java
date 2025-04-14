@@ -10,15 +10,16 @@ public enum MyNodeLabels{
 	ForestTheForest,
 	ForestTheWiseMan,
 	CabinInTheWoods,
+	EatApple2, 
 	
 	
 	//Hrishi Kabra
 	CabinAppleBasket,
 	ForestStrangeFruit,
+	ForestStrangeFruit2,
 	ForestTheWarning,
 	ForestANetTrap,
 	ForestPlayDead,
-	
 	
 	//Rodrigo Guzman
 	ForestDemandAnswers,

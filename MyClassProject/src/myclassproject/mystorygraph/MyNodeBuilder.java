@@ -33,7 +33,7 @@ public class MyNodeBuilder extends NodeBuilder {
        
         root. add(new CreateCharacterSequence(player))
         .add(new SetCameraFocus(player))
-        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap, lostCity, banditCamp, merchantShop,castle)))
+        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap, lostCity, banditCamp, merchantShop,castle, NetTrapPlace, insideCabin, TheKingsCastle,TheDungeons, TheWizardLibrary)))
             .add(new SetPosition(player, forest))
             
             .add(new ShowMenu());
@@ -233,54 +233,80 @@ public class MyNodeBuilder extends NodeBuilder {
 	
 	
 	
+	/*
+	
+	 @BuilderMethod
+	    public void eatAppleActions2() {
+	        var node = get(MyNodeLabels.EatApple2.toString());
+	        node.add(new NarrationSequence("You take a bite of the mysterious apple. Your vision spins and suddenly you collapse."))
+	            .add(new Wait(6))
+	            .add(new HideNarration());
+	           
+	    }
 	
 	
-	
-	
-	
+	*/
 	
 	
 //Hrishi Kabra
 	
+	@BuilderMethod
 	public void AppleBasketActions() {//Picking up the apple in the cabin
 		var node = get(MyNodeLabels.CabinAppleBasket.toString());
-		node.add(new Enter(player, insideCabinDoor, true)) //Player is now inside the cabin in the woods
+		node.add(new Exit(player, cabinDoor, true))
+		.add(new Enter(player, insideCabinDoor, true)) //Player is now inside the cabin in the woods
 		.add(new SetPosition(apple, insideCabin, "Table"))
-		.add(new Pickup(player, apple)) //player has only one choice - to pick up the apple
 		.add(new Wait(2))
 		.add(new NarrationSequence("The cabin seems abandoned as you get closer, so you try to go in. The door opens without hesitation, and the first thing  you see is a basket of pristine apples. Starving, you decide to grab one..."))
-		.add(new Wait(10))
-		.add(new HideNarration());
+		.add(new Wait(5))
+		.add(new HideNarration())
+		
+		;
 	}
 	
-	
-	public void StrangeFruitActions() {//Picking up the apple in the woods - CabinInWoods&TheWarning lead to this - leads to EatApple
-		var node = get(MyNodeLabels.ForestStrangeFruit.toString());
-		node.add(new Enter(player, strangeFruitGroveEntrance, true))
-		.add(new SetPosition(apple, strangeFruitGrove, "Plant"))
-		.add(new Pickup(player, apple))
-		.add(new Wait(2))
-		.add(new NarrationSequence("As you are walking, you notice fruit trees scattered between the other vegetation. The juicy looking apples call your name, but something seems off about them…"))
-		.add(new Wait(10))
-		.add(new HideNarration());
-	}
-	
-	
+	@BuilderMethod
 	public void TheWarningActions() {
 		var node = get(MyNodeLabels.ForestTheWarning.toString());
 		node
         .add(new Face(wiseMan, player)) //face the players
-		.add(new Wait(2))
+        .add(new WalkTo(player, wiseMan))
 		.add(new NarrationSequence("The person removes their hood to reveal a man. You stare at each other in silence. Finally, he says, “The city is not what you think.” Before you have a chance to ask more, he disappears in a puff of smoke"))
-		.add(new Wait(10))
+		.add(new Wait(5))
 		.add(new HideNarration());
 	}
 	
+	@BuilderMethod
+	public void StrangeFruitActions() {//Picking up the apple in the woods - CabinInWoods&TheWarning lead to this - leads to EatApple
+		var node = get(MyNodeLabels.ForestStrangeFruit.toString());
+		node.add(new Exit(player, streamArea, true))
+		.add(new Enter(player, strangeFruitGroveEntrance, true))
+		.add(new Wait(2))
+		.add(new NarrationSequence("As you are walking, you notice fruit trees scattered between the other vegetation. The juicy looking apples call your name, but something seems off about them…"))
+		.add(new Wait(10))
+		.add(new HideNarration())
+		.add(new SetPosition(apple, strangeFruitGrove, "Plant"));
+	}
 	
+	@BuilderMethod
+	public void StrangeFruit2Actions() {//Picking up the apple in the woods - CabinInWoods&TheWarning lead to this - leads to EatApple
+		var node = get(MyNodeLabels.ForestStrangeFruit2.toString());
+		node.add(new Exit(player, eastEndSpookyArea, true))
+		.add(new Enter(player, strangeFruitGroveEntrance, true))
+		.add(new Wait(2))
+		.add(new NarrationSequence("As you are walking, you notice fruit trees scattered between the other vegetation. The juicy looking apples call your name, but something seems off about them…"))
+		.add(new Wait(10))
+		.add(new HideNarration())
+		.add(new SetPosition(apple, strangeFruitGrove, "Plant"));
+	}
+	
+	
+	@BuilderMethod
 	public void NetTrapActions() {
 		var node = get(MyNodeLabels.ForestANetTrap.toString());
-		node.add(new CreateCharacterSequence(banditLeader))
-		.add(new SetPosition(banditLeader, strangeFruitGrove, "Well"))
+		node.add(new Exit(player, strangeFruitGroveExit, true))
+		.add(new Enter(player, NetTrapEntrance, true))
+		.add(new CreateCharacterSequence(banditLeader))
+		.add(new SetPosition(banditLeader, strangeFruitGrove, "Plant"))
 		.add(new CreateCharacterSequence(forestBandit))
 		.add(new SetPosition(forestBandit, strangeFruitGrove, "DirtPile"))
 		.add(new Face(banditLeader, player))
@@ -291,21 +317,16 @@ public class MyNodeBuilder extends NodeBuilder {
 		.add(new HideNarration());
 	}
 	
-	
+	@BuilderMethod
 	public void PlayDeadActions() {
 		var node = get(MyNodeLabels.ForestPlayDead.toString());
-		node.add(new CreateCharacterSequence(banditLeader))
-		.add(new SetPosition(banditLeader, strangeFruitGrove, "Well"))
-		.add(new CreateCharacterSequence(forestBandit))
-		.add(new SetPosition(forestBandit, strangeFruitGrove, "DirtPile"))
-		.add(new Face(banditLeader, player))
-		.add(new Face(forestBandit, player))
+		node
 		.add(new Wait(2))
 		.add(new NarrationSequence("You decide to play dead in the net trap. It doesn't work, your captors know you are alive. After a few minutes of whispering and shock in their eyes, they proclaim that they are taking you to the castle. You start panicking and try to free yourself, but you are sorely out numbered. One of them hits you over the head with the butt of his sword. You immediately go unconscious and drop to the floor.\n"))
 		.add(new Wait(10))
 		.add(new HideNarration());
 	}
-
+	
 	@BuilderMethod
 	public void AskGuardForTruthActions() {
 		var node = get(MyNodeLabels.AskGuardForTruth.toString());
@@ -397,8 +418,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	
 	
 	
-	
-	
+	/*
 	
 	
 //Rodrigo Guzman
@@ -480,7 +500,7 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new FadeIn())
             .add(new CreateCharacterSequence(merchant))
             .add(new SetPosition(merchant, lostCity, "Bench"))
-            .add(new SetPosition(bread, lostCity, "Table"))
+         //   .add(new SetPosition(bread, lostCity, "Table"))
             .add(new SetCameraFocus(player))
             .add(new NarrationSequence("You're surrounded by sounds and smells. A merchant waves you over to buy bread, and a nearby house looks interesting."))
             .add(new Wait(5))
@@ -507,7 +527,7 @@ public class MyNodeBuilder extends NodeBuilder {
             .add(new Wait(5))
             .add(new HideNarration());
     }
-
+/*
     @BuilderMethod
     public void followTheMerchantsActions() {
         var node = get(MyNodeLabels.FollowTheMerchants.toString());
@@ -539,4 +559,5 @@ public class MyNodeBuilder extends NodeBuilder {
             .add(new Wait(5))
             .add(new HideNarration());
     }
+    */
 }

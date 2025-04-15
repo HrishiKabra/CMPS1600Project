@@ -156,12 +156,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        var node = get(MyNodeLabels.SpeakUp.toString());
 	        
 	        //Go with the guards silently 
-	        var choice1 = new DialogChoice("**Go with the Guards**");
+	        var choice1 = new DialogChoice("**Go with the guards**");
 	        var nextNode1 = get(MyNodeLabels.FollowWillingly.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
 	        //Talk to the guard for answer
-	        var choice2 = new DialogChoice("**Try to Talk to Guard**");
+	        var choice2 = new DialogChoice("**Try to talk to guard**");
 	        var nextNode2 = get(MyNodeLabels.AskGuardForTruth.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	        
@@ -173,12 +173,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        var node = get(MyNodeLabels.StaySilent.toString());
 	        
 	        //Go with the guards silently 
-	        var choice1 = new DialogChoice("**Go with the Guards**");
+	        var choice1 = new DialogChoice("**Go with the guards**");
 	        var nextNode1 = get(MyNodeLabels.FollowWillingly.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
 	        //speak to the king 
-	        var choice2 = new DialogChoice("Fine Fine!! Ill talk. Who are you and what is going on");
+	        var choice2 = new DialogChoice("Fine Fine!! Ill talk. Who are you and what is going on?");
 	        var nextNode2 = get(MyNodeLabels.SpeakUp.toString());
 	        node.add(new Edge(choice2, nextNode2));
 	        
@@ -218,12 +218,24 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        var node = get(MyNodeLabels.TheCell.toString());
 	        
 	        //ask the prisoner to continue explaining
-	        var choice1 = new DialogChoice("I dont understand...what are you talking about?");
+	        var choice1 = new DialogChoice("What is going on?");
 	        var nextNode1 = get(MyNodeLabels.GetContext.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
 	      
 	 }
+	 @BuilderMethod
+	    public void GetContextEdges() {
+	        var node = get(MyNodeLabels.GetContext.toString());
+	        
+	        //ask the stationed guard to continue explaining
+	        var choice1 = new DialogChoice("I dont understand...what are you talking about?");
+	        var nextNode1 = get(MyNodeLabels.AskStationedGuard.toString());
+	        node.add(new Edge(choice1, nextNode1));
+	        
+	      
+	 }
+	 
 	 /*
 	 @BuilderMethod
 	 	public void EatApple2Edges() {

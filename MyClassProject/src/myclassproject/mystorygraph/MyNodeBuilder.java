@@ -33,7 +33,7 @@ public class MyNodeBuilder extends NodeBuilder {
        
         root. add(new CreateCharacterSequence(player))
         .add(new SetCameraFocus(player))
-        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap, lostCity, banditCamp, merchantShop,castle, NetTrapPlace, insideCabin, TheKingsCastle,TheDungeons, TheWizardLibrary)))
+        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap, lostCity, banditCamp, merchantShop,castle, NetTrapPlace, insideCabin, TheKingsCastle, TheDungeons, TheWizardLibrary)))
             .add(new SetPosition(player, forest))
             
             .add(new ShowMenu());
@@ -171,7 +171,7 @@ public class MyNodeBuilder extends NodeBuilder {
     public void SpeakUpActions() {
         var node = get(MyNodeLabels.SpeakUp.toString());
         node.add(new HideDialog())
-        .add(new DialogSequence(theKing, player, List.of("I am surprised my wizard has gotten so good at our memory potion. You usually remember by this pointYou really don't know who you are? Strange. Guards, take him away!"), List.of("**Go with the Guards**", "**Try to Talk to Guard**")));
+        .add(new DialogSequence(theKing, player, List.of("I am surprised my wizard has gotten so good at our memory potion. You usually remember by this pointYou really don't know who you are? Strange. Guards, take him away!"), List.of("**Go with the guards**", "**Try to talk to guard**")));
   
         //Options: go silently with guards or get taken away
 	}
@@ -180,22 +180,17 @@ public class MyNodeBuilder extends NodeBuilder {
         var node = get(MyNodeLabels.FollowWillingly.toString());
         node.add(new HideDialog())
         .add(new WalkTo(guard1, player))//guards walk to you 
-        .add(new WalkTo(guard2, player))
-        .add(new Wait(2))
         .add(new WalkTo(player, ToTheDungeons))//walk towards the exit 
-        .add(new Wait(1))
-        .add(new WalkTo(guard1, ToTheDungeons))
-        .add(new WalkTo(guard2, ToTheDungeons))
-        .add(new Exit(player, ToTheDungeons, true)) //exit into the dungeons 
-        .add(new Exit(guard1, ToTheDungeons, true))
-        .add(new Exit(guard2, ToTheDungeons, true))
+        .add(new WalkTo(guard1, player))     
+        .add(new FadeOut())
         .add(new CreateCharacterSequence(prisoner)) //add the prisoner
         .add(new SetPosition(prisoner, TheDungeons, "DirtPile")) //put them in the cell 
-        .add(new Enter(player, EnterDungeons, true))//enter into the dungeons 
-        .add(new Enter(guard1, EnterDungeons, true))
-        .add(new WalkTo(guard1, cellDoor))
+        .add(new SetPosition(player, TheDungeons))
+        .add(new SetPosition(guard1, TheDungeons, "CellDoor"))
+        .add(new FadeIn())
+
         .add(new DialogSequence(guard1, player, List.of("I am sorry my prince"), List.of("Why did you call me that? Can you please explain what's going on?", "**head into cell**")));
-        
+      
         //Options: talk outside with guard or enter cell 
 	}
 	
@@ -203,8 +198,10 @@ public class MyNodeBuilder extends NodeBuilder {
     public void TheCellActions() {
         var node = get(MyNodeLabels.TheCell.toString());
         node.add(new HideDialog())
+        .add(new WalkTo(guard1, TheDungeons, "Door"))
+        .add(new Wait(1))
         .add(new WalkTo(player, cellDoor))//walk to the cell door
-        .add(new Enter(player, cellDoor, false))//enter with NO fading
+        .add(new OpenFurniture(player, cellDoor))//enter with NO fading
         .add(new WalkTo(player, TheDungeons, "Bed"))
         .add(new DialogSequence(prisoner, player, List.of("Prince is that really you?"), List.of("What is going on?")));
         

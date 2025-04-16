@@ -10,6 +10,7 @@ public enum MyNodeLabels{
 	ForestTheForest,
 	ForestTheWiseMan,
 	CabinInTheWoods,
+	EatApple2, 
 	
 	
 	//Hrishi Kabra
@@ -19,7 +20,6 @@ public enum MyNodeLabels{
 	ForestTheWarning,
 	ForestANetTrap,
 	ForestPlayDead,
-	
 	
 	//Rodrigo Guzman
 	ForestDemandAnswers,
@@ -51,11 +51,10 @@ public enum MyNodeLabels{
 	AskStationedGuard,
 	TheWizard,
 	TheWizard2,
+	TheWizard3,
 	TheWizardsFinalWords,
+	TheWizardsFinalWords2,
 	TheRiddle,
 	TheEnd,
 	Youfail
-	
-	 
-	
-	}
+}

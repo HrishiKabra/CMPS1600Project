@@ -33,7 +33,7 @@ public class MyNodeBuilder extends NodeBuilder {
        
         root. add(new CreateCharacterSequence(player))
         .add(new SetCameraFocus(player))
-        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap, lostCity, banditCamp, merchantShop, castle, insideCabin, NetTrapPlace)))
+        .add(new CreateAll(List.of(forest, strangeFruitGrove, spookyArea, appleBasketCabin, apple, sword,  netTrap, lostCity, banditCamp, merchantShop,castle, NetTrapPlace, insideCabin, TheKingsCastle, TheDungeons, TheWizardLibrary)))
             .add(new SetPosition(player, forest))
             
             .add(new ShowMenu());
@@ -46,7 +46,7 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new NarrationSequence("You wake up in a dense forest, the morning air heavy with mist. " +
                                        "Behind you, you hear the distant sounds of a bustling city. " +
                                        "In front of you, the forest grows darker and deeper. Which way do you go?")) //Narration Gives Context to the choices 
-        .add(new Wait(10)) //Show the narration for 5 seconds
+        .add(new Wait(5)) //Show the narration for 5 seconds
         .add(new HideNarration());//then afterwards hide the context so that the player can decide which direction to go 
         
         //Options: walk through one exit on the side of the path or the other. depending on the side, the player will go to different locations
@@ -80,7 +80,7 @@ public class MyNodeBuilder extends NodeBuilder {
         
         .add(new NarrationSequence("As you venture deeper into the forest, the trees grow taller and denser. The path that you took to get here seems to have gotten lost amidst the foliage. Suddenly, you hear the snap of a branch. The bushes to your left begin to rustle. Do you pick up the sword you see in the dirt or run away?"))
         //Add narrative sequence that will be shown to the player
-        .add(new Wait(10)) //wait for player to read narration 
+        .add(new Wait(5)) //wait for player to read narration 
        .add(new HideNarration());// then hide it to let a decision take place 
        
        
@@ -100,6 +100,8 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new NarrationSequence("Holding a sword you picked up for protection in one hand, you see a figure emerge out of the bush. The first thing that catches your eye is the long flowing cloak they’re wearing. Do you talk to him or run away..."))
         .add(new Wait(7))// wait for the player to read context 
         .add(new HideNarration());//hide context 
+        
+        
       //Options: The player picked up the sword and a new entity shows up. The player can speak with the entity to move forward or run away to the new location 
     }
     
@@ -123,7 +125,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
     public void TheCastleActions() {
         var node = get(MyNodeLabels.TheCastle.toString());
-        node.add(new FadeOut())
+        node.add(new FadeOut())//Since the player passes out and wakes up, use fade out and fade in to change the location 
         .add(new CreateCharacterSequence(theKing))
         .add(new CreateCharacterSequence(guard1))
         .add(new CreateCharacterSequence(guard2))
@@ -137,11 +139,13 @@ public class MyNodeBuilder extends NodeBuilder {
         .add(new FadeIn())//fade in since the player woke up- did not exit through a door 
         .add(new NarrationSequence("When you wake up, everything is hazy. You notice the tall, marble ceilings and faint light of gas lanterns. The room is majestic, and very familiar. Suddenly, memories  of being  knocked out fly back.\n"
         		+ "Your thoughts are interrupted by a booming voice..."))//give narration 
-        .add(new Wait(10))
+        .add(new Wait(5))//Opportunity to read
         .add(new HideNarration());
+        
+        
+  
        
 	}
-	
 	@BuilderMethod
     public void TheKingActions() {
         var node = get(MyNodeLabels.TheKing.toString());
@@ -163,12 +167,11 @@ public class MyNodeBuilder extends NodeBuilder {
    //Options: speak or get taken 
         
 	}
-	
 	@BuilderMethod
     public void SpeakUpActions() {
         var node = get(MyNodeLabels.SpeakUp.toString());
         node.add(new HideDialog())
-        .add(new DialogSequence(theKing, player, List.of("I am surprised my wizard has gotten so good at our memory potion. You usually remember by this pointYou really don't know who you are? Strange. Guards, take him away!"), List.of("**Go with the Guards**", "**Try to Talk to Guard**")));
+        .add(new DialogSequence(theKing, player, List.of("I am surprised my wizard has gotten so good at our memory potion. You usually remember by this pointYou really don't know who you are? Strange. Guards, take him away!"), List.of("**Go with the guards**", "**Try to talk to guard**")));
   
         //Options: go silently with guards or get taken away
 	}
@@ -177,33 +180,28 @@ public class MyNodeBuilder extends NodeBuilder {
         var node = get(MyNodeLabels.FollowWillingly.toString());
         node.add(new HideDialog())
         .add(new WalkTo(guard1, player))//guards walk to you 
-        .add(new WalkTo(guard2, player))
-        .add(new Wait(5))
         .add(new WalkTo(player, ToTheDungeons))//walk towards the exit 
-        .add(new Wait(1))
-        .add(new WalkTo(guard1, ToTheDungeons))
-        .add(new WalkTo(guard2, ToTheDungeons))
-        .add(new Exit(player, ToTheDungeons, true)) //exit into the dungeons 
-        .add(new Exit(player, ToTheDungeons, true))
-        .add(new Exit(guard1, ToTheDungeons, true))
-        .add(new Exit(guard2, ToTheDungeons, true))
+        .add(new WalkTo(guard1, player))     
+        .add(new FadeOut())
         .add(new CreateCharacterSequence(prisoner)) //add the prisoner
         .add(new SetPosition(prisoner, TheDungeons, "DirtPile")) //put them in the cell 
-        .add(new Enter(player, EnterDungeons, true))//enter into the dungeons 
-        .add(new Enter(guard1, EnterDungeons, true))
-        .add(new WalkTo(guard1, cellDoor))
+        .add(new SetPosition(player, TheDungeons))
+        .add(new SetPosition(guard1, TheDungeons, "CellDoor"))
+        .add(new FadeIn())
+
         .add(new DialogSequence(guard1, player, List.of("I am sorry my prince"), List.of("Why did you call me that? Can you please explain what's going on?", "**head into cell**")));
-        
+      
         //Options: talk outside with guard or enter cell 
-        
 	}
 	
 	@BuilderMethod
     public void TheCellActions() {
         var node = get(MyNodeLabels.TheCell.toString());
         node.add(new HideDialog())
+        .add(new WalkTo(guard1, TheDungeons, "Door"))
+        .add(new Wait(1))
         .add(new WalkTo(player, cellDoor))//walk to the cell door
-        .add(new Enter(player, cellDoor, false))//enter with NO fading
+        .add(new OpenFurniture(player, cellDoor))//enter with NO fading
         .add(new WalkTo(player, TheDungeons, "Bed"))
         .add(new DialogSequence(prisoner, player, List.of("Prince is that really you?"), List.of("What is going on?")));
         
@@ -227,10 +225,24 @@ public class MyNodeBuilder extends NodeBuilder {
         node.add(new HideDialog())
         .add(new DialogSequence(prisoner, player, List.of("You seriously don't remember anything do you? Those potions really are getting strong. And here we thought you coming back again was our hope at freedomMy Prince, it pains me to have to remind you everything your father did. You've been down here with me before, and every time I hope you figure it out. I am sworn under oath to not say too much... everyone in the kingdom is. The only thing I will say is to ask for the wizard."), List.of("I dont understand...what are you talking about?")));
         
-        //Options: Continue Conversation 
+        //Options: Continue Conversation (Same convo either happens with the prisoner or the guard to get context to the situation)
 	}
 	
 	
+	
+	/*
+	
+	 @BuilderMethod
+	    public void eatAppleActions2() {
+	        var node = get(MyNodeLabels.EatApple2.toString());
+	        node.add(new NarrationSequence("You take a bite of the mysterious apple. Your vision spins and suddenly you collapse."))
+	            .add(new Wait(6))
+	            .add(new HideNarration());
+	           
+	    }
+	
+	
+	*/
 	
 	
 //Hrishi Kabra
@@ -243,8 +255,10 @@ public class MyNodeBuilder extends NodeBuilder {
 		.add(new SetPosition(apple, insideCabin, "Table"))
 		.add(new Wait(2))
 		.add(new NarrationSequence("The cabin seems abandoned as you get closer, so you try to go in. The door opens without hesitation, and the first thing  you see is a basket of pristine apples. Starving, you decide to grab one..."))
-		.add(new Wait(10))
-		.add(new HideNarration());
+		.add(new Wait(5))
+		.add(new HideNarration())
+		
+		;
 	}
 	
 	@BuilderMethod
@@ -314,7 +328,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void AskGuardForTruthActions() {
 		var node = get(MyNodeLabels.AskGuardForTruth.toString());
 		node.add(new HideDialog())
-		.add(new WalkTo(player, TheKingsCastle, "RightGuard"))
+		.add(new WalkTo(player, guard2))
 		.add(new DialogSequence(guard2, player, List.of("\"You seriously don't remember anything do you? Those potions really are getting strong. And here we thought you coming back again was our hope at freedom.\"\n"
 				+ "You look obviously confused.\n"
 				+ "\"My Prince, it pains me to have to remind you everything your father did. You've been down here with me before, and every time I hope you figure it out. I am sworn under oath to not say too much... everyone in the kingdom is. The only thing I will say is to ask for the wizard.\""), List.of("**Ask for the Wizard**")));
@@ -333,34 +347,43 @@ public class MyNodeBuilder extends NodeBuilder {
 	      .add(new SetPosition(wiseMan, TheWizardLibrary, "Stand"))
 	      .add(new NarrationSequence("You come to stand in front of two, large, ornate oak doors. They open on their own, and you walk inside the tower. A cloaked man is staring out the bay windows."))
 	      .add(new Wait(5))
-	      .add(new DialogSequence(wiseMan, player, List.of("\"You always come back.\""), List.of()))
-	      .add(new HideDialog())
-	      .add(new NarrationSequence(" He says and turns around. Its the cloaked man from the woods!!"))
-	      .add(new Wait(5))
-	      .add(new HideNarration());
+	      .add(new HideNarration())
+	      .add(new DialogSequence(player, wiseMan, List.of("\"You always come back.\"" + " He says and turns around. Its the cloaked man from the woods!!"), List.of("\"Its you again! Who are you??\"\n")));
 	}
 	
+	@BuilderMethod
 	public void theWizard2Actions() {
 		var node = get(MyNodeLabels.TheWizard2.toString());
-		node.add(new DialogSequence(player, wiseMan, List.of("\"Its you again! Who are you??\"\n"), List.of()))
-	    .add(new HideDialog())
-	    .add(new DialogSequence(wiseMan, player, List.of("\"My name is The Great Wizard, and it pains me you no longer remember me. I suppose you can only wipe someones memory a handful of times before seeing lasting effects. Hopefully you will be ready soon.\"\n"), List.of("\\\"Ready? For what?\\\"\\n")))
-	    .add(new HideDialog())
-	    .add(new DialogSequence(wiseMan, player, List.of("\"To take over the kingdom from your father of course!\" The Great Shirvani laughs. \"You should be grateful really, he thought you were a waste of space. Never an heir worthy of the kingdom. I was the one who convinced him that you could learn. You haven't yet, but maybe soon.\"\n"), List.of("What do I need to learn?", "I am still confused?")))
-	    .add(new HideDialog());
-	}
-
-	public void TheWizardsFinalWordsActions() {
-		var node = get(MyNodeLabels.TheWizardsFinalWords.toString());
-		node.add(new DialogSequence(wiseMan, player, List.of("\"Ah, of course you are. All is well and you will remember more with time. That is, unless we have to send you away again.\"\n"), List.of("\"Send me away?\"\n")))
-	    .add(new HideDialog())
-	    .add(new DialogSequence(wiseMan, player, List.of("\"Yes, Unless of course, you now know the answer.\"\n"), List.of("\"The answer to what?\"\n")))
-	    .add(new HideDialog());
+		node.add(new HideDialog())
+	    .add(new DialogSequence(wiseMan, player, List.of("\"My name is The Great Wizard, and it pains me you no longer remember me. I suppose you can only wipe someones memory a handful of times before seeing lasting effects. Hopefully you will be ready soon.\"\n"), List.of("\"Ready? For what?\"")));
 	}
 	
+	@BuilderMethod
+	public void theWizard3Actions() {
+		var node = get(MyNodeLabels.TheWizard3.toString());
+		node.add(new HideDialog())
+	    .add(new DialogSequence(wiseMan, player, List.of("\"To take over the kingdom from your father of course!\" The Great Wizard laughs. \"You should be grateful really, he thought you were a waste of space. Never an heir worthy of the kingdom. I was the one who convinced him that you could learn. You haven't yet, but maybe soon.\"\n"), List.of("What do I need to learn?", "I am still confused?")));
+	}
+	
+	@BuilderMethod
+	public void TheWizardsFinalWordsActions() {
+		var node = get(MyNodeLabels.TheWizardsFinalWords.toString());
+		node.add(new HideDialog())
+		.add(new DialogSequence(wiseMan, player, List.of("\"Ah, of course you are. All is well and you will remember more with time. That is, unless we have to send you away again.\"\n"), List.of("\"Send me away?\"\n")));
+	}
+	
+	@BuilderMethod
+	public void TheWizardsFinalWords2Actions() {
+		var node = get(MyNodeLabels.TheWizardsFinalWords2.toString());
+		node.add(new HideDialog())
+	    .add(new DialogSequence(wiseMan, player, List.of("\"Yes, Unless of course, you now know the answer.\"\n"), List.of("\"The answer to what?\"\n")));
+	}
+	
+	@BuilderMethod
 	public void TheRiddleActions() {
 		var node = get(MyNodeLabels.TheRiddle.toString());
-		node.add(new DialogSequence(wiseMan, player, List.of("\"The answer to the riddle of course! Answer correct, and you have learned enough across these trials to take over the kingdom. Answer wrong, and your dad is right, but I will keep trying. However, at the rate of this memory last we may only have a few resets left\"\n"
+		node.add(new HideDialog())
+		.add(new DialogSequence(wiseMan, player, List.of("\"The answer to the riddle of course! Answer correct, and you have learned enough across these trials to take over the kingdom. Answer wrong, and your dad is right, but I will keep trying. However, at the rate of this memory last we may only have a few resets left\"\n"
 				+ "The Riddle:\n"
 				+ "\n"
 				+ "In a kingdom fair, where trees abound,\n"
@@ -374,19 +397,20 @@ public class MyNodeBuilder extends NodeBuilder {
 				+ "If thou wouldst seek thy wayward home,\n"
 				+ "Through forests deep thou needs must roam.\n"
 				+ "Choose well the fruite, for fate is near—\n"
-				+ "Thy heart shall guide thee, conquer thy fear"), List.of("The Crown", "Power", "The Forest", "Bread", "The Apple")))
-		.add(new HideDialog());
-	}
+				+ "Thy heart shall guide thee, conquer thy fear"), List.of("The Crown", "Power", "The Forest", "Bread", "The Apple")));
+		}
 	
+	@BuilderMethod
 	public void TheEndActions() {
 		var node = get(MyNodeLabels.TheEnd.toString());
 		node.add(new NarrationSequence("A bright light fills the room, and all of your memories come back. You feel the power shift, and a crown sits a top your head.\n"
 				+ "Welcome King."))
 		.add(new Wait(5))
-		.add(new HideDialog());
+		.add(new HideNarration());
 		//How to give him aura?
 	}
 	
+	@BuilderMethod
 	public void YouFailActions() {
 		var node = get(MyNodeLabels.Youfail.toString());
 		node.add(new DialogSequence(wiseMan, player, List.of("\"Maybe your father was right...\"\n"), List.of()));
@@ -401,6 +425,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	
 	
 	
+	/*
 	
 	
 //Rodrigo Guzman
@@ -458,4 +483,88 @@ public class MyNodeBuilder extends NodeBuilder {
             .add(new Exit(player, eastEndTowardCity, true))
             .add(new FadeOut());
     }
+    
+  
+        
+   
+        
+    @BuilderMethod
+    public void eatAppleActions() {
+        var node = get(MyNodeLabels.EatApple.toString());
+
+        node.add(new FadeIn())
+            .add(new SetPosition(player, lostCity))
+            .add(new NarrationSequence("You take a bite of the mysterious apple. Your vision spins and suddenly you collapse. When you come to, you find yourself in an unfamiliar market..."))
+            .add(new Wait(6))
+            .add(new HideNarration())
+            .add(new FadeOut());
+    }
+
+    @BuilderMethod
+    public void theMarketActions() {
+        var node = get(MyNodeLabels.TheMarket.toString());
+
+        node.add(new FadeIn())
+            .add(new CreateCharacterSequence(merchant))
+            .add(new SetPosition(merchant, lostCity, "Bench"))
+         //   .add(new SetPosition(bread, lostCity, "Table"))
+            .add(new SetCameraFocus(player))
+            .add(new NarrationSequence("You're surrounded by sounds and smells. A merchant waves you over to buy bread, and a nearby house looks interesting."))
+            .add(new Wait(5))
+            .add(new HideNarration());
+    }
+
+    @BuilderMethod
+    public void theBreadWomanActions() {
+        var node = get(MyNodeLabels.TheBreadWoman.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("The woman at the bread stand looks at you curiously. 'You don’t remember, do you?' she says. Before you can respond, everything goes black again."))
+            .add(new Wait(5))
+            .add(new HideNarration())
+            .add(new FadeOut());
+    }
+
+    @BuilderMethod
+    public void whereAreYouNowActions() {
+        var node = get(MyNodeLabels.WhereAreYouNow.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("You knock on the blue door, but there's no answer. In the distance, you spot merchants walking into a narrow alley."))
+            .add(new Wait(5))
+            .add(new HideNarration());
+    }
+/*
+    @BuilderMethod
+    public void followTheMerchantsActions() {
+        var node = get(MyNodeLabels.FollowTheMerchants.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("You follow the merchants into a tight alley. They're whispering about something... Should you listen or speak up?"))
+            .add(new SetPosition(crate, lostCity, "Corner"))
+            .add(new SetPosition(benchRight, lostCity, "Wall"))
+            .add(new Wait(5))
+            .add(new HideNarration());
+    }
+
+    @BuilderMethod
+    public void theSpyActions() {
+        var node = get(MyNodeLabels.TheSpy.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("You duck behind a crate and strain your ears. You catch just enough to realize you’re the topic of conversation."))
+            .add(new Wait(5))
+            .add(new HideNarration());
+    }
+
+    @BuilderMethod
+    public void merchantsChatActions() {
+        var node = get(MyNodeLabels.MerchantsChat.toString());
+
+        node.add(new FadeIn())
+            .add(new NarrationSequence("You approach and ask what’s going on. The merchants fall silent, then one whispers, 'You're not supposed to be here yet.'"))
+            .add(new Wait(5))
+            .add(new HideNarration());
+    }
+    */
 }

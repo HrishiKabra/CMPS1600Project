@@ -24,7 +24,7 @@ public enum MyChoiceLabels {
     //EatApple,
     GoDeeper,
     GoBack,
-    //DemandAnswers
+    DemandAnswers,
     PlayDead,
     WakeUp,
     

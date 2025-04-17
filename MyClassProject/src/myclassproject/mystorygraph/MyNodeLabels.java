@@ -51,7 +51,9 @@ public enum MyNodeLabels{
 	AskStationedGuard,
 	TheWizard,
 	TheWizard2,
+	TheWizard3,
 	TheWizardsFinalWords,
+	TheWizardsFinalWords2,
 	TheRiddle,
 	TheEnd,
 	Youfail

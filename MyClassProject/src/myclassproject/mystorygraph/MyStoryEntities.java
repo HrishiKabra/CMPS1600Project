@@ -77,12 +77,18 @@ public final class MyStoryEntities {
     public static final Furniture NetTrapPlant = new Furniture(NetTrapPlace, FurnitureTypes.Plant);
     public static final Furniture NetTrapDirtPile = new Furniture(NetTrapPlace, FurnitureTypes.DirtPile);
 
-
-    
-
-    
-    
     //Rodrigo Guzman
     public static final Furniture lostCityGate = new Furniture(lostCity, FurnitureTypes.NorthEnd);
+   
+    
+    
+ //   public static final Item bread = new Item("Bread", ItemTypes.Food);
+
+    public static final Furniture blueHouseDoor = new Furniture(lostCity, FurnitureTypes.Door);
+    public static final Furniture barrel = new Furniture(lostCity, FurnitureTypes.Barrel);
+  //  public static final Furniture alley = new Furniture(lostCity, FurnitureTypes.Alley);
+   // public static final Furniture crate = new Furniture(lostCity, FurnitureTypes.Crate);
+    public static final Furniture benchRight = new Furniture(lostCity, FurnitureTypes.Bench);
+    
     
 }

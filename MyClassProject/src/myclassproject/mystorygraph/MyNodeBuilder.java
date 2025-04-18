@@ -245,183 +245,190 @@ public class MyNodeBuilder extends NodeBuilder {
 	*/
 	
 	
-//Hrishi Kabra
+	//Hrishi Kabra
 	
-	@BuilderMethod
-	public void AppleBasketActions() {//Picking up the apple in the cabin
-		var node = get(MyNodeLabels.CabinAppleBasket.toString());
-		node.add(new Exit(player, cabinDoor, true))
-		.add(new Enter(player, insideCabinDoor, true)) //Player is now inside the cabin in the woods
-		.add(new SetPosition(apple, insideCabin, "Table"))
-		.add(new Wait(2))
-		.add(new NarrationSequence("The cabin seems abandoned as you get closer, so you try to go in. The door opens without hesitation, and the first thing  you see is a basket of pristine apples. Starving, you decide to grab one..."))
-		.add(new Wait(5))
-		.add(new HideNarration())
-		
-		;
-	}
-	
-	@BuilderMethod
-	public void TheWarningActions() {
-		var node = get(MyNodeLabels.ForestTheWarning.toString());
-		node
-        .add(new Face(wiseMan, player)) //face the players
-        .add(new WalkTo(player, wiseMan))
-		.add(new NarrationSequence("The person removes their hood to reveal a man. You stare at each other in silence. Finally, he says, “The city is not what you think.” Before you have a chance to ask more, he disappears in a puff of smoke"))
-		.add(new Wait(5))
-		.add(new HideNarration());
-	}
-	
-	@BuilderMethod
-	public void StrangeFruitActions() {//Picking up the apple in the woods - CabinInWoods&TheWarning lead to this - leads to EatApple
-		var node = get(MyNodeLabels.ForestStrangeFruit.toString());
-		node.add(new Exit(player, streamArea, true))
-		.add(new Enter(player, strangeFruitGroveEntrance, true))
-		.add(new Wait(2))
-		.add(new NarrationSequence("As you are walking, you notice fruit trees scattered between the other vegetation. The juicy looking apples call your name, but something seems off about them…"))
-		.add(new Wait(10))
-		.add(new HideNarration())
-		.add(new SetPosition(apple, strangeFruitGrove, "Plant"));
-	}
-	
-	@BuilderMethod
-	public void StrangeFruit2Actions() {//Picking up the apple in the woods - CabinInWoods&TheWarning lead to this - leads to EatApple
-		var node = get(MyNodeLabels.ForestStrangeFruit2.toString());
-		node.add(new Exit(player, eastEndSpookyArea, true))
-		.add(new Enter(player, strangeFruitGroveEntrance, true))
-		.add(new Wait(2))
-		.add(new NarrationSequence("As you are walking, you notice fruit trees scattered between the other vegetation. The juicy looking apples call your name, but something seems off about them…"))
-		.add(new Wait(10))
-		.add(new HideNarration())
-		.add(new SetPosition(apple, strangeFruitGrove, "Plant"));
-	}
-	
-	
-	@BuilderMethod
-	public void NetTrapActions() {
-		var node = get(MyNodeLabels.ForestANetTrap.toString());
-		node.add(new Exit(player, strangeFruitGroveExit, true))
-		.add(new Enter(player, NetTrapEntrance, true))
-		.add(new CreateCharacterSequence(banditLeader))
-		.add(new SetPosition(banditLeader, strangeFruitGrove, "Plant"))
-		.add(new CreateCharacterSequence(forestBandit))
-		.add(new SetPosition(forestBandit, strangeFruitGrove, "DirtPile"))
-		.add(new Face(banditLeader, player))
-		.add(new Face(forestBandit, player))
-		.add(new Wait(2))
-		.add(new NarrationSequence("you start walking and before you know it, something catches you by your feet and you are hanging in the air stuck in a net! A group of people jump out of the bushes. "))
-		.add(new Wait(10))
-		.add(new HideNarration());
-	}
-	
-	@BuilderMethod
-	public void PlayDeadActions() {
-		var node = get(MyNodeLabels.ForestPlayDead.toString());
-		node
-		.add(new Wait(2))
-		.add(new NarrationSequence("You decide to play dead in the net trap. It doesn't work, your captors know you are alive. After a few minutes of whispering and shock in their eyes, they proclaim that they are taking you to the castle. You start panicking and try to free yourself, but you are sorely out numbered. One of them hits you over the head with the butt of his sword. You immediately go unconscious and drop to the floor.\n"))
-		.add(new Wait(10))
-		.add(new HideNarration());
-	}
-	
-	@BuilderMethod
-	public void AskGuardForTruthActions() {
-		var node = get(MyNodeLabels.AskGuardForTruth.toString());
-		node.add(new HideDialog())
-		.add(new WalkTo(player, guard2))
-		.add(new DialogSequence(guard2, player, List.of("\"You seriously don't remember anything do you? Those potions really are getting strong. And here we thought you coming back again was our hope at freedom.\"\n"
-				+ "You look obviously confused.\n"
-				+ "\"My Prince, it pains me to have to remind you everything your father did. You've been down here with me before, and every time I hope you figure it out. I am sworn under oath to not say too much... everyone in the kingdom is. The only thing I will say is to ask for the wizard.\""), List.of("**Ask for the Wizard**")));
-		//Options: Ask for the wizard -> TheWizard
-	}
-	
-	
-	@BuilderMethod
-	public void TheWizardActions() {
-		var node = get(MyNodeLabels.TheWizard.toString());
-		node.add(new HideDialog())
-		  .add(new WalkTo(player, toTheWizard))
-	      .add(new Exit(player, toTheWizard, true))
-	      .add(new Enter(player, EnterWizardLibrary, true))
-	      .add(new CreateCharacterSequence(wiseMan))
-	      .add(new SetPosition(wiseMan, TheWizardLibrary, "Stand"))
-	      .add(new NarrationSequence("You come to stand in front of two, large, ornate oak doors. They open on their own, and you walk inside the tower. A cloaked man is staring out the bay windows."))
-	      .add(new Wait(5))
-	      .add(new HideNarration())
-	      .add(new DialogSequence(player, wiseMan, List.of("\"You always come back.\"" + " He says and turns around. Its the cloaked man from the woods!!"), List.of("\"Its you again! Who are you??\"\n")));
-	}
-	
-	@BuilderMethod
-	public void theWizard2Actions() {
-		var node = get(MyNodeLabels.TheWizard2.toString());
-		node.add(new HideDialog())
-	    .add(new DialogSequence(wiseMan, player, List.of("\"My name is The Great Wizard, and it pains me you no longer remember me. I suppose you can only wipe someones memory a handful of times before seeing lasting effects. Hopefully you will be ready soon.\"\n"), List.of("\"Ready? For what?\"")));
-	}
-	
-	@BuilderMethod
-	public void theWizard3Actions() {
-		var node = get(MyNodeLabels.TheWizard3.toString());
-		node.add(new HideDialog())
-	    .add(new DialogSequence(wiseMan, player, List.of("\"To take over the kingdom from your father of course!\" The Great Wizard laughs. \"You should be grateful really, he thought you were a waste of space. Never an heir worthy of the kingdom. I was the one who convinced him that you could learn. You haven't yet, but maybe soon.\"\n"), List.of("What do I need to learn?", "I am still confused?")));
-	}
-	
-	@BuilderMethod
-	public void TheWizardsFinalWordsActions() {
-		var node = get(MyNodeLabels.TheWizardsFinalWords.toString());
-		node.add(new HideDialog())
-		.add(new DialogSequence(wiseMan, player, List.of("\"Ah, of course you are. All is well and you will remember more with time. That is, unless we have to send you away again.\"\n"), List.of("\"Send me away?\"\n")));
-	}
-	
-	@BuilderMethod
-	public void TheWizardsFinalWords2Actions() {
-		var node = get(MyNodeLabels.TheWizardsFinalWords2.toString());
-		node.add(new HideDialog())
-	    .add(new DialogSequence(wiseMan, player, List.of("\"Yes, Unless of course, you now know the answer.\"\n"), List.of("\"The answer to what?\"\n")));
-	}
-	
-	@BuilderMethod
-	public void TheRiddleActions() {
-		var node = get(MyNodeLabels.TheRiddle.toString());
-		node.add(new HideDialog())
-		.add(new DialogSequence(wiseMan, player, List.of("\"The answer to the riddle of course! Answer correct, and you have learned enough across these trials to take over the kingdom. Answer wrong, and your dad is right, but I will keep trying. However, at the rate of this memory last we may only have a few resets left\"\n"
-				+ "The Riddle:\n"
-				+ "\n"
-				+ "In a kingdom fair, where trees abound,\n"
-				+ "With fruite of wonder the land is crown’d.\n"
-				+ "Beneath yon oake and ash so tall,\n"
-				+ "The prize awaiteth, yet danger doth call.\n"
-				+ "A fruite there is, both faire and bright,\n"
-				+ "Its tempting flesh hides secret blight.\n"
-				+ "Once it did lure both king and knave,\n"
-				+ "A path to ruin, yet wisdom it gave.\n"
-				+ "If thou wouldst seek thy wayward home,\n"
-				+ "Through forests deep thou needs must roam.\n"
-				+ "Choose well the fruite, for fate is near—\n"
-				+ "Thy heart shall guide thee, conquer thy fear"), List.of("The Crown", "Power", "The Forest", "Bread", "The Apple")));
+		@BuilderMethod
+		public void AppleBasketActions() {//Picking up the apple in the cabin
+			var node = get(MyNodeLabels.CabinAppleBasket.toString());
+			node.add(new Exit(player, cabinDoor, true))
+			.add(new Enter(player, insideCabinDoor, true)) //Player is now inside the cabin in the woods
+			.add(new SetPosition(apple, insideCabin, "Table"))
+			.add(new Wait(2))
+			.add(new NarrationSequence("The cabin seems abandoned as you get closer, so you try to go in. The door opens without hesitation, and the first thing  you see is a basket of pristine apples. Starving, you decide to grab one..."))
+			.add(new Wait(5))
+			.add(new HideNarration())
+			
+			;
 		}
-	
-	@BuilderMethod
-	public void TheEndActions() {
-		var node = get(MyNodeLabels.TheEnd.toString());
-		node.add(new NarrationSequence("A bright light fills the room, and all of your memories come back. You feel the power shift, and a crown sits a top your head.\n"
-				+ "Welcome King."))
-		.add(new Wait(5))
-		.add(new HideNarration());
-		//How to give him aura?
-	}
-	
-	@BuilderMethod
-	public void YouFailActions() {
-		var node = get(MyNodeLabels.Youfail.toString());
-		node.add(new DialogSequence(wiseMan, player, List.of("\"Maybe your father was right...\"\n"), List.of()));
-	}
-	
-	
+		
+		@BuilderMethod
+		public void TheWarningActions() {
+			var node = get(MyNodeLabels.ForestTheWarning.toString());
+			node
+	        .add(new Face(wiseMan, player)) //face the players
+	        .add(new WalkTo(player, wiseMan))
+			.add(new NarrationSequence("The person removes their hood to reveal a man. You stare at each other in silence. Finally, he says, “The city is not what you think.” Before you have a chance to ask more, he disappears in a puff of smoke"))
+			.add(new Wait(5))
+			.add(new HideNarration());
+		}
+		
+		@BuilderMethod
+		public void StrangeFruitActions() {//Picking up the apple in the woods - CabinInWoods&TheWarning lead to this - leads to EatApple
+			var node = get(MyNodeLabels.ForestStrangeFruit.toString());
+			node.add(new Exit(player, streamArea, true))
+			.add(new Enter(player, strangeFruitGroveEntrance, true))
+			.add(new Wait(2))
+			.add(new NarrationSequence("As you are walking, you notice fruit trees scattered between the other vegetation. The juicy looking apples call your name, but something seems off about them…"))
+			.add(new Wait(10))
+			.add(new HideNarration())
+			.add(new SetPosition(apple, strangeFruitGrove, "Plant"));
+		}
+		
+		@BuilderMethod
+		public void StrangeFruit2Actions() {//Picking up the apple in the woods - CabinInWoods&TheWarning lead to this - leads to EatApple
+			var node = get(MyNodeLabels.ForestStrangeFruit2.toString());
+			node.add(new Exit(player, eastEndSpookyArea, true))
+			.add(new Enter(player, strangeFruitGroveEntrance, true))
+			.add(new Wait(2))
+			.add(new NarrationSequence("As you are walking, you notice fruit trees scattered between the other vegetation. The juicy looking apples call your name, but something seems off about them…"))
+			.add(new Wait(10))
+			.add(new HideNarration())
+			.add(new SetPosition(apple, strangeFruitGrove, "Plant"));
+		}
+		
+		
+		@BuilderMethod
+		public void NetTrapActions() {
+			var node = get(MyNodeLabels.ForestANetTrap.toString());
+			node.add(new Exit(player, strangeFruitGroveExit, true))
+			.add(new Enter(player, NetTrapEntrance, true))
+			.add(new CreateCharacterSequence(banditLeader))
+			.add(new SetPosition(banditLeader, strangeFruitGrove, "Plant"))
+			.add(new CreateCharacterSequence(forestBandit))
+			.add(new SetPosition(forestBandit, strangeFruitGrove, "DirtPile"))
+			.add(new Face(banditLeader, player))
+			.add(new Face(forestBandit, player))
+			.add(new Wait(2))
+			.add(new NarrationSequence("you start walking and before you know it, something catches you by your feet and you are hanging in the air stuck in a net! A group of people jump out of the bushes. "))
+			.add(new Wait(10))
+			.add(new HideNarration());
+		}
+		
+		@BuilderMethod
+		public void PlayDeadActions() {
+			var node = get(MyNodeLabels.ForestPlayDead.toString());
+			node
+			.add(new Wait(2))
+			.add(new NarrationSequence("You decide to play dead in the net trap. It doesn't work, your captors know you are alive. After a few minutes of whispering and shock in their eyes, they proclaim that they are taking you to the castle. You start panicking and try to free yourself, but you are sorely out numbered. One of them hits you over the head with the butt of his sword. You immediately go unconscious and drop to the floor.\n"))
+			.add(new Wait(10))
+			.add(new HideNarration());
+		}
+		
+		@BuilderMethod
+		public void AskGuardForTruthActions() {
+			var node = get(MyNodeLabels.AskGuardForTruth.toString());
+			node.add(new HideDialog())
+			.add(new WalkTo(player, guard2))
+			.add(new DialogSequence(guard2, player, List.of("\"You seriously don't remember anything do you? Those potions really are getting strong. And here we thought you coming back again was our hope at freedom."
+					, "You look obviously confused."
+					, "My Prince, it pains me to have to remind you everything your father did. You've been down here with me before, and every time I hope you figure it out. I am sworn under oath to not say too much... everyone in the kingdom is. The only thing I will say is to ask for the wizard."), List.of("**Ask For The Wizard**")));
+			//Options: Ask for the wizard -> TheWizard
+		}
+		
+		
+		@BuilderMethod
+		public void TheWizardActions() {
+			var node = get(MyNodeLabels.TheWizard.toString());
+			node.add(new HideDialog())
+			  .add(new WalkTo(player, toTheWizard))
+		      .add(new Exit(player, toTheWizard, true))
+		      .add(new Enter(player, EnterWizardLibrary, true))
+		      .add(new CreateCharacterSequence(wiseMan))
+		      .add(new SetPosition(wiseMan, TheWizardLibrary, "Stand"))
+		      .add(new NarrationSequence("You come to stand in front of two, large, ornate oak doors. They open on their own, and you walk inside the tower. A cloaked man is staring out the bay windows."))
+		      .add(new Wait(5))
+		      .add(new HideNarration());
+		}
+		      
+		
+		public void TheWizard0Actions() {
+			var node = get(MyNodeLabels.TheWizard0.toString());
+			node.add(new Face(player, wiseMan))
+			.add(new WalkTo(player, wiseMan))
+			.add(new DialogSequence(player, wiseMan, List.of("You always come back." , " He says and turns around. Its the cloaked man from the woods!!"), List.of("Its you again! Who are you??")));
+			}
+		
+		@BuilderMethod
+		public void theWizard2Actions() {
+			var node = get(MyNodeLabels.TheWizard2.toString());
+			node.add(new HideDialog())
+		    .add(new DialogSequence(wiseMan, player, List.of("My name is The Great Wizard, and it pains me you no longer remember me. I suppose you can only wipe someones memory a handful of times before seeing lasting effects. Hopefully you will be ready soon."), List.of("Ready? For what?")));
+		}
+		
+		@BuilderMethod
+		public void theWizard3Actions() {
+			var node = get(MyNodeLabels.TheWizard3.toString());
+			node.add(new HideDialog())
+		    .add(new DialogSequence(wiseMan, player, List.of("To take over the kingdom from your father of course The Great Wizard laughs You should be grateful really he thought you were a waste of space Never an heir worthy of the kingdom I was the one who convinced him that you could learn You havent yet but maybe soon"), List.of("What do I need to learn?", "I am still confused?")));
+		}
+		
+		@BuilderMethod
+		public void TheWizardsFinalWordsActions() {
+			var node = get(MyNodeLabels.TheWizardsFinalWords.toString());
+			node.add(new HideDialog())
+			.add(new DialogSequence(wiseMan, player, List.of("Ah, of course you are. All is well and you will remember more with time. That is, unless we have to send you away again."), List.of("Send me away?")));
+		}
+		
+		@BuilderMethod
+		public void TheWizardsFinalWords2Actions() {
+			var node = get(MyNodeLabels.TheWizardsFinalWords2.toString());
+			node.add(new HideDialog())
+		    .add(new DialogSequence(wiseMan, player, List.of("Yes, Unless of course, you now know the answer."), List.of("The answer to what?")));
+		}
+		
+		@BuilderMethod
+		public void TheRiddleActions() {
+			var node = get(MyNodeLabels.TheRiddle.toString());
+			node.add(new HideDialog())
+			.add(new DialogSequence(wiseMan, player, List.of("The answer to the riddle of course! Answer correct, and you have learned enough across these trials to take over the kingdom. Answer wrong, and your dad is right, but I will keep trying. However, at the rate of this memory last we may only have a few resets left"
+					, "The Riddle:"
+					, "In a kingdom fair, where trees abound,"
+					, "With fruite of wonder the land is crown’d."
+					, "Beneath yon oake and ash so tall,"
+					, "The prize awaiteth, yet danger doth call."
+					, "A fruite there is, both faire and bright,"
+					, "Its tempting flesh hides secret blight."
+					, "Once it did lure both king and knave,"
+					, "A path to ruin, yet wisdom it gave."
+					, "If thou wouldst seek thy wayward home,"
+					, "Through forests deep thou needs must roam."
+					, "Choose well the fruite, for fate is near—"
+					, "Thy heart shall guide thee, conquer thy fear"), List.of("The Crown", "Power", "The Forest", "Bread", "The Apple")));
+			}
+		
+		@BuilderMethod
+		public void TheEndActions() {
+			var node = get(MyNodeLabels.TheEnd.toString());
+			node.add(new NarrationSequence("A bright light fills the room, and all of your memories come back. You feel the power shift, and a crown sits a top your head. Welcome King."))
+			.add(new Wait(5))
+			.add(new HideNarration());
+			//How to give him aura?
+		}
+		
+		@BuilderMethod
+		public void YouFailActions() {
+			var node = get(MyNodeLabels.Youfail.toString());
+			node.add(new DialogSequence(wiseMan, player, List.of("Maybe your father was right..."), List.of()));
+		}
+		
+		
 
 
-	
-	
-	
+		
+		
+		
+		
+		
 	
 	
 	

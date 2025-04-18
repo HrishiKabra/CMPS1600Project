@@ -7,5 +7,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/hrishikabra/git/CMPS1600Project/MyClassProject/libs/CamelotJava.jar"/>
-	<classpathentry kind="output" path="libs"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>

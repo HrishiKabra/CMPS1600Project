@@ -27,6 +27,7 @@ public enum MyChoiceLabels {
     DemandAnswers,
     PlayDead,
     WakeUp,
+    TalkToWizard,
     
     
     

@@ -45,6 +45,7 @@ public enum MyNodeLabels{
 	TheCell,
 	TalkToGuard,
 	GetContext,
+	AskPrisoner,
 	
 	//Hrishi Rodrigo
 	AskGuardForTruth,

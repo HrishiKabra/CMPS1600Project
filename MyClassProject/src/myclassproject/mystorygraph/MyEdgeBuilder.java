@@ -332,6 +332,23 @@ public class MyEdgeBuilder extends NodeBuilder {
 		 node.add(new Edge(choice1, nextNode1));
 	 }
 	 
+	 
+	 @BuilderMethod
+	 public void AskStationedGuardEdges() {
+		     var node = get(MyNodeLabels.AskStationedGuard.toString());
+		          
+		     var choice = new DialogChoice("I WANT TO SPEAK TO THE WIZARD");
+		      var nextNode1 = get(MyNodeLabels.TheWizardAlternate.toString());
+		      }
+	 
+	 @BuilderMethod
+	 public void AskPrisonerEdges() {
+		     var node = get(MyNodeLabels.AskPrisoner.toString());
+		          
+		     var choice = new DialogChoice("I WANT TO SPEAK TO THE WIZARD");
+		      var nextNode1 = get(MyNodeLabels.TheWizard.toString());
+		      }
+	 
 	 @BuilderMethod
 	 public void TheWizardEdges() {
 		 var node = get(MyNodeLabels.TheWizard.toString());

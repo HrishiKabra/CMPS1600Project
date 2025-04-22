@@ -29,4 +29,5 @@ public class MyGraph extends Graph {
 	public NodeBuilder getEdgeBuilder() {
 		return new MyEdgeBuilder(nodes);
 	}
+
 }

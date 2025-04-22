@@ -66,6 +66,7 @@ public final class MyStoryEntities {
     public static final Furniture insideCabinDoor = new Furniture(insideCabin, FurnitureTypes.Door);
     public static final Furniture strangeFruitGroveEntrance = new Furniture(strangeFruitGrove, FurnitureTypes.EastEnd);
     public static final Furniture strangeFruitGroveExit = new Furniture(strangeFruitGrove, FurnitureTypes.WestEnd);
+    public static final Furniture strangeFruitGrovePlant = new Furniture(strangeFruitGrove, FurnitureTypes.Plant);
     public static final Furniture toStrangeFruitGrove = new Furniture(spookyArea, FurnitureTypes.WestEnd);
     public static final Furniture Plant = new Furniture(spookyArea, FurnitureTypes.Plant);
     public static final Furniture backToTheLostCity = new Furniture(spookyArea, FurnitureTypes.EastEnd);

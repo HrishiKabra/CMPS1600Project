@@ -38,6 +38,8 @@ public enum MyNodeLabels{
 	
 	//Petra Radmanovic
 	TheCastle,
+	TheCastle2,
+	TheCastle3,
 	TheKing,
 	StaySilent,
 	SpeakUp,
@@ -45,6 +47,7 @@ public enum MyNodeLabels{
 	TheCell,
 	TalkToGuard,
 	GetContext,
+	AskPrisoner,
 	
 	//Hrishi Rodrigo
 	AskGuardForTruth,

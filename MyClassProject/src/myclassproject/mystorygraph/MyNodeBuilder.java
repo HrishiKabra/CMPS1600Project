@@ -7,6 +7,7 @@ import static myclassproject.mystorygraph.MyStoryEntities.*;
 import com.storygraph.*;
 import com.actions.*;
 import com.entities.*;
+import com.enums.Effects;
 import com.sequences.*;
 
 
@@ -490,9 +491,11 @@ public class MyNodeBuilder extends NodeBuilder {
 			@BuilderMethod
 			public void TheEndActions() {
 				var node = get(MyNodeLabels.TheEnd.toString());
-				node.add(new NarrationSequence("A bright light fills the room, and all of your memories come back. You feel the power shift, and a crown sits a top your head. Welcome King."))
+				node.add(new EnableEffect(player, Effects.Aura))
+				.add(new NarrationSequence("A bright light fills the room, and all of your memories come back. You feel the power shift, and a crown sits a top your head. Welcome King."))
 				.add(new Wait(5))
-				.add(new HideNarration());
+				.add(new HideNarration())
+				.add(new DisableEffect(player, Effects.Aura));
 				//How to give him aura?
 			}
 			

@@ -78,7 +78,7 @@ public final class MyStoryEntities {
     public static final Furniture NetTrapPlant = new Furniture(NetTrapPlace, FurnitureTypes.Plant);
     public static final Furniture NetTrapDirtPile = new Furniture(NetTrapPlace, FurnitureTypes.DirtPile);
     
-    public static final Characters Wizard = new Characters("Wise Man", BodyTypes.B, Clothing.Warlock, HairStyle.Spiky, Colors.Black, 7);
+    public static final Characters Wizard = new Characters("Wizard", BodyTypes.B, Clothing.Warlock, HairStyle.Spiky, Colors.Black, 7);
 
     
 

@@ -17,7 +17,8 @@ public class MyEdgeBuilder extends NodeBuilder {
 	/**
 	 * Initializes the list of story graph nodes.
 	 * @param list A list of all story graph nodes.
-	 */
+
+ */
 	public MyEdgeBuilder(List<Node> list) {
 		super(list);
 	}
@@ -278,23 +279,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	     node.add(new Edge(choice1, nextNode1));
 		 
 	 }
-	 /*
-	 @BuilderMethod
-	 	public void EatApple2Edges() {
-		 var node = get(MyNodeLabels.EatApple2.toString());
-		 
-		 var choice1 = new PlayerInteraction(MyChoiceLabels.PickUpApple.toString(), apple, Icons.exit, "Eat the apple"); 
-		 var nextNode1 = get(MyNodeLabels.TheCastle.toString()); 
-		 node.add(new Edge(choice1, nextNode1));
-	 }
-	 
-	 
-	 //** note that some of these^ are not REAL choices between two options, they are simply a response to continue a dialog sequence between two characters
-	 */
-	 
-	 
-	 
-	 
+
 	 
 	//Hrishi Kabra
 	 @BuilderMethod

@@ -228,7 +228,7 @@ public class MyNodeBuilder extends NodeBuilder {
     public void TheCellActions() {
         var node = get(MyNodeLabels.TheCell.toString());
         node.add(new HideDialog())
-        .add(new WalkTo(guard1, TheDungeons, "Door"))
+        .add(new WalkTo(guard1, TheDungeons, "Chest"))
         .add(new Wait(1))
         .add(new WalkTo(player, cellDoor))//walk to the cell door
         .add(new OpenFurniture(player, cellDoor))//enter with NO fading
@@ -260,7 +260,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	
 	
 	@BuilderMethod
-    public void askPrisoner() {
+    public void AskPrisonerActions() {
         var node = get(MyNodeLabels.AskPrisoner.toString());
         node.add(new HideDialog())
         .add(new DialogSequence(prisoner, player, List.of("Just trust me."), List.of("I WANT TO SPEAK TO THE WIZARD")));
@@ -408,54 +408,70 @@ public class MyNodeBuilder extends NodeBuilder {
 				  .add(new WalkTo(player, toTheWizard))
 			      .add(new Exit(player, toTheWizard, true))
 			      .add(new Enter(player, EnterWizardLibrary, true))
-			      .add(new CreateCharacterSequence(wiseMan))
-			      .add(new SetPosition(wiseMan, TheWizardLibrary, "Stand"))
+			      .add(new CreateCharacterSequence(Wizard))
+			      .add(new SetPosition(Wizard, TheWizardLibrary, "Stand"))
 			      .add(new NarrationSequence("You come to stand in front of two, large, ornate oak doors. They open on their own, and you walk inside the tower. A cloaked man is staring out the bay windows."))
 			      .add(new Wait(5))
 			      .add(new HideNarration());
 			}
+			
+			@BuilderMethod
+			public void TheWizardCellActions() {
+				var node = get(MyNodeLabels.TheWizardCell.toString());
+				node.add(new HideDialog())
+				.add(new WalkTo(player, EnterDungeons))
+			      .add(new Exit(player, EnterDungeons, true))
+			      .add(new Enter(player, EnterWizardLibrary, true))
+			      .add(new CreateCharacterSequence(Wizard))
+			      .add(new SetPosition(Wizard, TheWizardLibrary, "Stand"))
+			      .add(new NarrationSequence("You come to stand in front of two, large, ornate oak doors. They open on their own, and you walk inside the tower. A cloaked man is staring out the bay windows."))
+			      .add(new Wait(5))
+			      .add(new HideNarration());
+			}
+			
+			
 			      
 			@BuilderMethod
 			public void TheWizard0Actions() {
 				var node = get(MyNodeLabels.TheWizard0.toString());
-				node.add(new Face(player, wiseMan))
-				.add(new WalkTo(player, wiseMan))
-				.add(new DialogSequence(player, wiseMan, List.of("You always come back." , " He says and turns around. Its the cloaked man from the woods!!"), List.of("Its you again! Who are you??")));
+				node.add(new Face(player, Wizard))
+				.add(new WalkTo(player, Wizard))
+				.add(new DialogSequence(player, Wizard, List.of("You always come back." , " He says and turns around. Its the cloaked man from the woods!!"), List.of("Its you again! Who are you??")));
 				}
 			
 			@BuilderMethod
 			public void theWizard2Actions() {
 				var node = get(MyNodeLabels.TheWizard2.toString());
 				node.add(new HideDialog())
-			    .add(new DialogSequence(wiseMan, player, List.of("My name is The Great Wizard, and it pains me you no longer remember me. I suppose you can only wipe someones memory a handful of times before seeing lasting effects. Hopefully you will be ready soon."), List.of("Ready? For what?")));
+			    .add(new DialogSequence(Wizard, player, List.of("My name is The Great Wizard, and it pains me you no longer remember me. I suppose you can only wipe someones memory a handful of times before seeing lasting effects. Hopefully you will be ready soon."), List.of("Ready? For what?")));
 			}
 			
 			@BuilderMethod
 			public void theWizard3Actions() {
 				var node = get(MyNodeLabels.TheWizard3.toString());
 				node.add(new HideDialog())
-			    .add(new DialogSequence(wiseMan, player, List.of("To take over the kingdom from your father of course The Great Wizard laughs You should be grateful really he thought you were a waste of space Never an heir worthy of the kingdom I was the one who convinced him that you could learn You havent yet but maybe soon"), List.of("What do I need to learn?", "I am still confused?")));
+			    .add(new DialogSequence(Wizard, player, List.of("To take over the kingdom from your father of course The Great Wizard laughs You should be grateful really he thought you were a waste of space Never an heir worthy of the kingdom I was the one who convinced him that you could learn You havent yet but maybe soon"), List.of("What do I need to learn?", "I am still confused?")));
 			}
 			
 			@BuilderMethod
 			public void TheWizardsFinalWordsActions() {
 				var node = get(MyNodeLabels.TheWizardsFinalWords.toString());
 				node.add(new HideDialog())
-				.add(new DialogSequence(wiseMan, player, List.of("Ah, of course you are. All is well and you will remember more with time. That is, unless we have to send you away again."), List.of("Send me away?")));
+				.add(new DialogSequence(Wizard, player, List.of("Ah, of course you are. All is well and you will remember more with time. That is, unless we have to send you away again."), List.of("Send me away?")));
 			}
 			
 			@BuilderMethod
 			public void TheWizardsFinalWords2Actions() {
 				var node = get(MyNodeLabels.TheWizardsFinalWords2.toString());
 				node.add(new HideDialog())
-			    .add(new DialogSequence(wiseMan, player, List.of("Yes, Unless of course, you now know the answer."), List.of("The answer to what?")));
+			    .add(new DialogSequence(Wizard, player, List.of("Yes, Unless of course, you now know the answer."), List.of("The answer to what?")));
 			}
 			
 			@BuilderMethod
 			public void TheRiddleActions() {
 				var node = get(MyNodeLabels.TheRiddle.toString());
 				node.add(new HideDialog())
-				.add(new DialogSequence(wiseMan, player, List.of("The answer to the riddle of course! Answer correct, and you have learned enough across these trials to take over the kingdom. Answer wrong, and your dad is right, but I will keep trying. However, at the rate of this memory last we may only have a few resets left"
+				.add(new DialogSequence(Wizard, player, List.of("The answer to the riddle of course! Answer correct, and you have learned enough across these trials to take over the kingdom. Answer wrong, and your dad is right, but I will keep trying. However, at the rate of this memory last we may only have a few resets left"
 						, "The Riddle:"
 						, "In a kingdom fair, where trees abound,"
 						, "With fruite of wonder the land is crown’d."
@@ -483,11 +499,11 @@ public class MyNodeBuilder extends NodeBuilder {
 			@BuilderMethod
 			public void YouFailActions() {
 				var node = get(MyNodeLabels.Youfail.toString());
-				node.add(new DialogSequence(wiseMan, player, List.of("Maybe your father was right..."), List.of()));
+				node.add(new DialogSequence(Wizard, player, List.of("Maybe your father was right..."), List.of()));
 			}
 			
 		
-		
+		 
 		
 		
 		

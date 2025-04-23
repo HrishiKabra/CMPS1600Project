@@ -255,12 +255,29 @@ public class MyEdgeBuilder extends NodeBuilder {
 	        
 	        //ask the stationed guard to continue explaining
 	        var choice1 = new DialogChoice("I dont understand...what are you talking about?");
-	        var nextNode1 = get(MyNodeLabels.AskStationedGuard.toString());
+	        var nextNode1 = get(MyNodeLabels.AskPrisoner.toString());
 	        node.add(new Edge(choice1, nextNode1));
 	        
 	      
 	 }
 	 
+	 @BuilderMethod
+	 public void AskPrisonerEdges() {
+		 var node = get(MyNodeLabels.AskPrisoner.toString());
+		 var choice1 = new DialogChoice("I WANT TO SPEAK TO THE WIZARD");
+		 var nextNode1 = get(MyNodeLabels.TheWizardCell.toString());
+	     node.add(new Edge(choice1, nextNode1));
+		 
+	 }
+	 
+	 @BuilderMethod
+	 public void AskStationedGuardEdges() {
+		 var node = get(MyNodeLabels.AskStationedGuard.toString());
+		 var choice1 = new DialogChoice("I WANT TO SPEAK TO THE WIZARD");
+		 var nextNode1 = get(MyNodeLabels.TheWizardCell.toString());
+	     node.add(new Edge(choice1, nextNode1));
+		 
+	 }
 	 /*
 	 @BuilderMethod
 	 	public void EatApple2Edges() {
@@ -381,8 +398,17 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 public void TheWizardEdges() {
 		 var node = get(MyNodeLabels.TheWizard.toString());
 		 
-		 var choice1 = new PlayerInteraction(MyChoiceLabels.TalkToWizard.toString(), wiseMan, Icons.talk, "Go talk to the Wizard");
-		 var nextNode1 = get(MyNodeLabels.TheWizard2.toString());
+		 var choice1 = new PlayerInteraction(MyChoiceLabels.TalkToWizard.toString(), Wizard, Icons.talk, "Go talk to the Wizard");
+		 var nextNode1 = get(MyNodeLabels.TheWizard0.toString());
+		 node.add(new Edge(choice1, nextNode1));
+	 }
+	 
+	 @BuilderMethod
+	 public void TheWizardCellEdges() {
+		 var node = get(MyNodeLabels.TheWizardCell.toString());
+		 
+		 var choice1 = new PlayerInteraction(MyChoiceLabels.TalkToWizard.toString(), Wizard, Icons.talk, "Go talk to the Wizard");
+		 var nextNode1 = get(MyNodeLabels.TheWizard0.toString());
 		 node.add(new Edge(choice1, nextNode1));
 	 }
 	 
@@ -422,7 +448,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 		 var node = get(MyNodeLabels.TheWizardsFinalWords.toString());
 		 
 		 var choice1 = new DialogChoice("Send me away?");
-		 var nextNode1 = get(MyNodeLabels.TheRiddle.toString());
+		 var nextNode1 = get(MyNodeLabels.TheWizardsFinalWords2.toString());
 		 node.add(new Edge(choice1, nextNode1));
 	 }
 	 
@@ -430,7 +456,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 public void TheWizardsFinalWords2Edges() {
 		 var node = get(MyNodeLabels.TheWizardsFinalWords2.toString());
 		 
-		 var choice1 = new DialogChoice("What do I need to learn?");
+		 var choice1 = new DialogChoice("The answer to what?");
 		 var nextNode1 = get(MyNodeLabels.TheRiddle.toString());
 		 node.add(new Edge(choice1, nextNode1));
 	 }

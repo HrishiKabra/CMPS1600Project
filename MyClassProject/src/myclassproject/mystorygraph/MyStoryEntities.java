@@ -77,6 +77,10 @@ public final class MyStoryEntities {
     public static final Furniture NetTrapEntrance = new Furniture(NetTrapPlace, FurnitureTypes.Exit);
     public static final Furniture NetTrapPlant = new Furniture(NetTrapPlace, FurnitureTypes.Plant);
     public static final Furniture NetTrapDirtPile = new Furniture(NetTrapPlace, FurnitureTypes.DirtPile);
+    
+    public static final Characters Wizard = new Characters("Wise Man", BodyTypes.B, Clothing.Warlock, HairStyle.Spiky, Colors.Black, 7);
+
+    
 
     //Rodrigo Guzman
     public static final Furniture lostCityGate = new Furniture(lostCity, FurnitureTypes.NorthEnd);
